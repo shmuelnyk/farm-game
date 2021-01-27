@@ -1,0 +1,10 @@
+login_check:
+  path: /login_check
+  methods: [POST]
+
+index:
+  path: /{vueRouting}
+  methods: GET
+  controller: App\Controller\DefaultController::index
+  requirements:
+    vueRouting: ^(?!api|_(profiler|wdt)).*
