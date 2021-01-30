@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="7311431d-514a-4575-b29a-701db87c0d91" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/pages/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/pages/Login.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,8 +37,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" selection-start-line="18" selection-end-line="18" selection-end-column="14" />
+            <state relative-caret-position="374">
+              <caret line="22" selection-start-line="22" selection-end-line="22" />
             </state>
           </provider>
         </entry>
@@ -44,8 +46,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/pages/Login.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
+            <state relative-caret-position="569">
+              <caret line="63" column="25" selection-start-line="63" selection-start-column="25" selection-end-line="63" selection-end-column="25" />
               <folding>
                 <element signature="n#style#0;n#img#0;n#a-form-model#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#h1#0;n#a-form-model#0;n#template#0;n#!!top" expanded="true" />
@@ -218,11 +220,11 @@
         <option value="$PROJECT_DIR$/src/Entity/Participant.php" />
         <option value="$PROJECT_DIR$/src/Controller/AdminController.php" />
         <option value="$PROJECT_DIR$/src/Controller/SubmitController.php" />
-        <option value="$PROJECT_DIR$/assets/js/pages/Login.vue" />
         <option value="$PROJECT_DIR$/assets/js/pages/Admin.vue" />
         <option value="$PROJECT_DIR$/assets/js/app.js" />
         <option value="$PROJECT_DIR$/assets/css/app.css" />
         <option value="$PROJECT_DIR$/assets/js/pages/Index.vue" />
+        <option value="$PROJECT_DIR$/assets/js/pages/Login.vue" />
         <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
@@ -473,6 +475,12 @@
             <path>
               <item name="quiz" type="b2602c69:ProjectViewProjectNode" />
               <item name="quiz" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="build" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="quiz" type="b2602c69:ProjectViewProjectNode" />
+              <item name="quiz" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -546,12 +554,12 @@
       <updated>1611458706173</updated>
       <workItem from="1611458707508" duration="19313000" />
       <workItem from="1611673433113" duration="2512000" />
-      <workItem from="1611975250914" duration="18705000" />
+      <workItem from="1611975250914" duration="19659000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40530000" />
+    <option name="totallyTimeSpent" value="41484000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -772,19 +780,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/pages/Login.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#a-form-model#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h1#0;n#a-form-model#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a-input#0;n#a-form-model-item#0;n#a-form-model#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a-input#0;n#a-form-model-item#1;n#a-form-model#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/router/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="371">
@@ -857,10 +852,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/pages/Login.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="569">
+          <caret line="63" column="25" selection-start-line="63" selection-start-column="25" selection-end-line="63" selection-end-column="25" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#a-form-model#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h1#0;n#a-form-model#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a-input#0;n#a-form-model-item#0;n#a-form-model#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a-input#0;n#a-form-model-item#1;n#a-form-model#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" selection-start-line="18" selection-end-line="18" selection-end-column="14" />
+        <state relative-caret-position="374">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
         </state>
       </provider>
     </entry>

@@ -59,7 +59,9 @@
 </script>
 
 <style lang="scss" scoped>
+
     .ant-form {
+        background: white;
         position: absolute;
         left: 50%;
         top: 50%;
