@@ -8,6 +8,7 @@ import "@/plugins/antd-ui";
 import "intro.js/intro.js";
 import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
+import '../css/app.css';
 
 Vue.config.productionTip = false;
 

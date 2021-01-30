@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\AdminOption;
 use App\Entity\Participant;
 use App\Entity\QuizAnswer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -33,7 +34,12 @@ class SubmitController extends AbstractController
             }
         }
         $em->flush();
+        $options = $em->getRepository(AdminOption::class)->findOneBy(array('optionKey'=>'pageLink'));
+        $link = null;
+        if($options){
+            $link = $options->getOptionValue();
+        }
 
-        return new JsonResponse(null,200);
+        return new JsonResponse(array('link'=>$link),200);
     }
 }

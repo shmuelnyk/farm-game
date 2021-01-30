@@ -68,7 +68,11 @@ class Participant
      */
     private $phoneNumber;
 
-
+    /**
+     * @Assert\DateTime()
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\QuizAnswer", mappedBy="participant")
@@ -77,6 +81,8 @@ class Participant
 
     public function __construct()
     {
+        $this->setCreatedAt(new \DateTime());
+
         $this->quizAnswers= new ArrayCollection();
     }
 
@@ -190,6 +196,33 @@ class Participant
     public function setPhoneNumber(?string $phoneNumber): void
     {
         $this->phoneNumber = $phoneNumber;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param mixed $createdAt
+     */
+    public function setCreatedAt($createdAt): void
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    /**
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function updatedTimestamps(): void
+    {
+        if ($this->getCreatedAt() === null) {
+            $this->setCreatedAt(new \DateTime('now'));
+        }
     }
 
 
