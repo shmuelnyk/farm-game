@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7311431d-514a-4575-b29a-701db87c0d91" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/AdminOption.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/pages/Admin.vue" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/pages/Admin.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/pages/Index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/pages/Index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/pages/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/pages/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ParticipantController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AdminController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/SubmitController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SubmitController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Participant.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Participant.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,7 +18,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/pages/Index.vue">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="451">
@@ -39,6 +28,15 @@
                 <element signature="e#9353#10834#0" />
                 <element signature="e#12217#13628#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="18" selection-start-line="18" selection-end-line="18" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -142,18 +140,6 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Entity/Participant.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="72" column="35" selection-start-line="72" selection-start-column="35" selection-end-line="72" selection-end-column="35" />
-              <folding>
-                <element signature="e#30#78#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FindInProjectRecents">
@@ -164,7 +150,6 @@
       <find>got</find>
       <find>submit</find>
       <find>export</find>
-      <find>You have completed the farm game.</find>
       <find>data</find>
       <find>logout</find>
       <find>method</find>
@@ -188,6 +173,7 @@
       <find>flex-col</find>
       <find>Select</find>
       <find>30</find>
+      <find>You have completed the farm game.</find>
     </findStrings>
     <replaceStrings>
       <replace>100%</replace>
@@ -237,6 +223,7 @@
         <option value="$PROJECT_DIR$/assets/js/app.js" />
         <option value="$PROJECT_DIR$/assets/css/app.css" />
         <option value="$PROJECT_DIR$/assets/js/pages/Index.vue" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -559,12 +546,12 @@
       <updated>1611458706173</updated>
       <workItem from="1611458707508" duration="19313000" />
       <workItem from="1611673433113" duration="2512000" />
-      <workItem from="1611975250914" duration="18095000" />
+      <workItem from="1611975250914" duration="18705000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39920000" />
+    <option name="totallyTimeSpent" value="40530000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -867,6 +854,13 @@
             <element signature="e#9353#10834#0" />
             <element signature="e#12217#13628#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" selection-start-line="18" selection-end-line="18" selection-end-column="14" />
         </state>
       </provider>
     </entry>
