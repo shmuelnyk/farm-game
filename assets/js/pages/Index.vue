@@ -139,9 +139,11 @@
                                                     </template>
                                                     <b>Percentage of work left in growing season: {{ tutorialOne.workVariable }}</b>
                                                 </a-tooltip>
+                                                <Bar style="max-height:150px"  :chance="tutorialOne.workVariable "></Bar>
                                             </p>
                                             <p v-else>
                                                 Percentage of work left in growing season: {{ tutorialOne.workVariable }}
+                                                <Bar style="max-height:150px"  :chance="tutorialOne.workVariable "></Bar>
                                             </p>
                                             </a-card>
                                         </a-col>
@@ -165,6 +167,7 @@
                                             </p>
                                             <p >
                                                 Percentage of work left in growing season: {{ tutorialTwo.workVariable }}
+                                                <Bar style="max-height:150px"  :chance="tutorialTwo.workVariable "></Bar>
                                             </p>
                                             </a-card>
                                         </a-col>
@@ -213,15 +216,7 @@
                                                     The chances of yielding from the plants and receiving the money : {{ currentQuestion.chanceVariableOne == 'for sure' ? '100%' : currentQuestion.chanceVariableOne }}
                                                 </span>
                                             </p>
-                                            <p>
 
-                                                <b v-if="currentQuestion.highlightOne == 'workVariableOne'">
-                                                    Percentage of work left in growing season: {{ currentQuestion.workVariableOne }}
-                                                </b>
-                                                <span v-else>
-                                            Percentage of work left in growing season: {{ currentQuestion.workVariableOne }}
-                                        </span>
-                                            </p>
                                             <p>
                                                 <b v-if="currentQuestion.highlightOne == 'deadlineVariableOne'">
                                                     Time until harvesting: {{ currentQuestion.deadlineVariableOne }}
@@ -229,6 +224,17 @@
                                                 <span v-else>
                                             Time until harvesting: {{ currentQuestion.deadlineVariableOne }}
                                         </span>
+                                            </p>
+                                            <p>
+
+                                                <b v-if="currentQuestion.highlightOne == 'workVariableOne'">
+                                                    Percentage of work left in growing season: {{ currentQuestion.workVariableOne }}
+                                                </b>
+                                                <span v-else>
+                                                    Percentage of work left in growing season: {{ currentQuestion.workVariableOne }}
+                                                 </span>
+                                                <Bar style="max-height:150px"  :chance="currentQuestion.workVariableOne "></Bar>
+
                                             </p>
                                         </a-card>
                                 </a-col>
@@ -260,6 +266,16 @@
                                             </b>
                                             <span v-else>
                                             The chances of yielding from the plants and receiving the money : {{ currentQuestion.chanceVariableTwo == 'for sure' ? '100%' : currentQuestion.chanceVariableTwo }}
+
+                                        </span>
+                                        </p>
+
+                                        <p>
+                                            <b v-if="currentQuestion.highlightTwo == 'deadlineVariableTwo'">
+                                                Time until harvesting: {{ currentQuestion.deadlineVariableTwo }}
+                                            </b>
+                                            <span v-else>
+                                            Time until harvesting: {{ currentQuestion.deadlineVariableTwo }}
                                         </span>
                                         </p>
                                         <p>
@@ -270,14 +286,8 @@
                                             <span v-else>
                                             Percentage of work left in growing season: {{ currentQuestion.workVariableTwo }}
                                         </span>
-                                        </p>
-                                        <p>
-                                            <b v-if="currentQuestion.highlightTwo == 'deadlineVariableTwo'">
-                                                Time until harvesting: {{ currentQuestion.deadlineVariableTwo }}
-                                            </b>
-                                            <span v-else>
-                                            Time until harvesting: {{ currentQuestion.deadlineVariableTwo }}
-                                        </span>
+                                            <Bar style="max-height:150px"  :chance="currentQuestion.workVariableTwo "></Bar>
+
                                         </p>
                                     </a-card>
                                 </a-col>
@@ -314,11 +324,11 @@
 
     import {mapGetters} from 'vuex';
     import moment from "moment";
+    import Bar from '../components/Bar'
 
     export default {
         components: {
-            // agile: VueAgile
-
+            Bar
         },
         computed: {
             ...mapGetters({
@@ -705,6 +715,7 @@
                 quizQuestions: undefined,
                 questionStart: undefined,
                 questionEnd: undefined,
+                datacollection: undefined,
                 vegetables: [
                     {
                         title:'Tomato',
@@ -733,6 +744,22 @@
             this.generateQuestions()
         },
         methods: {
+            fillData () {
+                this.datacollection = {
+                    labels: [this.getRandomInt(), this.getRandomInt()],
+                    datasets: [
+                        {
+                            label: 'Data One',
+                            backgroundColor: '#f87979',
+                            data: [this.getRandomInt(), this.getRandomInt()]
+                        }, {
+                            label: 'Data One',
+                            backgroundColor: '#f87979',
+                            data: [this.getRandomInt(), this.getRandomInt()]
+                        }
+                    ]
+                }
+            },
             getImage(path){
               return this[path]
             },
