@@ -61,6 +61,13 @@ class QuizAnswer
     private $answer;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=64)
+     */
+    private $time;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -153,5 +160,23 @@ class QuizAnswer
 
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getTime(): string
+    {
+        return $this->time;
+    }
+
+    /**
+     * @param string $time
+     */
+    public function setTime(string $time): void
+    {
+        $this->time = $time;
+    }
+
+
 
 }

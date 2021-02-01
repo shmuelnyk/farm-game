@@ -42,31 +42,8 @@ class Participant
      * @var string|null
      *
      * @ORM\Column(type="string", length=180 , nullable=true)
-     * @Assert\Email
      */
-    private $email;
-
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(type="string", length=64 , nullable=true)
-     */
-    private $firstName;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(type="string", length=64 , nullable=true)
-     */
-    private $lastName;
-
-
-    /**
-     * @var string|null
-     * @ORM\Column(type="string", length=32, nullable=true)
-     */
-    private $phoneNumber;
+    private $mTurkId;
 
     /**
      * @Assert\DateTime()
@@ -137,66 +114,19 @@ class Participant
     /**
      * @return string|null
      */
-    public function getEmail(): ?string
+    public function getMTurkId(): ?string
     {
-        return $this->email;
+        return $this->mTurkId;
     }
 
     /**
-     * @param string|null $email
+     * @param string|null $mTurkId
      */
-    public function setEmail(?string $email): void
+    public function setMTurkId(?string $mTurkId): void
     {
-        $this->email = $email;
+        $this->mTurkId = $mTurkId;
     }
 
-    /**
-     * @return string|null
-     */
-    public function getFirstName(): ?string
-    {
-        return $this->firstName;
-    }
-
-    /**
-     * @param string|null $firstName
-     */
-    public function setFirstName(?string $firstName): void
-    {
-        $this->firstName = $firstName;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getLastName(): ?string
-    {
-        return $this->lastName;
-    }
-
-    /**
-     * @param string|null $lastName
-     */
-    public function setLastName(?string $lastName): void
-    {
-        $this->lastName = $lastName;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getPhoneNumber(): ?string
-    {
-        return $this->phoneNumber;
-    }
-
-    /**
-     * @param string|null $phoneNumber
-     */
-    public function setPhoneNumber(?string $phoneNumber): void
-    {
-        $this->phoneNumber = $phoneNumber;
-    }
 
     /**
      * @return mixed

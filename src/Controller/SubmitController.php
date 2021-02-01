@@ -20,14 +20,18 @@ class SubmitController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $params = json_decode($request->get('form'),true);
         $participant = new Participant();
+        $participant->setMTurkId($request->get('mkturk'));
         $em->persist($participant);
+
         foreach ($params as $test => $answers){
             foreach ($answers as $answer){
+
                 $quizAnswer = new QuizAnswer();
                 $quizAnswer->setTest($answer['quizName']);
                 $quizAnswer->setOptionOne($answer['option1']);
                 $quizAnswer->setOptionTwo($answer['option2']);
                 $quizAnswer->setAnswer($answer['answer']);
+                $quizAnswer->setTime($answer['time']);
                 $em->persist($quizAnswer);
                 $participant->addQuizAnswer($quizAnswer);
                 $em->persist($participant);

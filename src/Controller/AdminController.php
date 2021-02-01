@@ -55,6 +55,7 @@ class AdminController extends AbstractController
             'Option one',
             'Option two',
             'Answer',
+            'Time in milliseconds',
 
         );
         $data = json_decode($request->getContent(),true);
@@ -99,6 +100,8 @@ class AdminController extends AbstractController
                 $sheet->setCellValue($column . $row, $answer->getOptionTwo());
                 $column++;
                 $sheet->setCellValue($column . $row, $answer->getAnswer());
+                $column++;
+                $sheet->setCellValue($column . $row, $answer->getTime());
                 $row++;
             }
             $row++;

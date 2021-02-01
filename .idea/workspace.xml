@@ -2,9 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7311431d-514a-4575-b29a-701db87c0d91" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/pages/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/pages/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/pages/Admin.vue" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/pages/Admin.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/pages/Index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/pages/Index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/0.558472b5.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/0.8608f125.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/app.65a473d6.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/app.ef9be5c7.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/entrypoints.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/build/entrypoints.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/build/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/runtime.d94b3b43.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/SubmitController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SubmitController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Participant.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Participant.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/QuizAnswer.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/QuizAnswer.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,80 +31,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/js/pages/Index.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="451">
-              <caret line="117" column="44" selection-start-line="117" selection-start-column="44" selection-end-line="117" selection-end-column="44" />
+            <state relative-caret-position="342">
+              <caret line="147" column="73" selection-start-line="147" selection-start-column="73" selection-end-line="147" selection-end-column="73" />
               <folding>
                 <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#a-layout-content#0;n#a-layout#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="e#9353#10834#0" />
-                <element signature="e#12217#13628#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" selection-start-line="22" selection-end-line="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/pages/Login.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="569">
-              <caret line="63" column="25" selection-start-line="63" selection-start-column="25" selection-end-line="63" selection-end-column="25" />
-              <folding>
-                <element signature="n#style#0;n#img#0;n#a-form-model#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#h1#0;n#a-form-model#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a-input#0;n#a-form-model-item#0;n#a-form-model#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a-input#0;n#a-form-model-item#1;n#a-form-model#0;n#template#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/pages/Admin.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="725">
-              <caret line="189" selection-start-line="189" selection-end-line="189" />
-              <folding>
-                <element signature="n#style#0;n#a-page-header#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a-range-picker#0;n#a-col#0;n#a-row#0;n#a-collapse-panel#0;n#a-collapse#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#a-col#1;n#a-row#0;n#a-collapse-panel#0;n#a-collapse#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a-input#0;n#a-col#0;n#a-row#0;n#a-collapse-panel#1;n#a-collapse#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#a-col#1;n#a-row#0;n#a-collapse-panel#1;n#a-collapse#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="e#1018#1062#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/router/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="371">
-              <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
-              <folding>
-                <element signature="e#0#22#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/router/routes.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="16" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="16" />
-              <folding>
-                <element signature="e#0#38#0" expanded="true" />
+                <element signature="n#a-col#0;n#a-row#0;n#div#0;n#a-row#0;n#div#0;n#div#1;n#div#0;n#a-layout-content#0;n#a-layout#0;n#template#0;n#!!top" />
+                <element signature="n#p#0;n#a-card#0;n#a-col#1;n#a-row#0;n#a-row#1;n#div#0;n#div#1;n#div#0;n#a-layout-content#0;n#a-layout#0;n#template#0;n#!!top" />
+                <element signature="n#p#1;n#a-card#0;n#a-col#1;n#a-row#0;n#a-row#1;n#div#0;n#div#1;n#div#0;n#a-layout-content#0;n#a-layout#0;n#template#0;n#!!top" />
+                <element signature="e#8708#8740#0" expanded="true" />
+                <element signature="e#9008#23681#0" />
               </folding>
             </state>
           </provider>
@@ -102,10 +51,69 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/SubmitController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="36" column="97" selection-start-line="36" selection-start-column="97" selection-end-line="36" selection-end-column="97" />
+            <state relative-caret-position="561">
+              <caret line="39" column="21" selection-start-line="39" selection-start-column="21" selection-end-line="39" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/pages/Login.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1071">
+              <caret line="63" column="25" selection-start-line="63" selection-start-column="25" selection-end-line="63" selection-end-column="25" />
               <folding>
-                <element signature="e#34#56#0#PHP" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#a-form-model#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h1#0;n#a-form-model#0;n#template#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/pages/Admin.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="833">
+              <caret line="49" column="8" selection-start-line="49" selection-start-column="8" selection-end-line="49" selection-end-column="8" />
+              <folding>
+                <element signature="n#style#0;n#a-page-header#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a-range-picker#0;n#a-col#0;n#a-row#0;n#a-collapse-panel#0;n#a-collapse#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#a-col#1;n#a-row#0;n#a-collapse-panel#0;n#a-collapse#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a-input#0;n#a-col#0;n#a-row#0;n#a-collapse-panel#1;n#a-collapse#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#a-col#1;n#a-row#0;n#a-collapse-panel#1;n#a-collapse#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Entity/Participant.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="501">
+              <caret line="129" selection-start-line="129" selection-end-line="129" />
+              <folding>
+                <element signature="e#30#78#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Entity/QuizAnswer.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="620">
+              <caret line="173" column="7" selection-start-line="173" selection-start-column="7" selection-end-line="173" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/router/routes.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="13" column="16" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="16" />
+              <folding>
+                <element signature="e#0#38#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -123,12 +131,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/AdminController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="349">
-              <caret line="123" column="5" selection-start-line="123" selection-start-column="5" selection-end-line="123" selection-end-column="5" />
-              <folding>
-                <element signature="e#34#56#0#PHP" expanded="true" />
-                <element signature="e#549#1438#0#PHP" />
-              </folding>
+            <state relative-caret-position="601">
+              <caret line="103" column="69" selection-start-line="103" selection-start-column="69" selection-end-line="103" selection-end-column="69" />
             </state>
           </provider>
         </entry>
@@ -146,43 +150,45 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>exportPa</find>
-      <find>construct</find>
-      <find>key</find>
-      <find>got</find>
-      <find>submit</find>
+      <find>api/submit/quiz</find>
       <find>export</find>
-      <find>data</find>
-      <find>logout</find>
-      <find>method</find>
-      <find>auth/lo</find>
-      <find>100</find>
-      <find>generateQ</find>
-      <find>qOne</find>
-      <find>createOptions</find>
-      <find>workVariable</find>
-      <find>console.lo</find>
-      <find>console.l</find>
+      <find>Next</find>
       <find>methods</find>
+      <find>nextTutorial</find>
+      <find>currentTutorial =</find>
+      <find>setTimeout(()</find>
+      <find>3000)</find>
+      <find>isTutorial = false</find>
+      <find>logo.</find>
+      <find>nextT</find>
+      <find>.vegOne</find>
+      <find>method</find>
+      <find>require</find>
+      <find>currentTutorial</find>
+      <find>&lt;img</find>
+      <find>tomatoes</find>
+      <find>align-center</find>
+      <find>currentQuestion.time</find>
+      <find>generateQ</find>
+      <find>mounted</find>
+      <find>selectAnms</find>
       <find>questions</find>
-      <find>generag</find>
-      <find>link</find>
-      <find>pi</find>
-      <find>Two</find>
-      <find>1px solid grey</find>
-      <find>option1</find>
-      <find>styles</find>
-      <find>flex-col</find>
-      <find>Select</find>
-      <find>30</find>
-      <find>You have completed the farm game.</find>
+      <find>submitting</find>
+      <find>tutorial</find>
+      <find>loader</find>
+      <find>submitQ</find>
+      <find>a-card</find>
+      <find>$gree</find>
+      <find>currentQ</find>
     </findStrings>
     <replaceStrings>
       <replace>100%</replace>
       <replace>second</replace>
-      <replace>Two</replace>
       <replace>qTwo</replace>
       <replace>One</replace>
+      <replace>&lt;a-tooltip :defaultVisible=&quot;true&quot;&gt;</replace>
+      <replace>,3000)</replace>
+      <replace>Two</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -195,7 +201,6 @@
         <option value="$PROJECT_DIR$/assets/js/router/routes.js" />
         <option value="$PROJECT_DIR$/assets/js/router/index.js" />
         <option value="$PROJECT_DIR$/src/Entity/QuizAnswers.php" />
-        <option value="$PROJECT_DIR$/src/Entity/QuizAnswer.php" />
         <option value="$PROJECT_DIR$/config/packages/security.yaml" />
         <option value="$PROJECT_DIR$/config/jwt/public.pem" />
         <option value="$PROJECT_DIR$/config/jwt/private.pem" />
@@ -213,19 +218,20 @@
         <option value="$PROJECT_DIR$/assets/js/services/API.js" />
         <option value="$PROJECT_DIR$/assets/js/App.vue" />
         <option value="$PROJECT_DIR$/index.php" />
-        <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/src/Entity/Options.php" />
         <option value="$PROJECT_DIR$/src/Entity/Option.php" />
         <option value="$PROJECT_DIR$/src/Entity/AdminOption.php" />
-        <option value="$PROJECT_DIR$/src/Entity/Participant.php" />
-        <option value="$PROJECT_DIR$/src/Controller/AdminController.php" />
-        <option value="$PROJECT_DIR$/src/Controller/SubmitController.php" />
-        <option value="$PROJECT_DIR$/assets/js/pages/Admin.vue" />
         <option value="$PROJECT_DIR$/assets/js/app.js" />
         <option value="$PROJECT_DIR$/assets/css/app.css" />
-        <option value="$PROJECT_DIR$/assets/js/pages/Index.vue" />
         <option value="$PROJECT_DIR$/assets/js/pages/Login.vue" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/.env" />
+        <option value="$PROJECT_DIR$/assets/js/pages/Admin.vue" />
+        <option value="$PROJECT_DIR$/src/Entity/Participant.php" />
+        <option value="$PROJECT_DIR$/src/Entity/QuizAnswer.php" />
+        <option value="$PROJECT_DIR$/src/Controller/AdminController.php" />
+        <option value="$PROJECT_DIR$/src/Controller/SubmitController.php" />
+        <option value="$PROJECT_DIR$/assets/js/pages/Index.vue" />
       </list>
     </option>
   </component>
@@ -378,6 +384,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -511,7 +518,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -524,6 +530,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\work\quiz" />
       <recent name="E:\work\quiz\src\Entity" />
       <recent name="E:\work\quiz\src\Controller" />
       <recent name="E:\work\quiz\assets\js\store" />
@@ -554,18 +561,19 @@
       <updated>1611458706173</updated>
       <workItem from="1611458707508" duration="19313000" />
       <workItem from="1611673433113" duration="2512000" />
-      <workItem from="1611975250914" duration="19659000" />
+      <workItem from="1611975250914" duration="21018000" />
+      <workItem from="1612093780744" duration="12159000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41484000" />
+    <option name="totallyTimeSpent" value="55002000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18176973" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18336888" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -613,7 +621,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.env.local" />
     <entry file="file://$PROJECT_DIR$/config/jwt/private.pem">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
@@ -679,13 +686,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/QuizAnswer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="27" column="7" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/packages/doctrine_migrations.yaml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -739,13 +739,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="31" column="48" selection-start-line="31" selection-start-column="48" selection-end-line="31" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/DefaultController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -760,26 +753,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Participant.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="72" column="35" selection-start-line="72" selection-start-column="35" selection-end-line="72" selection-end-column="35" />
-          <folding>
-            <element signature="e#30#78#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/SubmitController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="36" column="97" selection-start-line="36" selection-start-column="97" selection-end-line="36" selection-end-column="97" />
-          <folding>
-            <element signature="e#34#56#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/router/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="371">
@@ -790,9 +763,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env.local">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="31" column="21" selection-start-line="31" selection-end-line="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="29" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/pages/Login.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1071">
+          <caret line="63" column="25" selection-start-line="63" selection-start-column="25" selection-end-line="63" selection-end-column="25" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#a-form-model#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h1#0;n#a-form-model#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/router/routes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
+        <state relative-caret-position="170">
           <caret line="13" column="16" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="16" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
@@ -814,61 +819,63 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/AdminController.php">
+    <entry file="file://$PROJECT_DIR$/src/Entity/QuizAnswer.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="123" column="5" selection-start-line="123" selection-start-column="5" selection-end-line="123" selection-end-column="5" />
+        <state relative-caret-position="620">
+          <caret line="173" column="7" selection-start-line="173" selection-start-column="7" selection-end-line="173" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/Participant.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="501">
+          <caret line="129" selection-start-line="129" selection-end-line="129" />
           <folding>
-            <element signature="e#34#56#0#PHP" expanded="true" />
-            <element signature="e#549#1438#0#PHP" />
+            <element signature="e#30#78#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/pages/Admin.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="725">
-          <caret line="189" selection-start-line="189" selection-end-line="189" />
+        <state relative-caret-position="833">
+          <caret line="49" column="8" selection-start-line="49" selection-start-column="8" selection-end-line="49" selection-end-column="8" />
           <folding>
             <element signature="n#style#0;n#a-page-header#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a-range-picker#0;n#a-col#0;n#a-row#0;n#a-collapse-panel#0;n#a-collapse#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#a-col#1;n#a-row#0;n#a-collapse-panel#0;n#a-collapse#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a-input#0;n#a-col#0;n#a-row#0;n#a-collapse-panel#1;n#a-collapse#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#a-col#1;n#a-row#0;n#a-collapse-panel#1;n#a-collapse#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#1018#1062#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/AdminController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="601">
+          <caret line="103" column="69" selection-start-line="103" selection-start-column="69" selection-end-line="103" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/SubmitController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="39" column="21" selection-start-line="39" selection-start-column="21" selection-end-line="39" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/pages/Index.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="451">
-          <caret line="117" column="44" selection-start-line="117" selection-start-column="44" selection-end-line="117" selection-end-column="44" />
+        <state relative-caret-position="342">
+          <caret line="147" column="73" selection-start-line="147" selection-start-column="73" selection-end-line="147" selection-end-column="73" />
           <folding>
             <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#a-layout-content#0;n#a-layout#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#9353#10834#0" />
-            <element signature="e#12217#13628#0" />
+            <element signature="n#a-col#0;n#a-row#0;n#div#0;n#a-row#0;n#div#0;n#div#1;n#div#0;n#a-layout-content#0;n#a-layout#0;n#template#0;n#!!top" />
+            <element signature="n#p#0;n#a-card#0;n#a-col#1;n#a-row#0;n#a-row#1;n#div#0;n#div#1;n#div#0;n#a-layout-content#0;n#a-layout#0;n#template#0;n#!!top" />
+            <element signature="n#p#1;n#a-card#0;n#a-col#1;n#a-row#0;n#a-row#1;n#div#0;n#div#1;n#div#0;n#a-layout-content#0;n#a-layout#0;n#template#0;n#!!top" />
+            <element signature="e#8708#8740#0" expanded="true" />
+            <element signature="e#9008#23681#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/pages/Login.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="569">
-          <caret line="63" column="25" selection-start-line="63" selection-start-column="25" selection-end-line="63" selection-end-column="25" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#a-form-model#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h1#0;n#a-form-model#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a-input#0;n#a-form-model-item#0;n#a-form-model#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a-input#0;n#a-form-model-item#1;n#a-form-model#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
         </state>
       </provider>
     </entry>
