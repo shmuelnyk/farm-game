@@ -120,14 +120,13 @@
                                                         Sometimes a crop can be damaged by pests and the chance
                                                         of getting the whole value decreases.
                                                     </template>
-                                                    <b>The chances of yielding from the plants and receiving the money:
-                                                        {{ tutorialOne.chanceVariable == 'for sure' ? '100%' :
+                                                    <b>The chances of yielding from the plants and receiving the money: {{ tutorialOne.chanceVariable == 'for sure' ? '100%' :
                                                         tutorialOne.chanceVariable }}
                                                     </b>
                                                 </a-tooltip>
                                             </p>
                                             <p v-else>
-                                                The chances of yielding from the plants and receiving the money :
+                                                The chances of yielding from the plants and receiving the money:
                                                 {{ tutorialOne.chanceVariable == 'for sure' ? '100%' :
                                                 tutorialOne.chanceVariable }}
                                             </p>
@@ -175,7 +174,7 @@
                                                 Time left in growing season: {{ tutorialTwo.timeVariable }}
                                             </p>
                                             <p>
-                                                The chances of yielding from the plants and receiving the money : {{
+                                                The chances of yielding from the plants and receiving the money: {{
                                                 tutorialTwo.chanceVariable == 'for sure' ? '100%' :
                                                 tutorialTwo.chanceVariable }}
                                             </p>
