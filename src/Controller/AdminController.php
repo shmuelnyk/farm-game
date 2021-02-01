@@ -50,7 +50,7 @@ class AdminController extends AbstractController
 
 
         $columns = array(
-            'Quiz ID',
+            'MTurk ID',
             'Test Name',
             'Option one',
             'Option two',
@@ -91,7 +91,7 @@ class AdminController extends AbstractController
         foreach ($participants as $result) {
             foreach($result->getQuizAnswers() as $answer){
                 $column = 'A';
-                $sheet->setCellValue($column . $row, $result->getId());
+                $sheet->setCellValue($column . $row, $result->getMTurkId());
                 $column++;
                 $sheet->setCellValue($column . $row, $answer->getTest());
                 $column++;
