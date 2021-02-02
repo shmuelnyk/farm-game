@@ -277,12 +277,14 @@
                                                          :chance="currentQuestion.workVariableOne "></Bar>
 
                                                 </p>
+                                                <br>
+                                                <a-button style="width: 100%" type="primary" @click="selectAnswer(currentQuestion.option1)"><b>Select {{ currentQuestion.vegOne.title }}</b></a-button>
                                             </div>
+
                                         </transition>
 
                                     </a-card>
-                                    <br>
-                                    <a-button type="primary" @click="selectAnswer(currentQuestion.option1)"><b>Select {{ currentQuestion.vegOne.title }}</b></a-button>
+
                                 </a-col>
                                 <a-col :span="11" class="flex-col">
                                     <a-card :title="currentQuestion.vegTwo.title.toUpperCase()+ ' CROP'"
@@ -341,11 +343,13 @@
                                                  :chance="currentQuestion.workVariableTwo "></Bar>
 
                                         </p>
+                                                <br>
+                                                <a-button style="width: 100%" type="primary" @click="selectAnswer(currentQuestion.option2)"><b>Select {{ currentQuestion.vegTwo.title}}</b></a-button>
                                             </div>
+
                                         </transition>
                                     </a-card>
-                                    <br>
-                                    <a-button type="primary" @click="selectAnswer(currentQuestion.option2)"><b>Select {{ currentQuestion.vegTwo.title}}</b></a-button>
+
 
                                 </a-col>
                             </a-row>

@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7311431d-514a-4575-b29a-701db87c0d91" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/pages/Index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/pages/Index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/build/0.692f6b2e.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/build/0.8608f125.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/build/app.390eee35.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/build/app.4d019149.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/build/entrypoints.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/build/entrypoints.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/build/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/build/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/build/runtime.d94b3b43.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/build/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/build/app.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,8 +23,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/js/pages/Index.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="499">
-              <caret line="283" column="40" selection-start-line="283" selection-start-column="40" selection-end-line="283" selection-end-column="40" />
+            <state relative-caret-position="363">
+              <caret line="280" column="77" selection-start-line="280" selection-start-column="77" selection-end-line="280" selection-end-column="77" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#a-layout-content#0;n#a-layout#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#img#0;n#a-row#0;n#div#0;n#div#0;n#div#0;n#a-layout-content#0;n#a-layout#0;n#template#0;n#!!top" expanded="true" />
@@ -40,10 +34,10 @@
                 <element signature="n#style#0;n#Bar#0;n#p#8;n#a-card#0;n#a-col#0;n#a-row#0;n#div#0;n#a-row#0;n#div#0;n#div#1;n#div#0;n#a-layout-content#0;n#a-layout#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#Bar#0;n#p#9;n#a-card#0;n#a-col#0;n#a-row#0;n#div#0;n#a-row#0;n#div#0;n#div#1;n#div#0;n#a-layout-content#0;n#a-layout#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#Bar#0;n#p#4;n#a-card#0;n#a-col#1;n#a-row#0;n#div#0;n#a-row#0;n#div#0;n#div#1;n#div#0;n#a-layout-content#0;n#a-layout#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#a-card#0;n#a-col#0;n#a-row#0;n#a-row#1;n#div#0;n#div#1;n#div#0;n#a-layout-content#0;n#a-layout#0;n#template#0;n#!!top" />
                 <element signature="n#style#0;n#Bar#0;n#p#4;n#div#0;n#transition#0;n#a-card#0;n#a-col#0;n#a-row#0;n#a-row#1;n#div#0;n#div#1;n#div#0;n#a-layout-content#0;n#a-layout#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#a-card#0;n#a-col#1;n#a-row#0;n#a-row#1;n#div#0;n#div#1;n#div#0;n#a-layout-content#0;n#a-layout#0;n#template#0;n#!!top" />
+                <element signature="n#style#0;n#a-button#0;n#div#0;n#transition#0;n#a-card#0;n#a-col#0;n#a-row#0;n#a-row#1;n#div#0;n#div#1;n#div#0;n#a-layout-content#0;n#a-layout#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#Bar#0;n#p#4;n#a-card#0;n#a-col#1;n#a-row#0;n#a-row#1;n#div#0;n#div#1;n#div#0;n#a-layout-content#0;n#a-layout#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a-button#0;n#div#0;n#transition#0;n#a-card#0;n#a-col#1;n#a-row#0;n#a-row#1;n#div#0;n#div#1;n#div#0;n#a-layout-content#0;n#a-layout#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="e#20943#20975#0" expanded="true" />
                 <element signature="e#28601#30077#0" />
                 <element signature="e#30100#31505#0" />
@@ -568,12 +562,12 @@
       <workItem from="1611673433113" duration="2512000" />
       <workItem from="1611975250914" duration="21018000" />
       <workItem from="1612093780744" duration="15751000" />
-      <workItem from="1612180741855" duration="10549000" />
+      <workItem from="1612180741855" duration="11091000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="69143000" />
+    <option name="totallyTimeSpent" value="69685000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -904,8 +898,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/pages/Index.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="499">
-          <caret line="283" column="40" selection-start-line="283" selection-start-column="40" selection-end-line="283" selection-end-column="40" />
+        <state relative-caret-position="363">
+          <caret line="280" column="77" selection-start-line="280" selection-start-column="77" selection-end-line="280" selection-end-column="77" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#a-layout-content#0;n#a-layout#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#a-row#0;n#div#0;n#div#0;n#div#0;n#a-layout-content#0;n#a-layout#0;n#template#0;n#!!top" expanded="true" />
@@ -915,10 +909,10 @@
             <element signature="n#style#0;n#Bar#0;n#p#8;n#a-card#0;n#a-col#0;n#a-row#0;n#div#0;n#a-row#0;n#div#0;n#div#1;n#div#0;n#a-layout-content#0;n#a-layout#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#Bar#0;n#p#9;n#a-card#0;n#a-col#0;n#a-row#0;n#div#0;n#a-row#0;n#div#0;n#div#1;n#div#0;n#a-layout-content#0;n#a-layout#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#Bar#0;n#p#4;n#a-card#0;n#a-col#1;n#a-row#0;n#div#0;n#a-row#0;n#div#0;n#div#1;n#div#0;n#a-layout-content#0;n#a-layout#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#a-card#0;n#a-col#0;n#a-row#0;n#a-row#1;n#div#0;n#div#1;n#div#0;n#a-layout-content#0;n#a-layout#0;n#template#0;n#!!top" />
             <element signature="n#style#0;n#Bar#0;n#p#4;n#div#0;n#transition#0;n#a-card#0;n#a-col#0;n#a-row#0;n#a-row#1;n#div#0;n#div#1;n#div#0;n#a-layout-content#0;n#a-layout#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#a-card#0;n#a-col#1;n#a-row#0;n#a-row#1;n#div#0;n#div#1;n#div#0;n#a-layout-content#0;n#a-layout#0;n#template#0;n#!!top" />
+            <element signature="n#style#0;n#a-button#0;n#div#0;n#transition#0;n#a-card#0;n#a-col#0;n#a-row#0;n#a-row#1;n#div#0;n#div#1;n#div#0;n#a-layout-content#0;n#a-layout#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#Bar#0;n#p#4;n#a-card#0;n#a-col#1;n#a-row#0;n#a-row#1;n#div#0;n#div#1;n#div#0;n#a-layout-content#0;n#a-layout#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a-button#0;n#div#0;n#transition#0;n#a-card#0;n#a-col#1;n#a-row#0;n#a-row#1;n#div#0;n#div#1;n#div#0;n#a-layout-content#0;n#a-layout#0;n#template#0;n#!!top" expanded="true" />
             <element signature="e#20943#20975#0" expanded="true" />
             <element signature="e#28601#30077#0" />
             <element signature="e#30100#31505#0" />
