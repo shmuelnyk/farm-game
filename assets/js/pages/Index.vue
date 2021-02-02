@@ -477,12 +477,12 @@
                             chanceVariable: 'for sure',
                         },
                         firstOptions: [
-                            '50%',
+                            '40%',
                         ],
                         secondOptionText: 'mainVariable in timeVariable chanceVariable, Deadline in deadlineVariable, workVariable work left.',
                         optionTwoVariables: {
                             timeVariable: '6 months',
-                            deadlineVariable: '2 weeks',
+                            deadlineVariable: '4 weeks',
                             chanceVariable: 'for sure',
                             workVariable: '20%',
                         },
@@ -510,12 +510,12 @@
                             chanceVariable: 'for sure',
                         },
                         firstOptions: [
-                            '75%',
+                            '60%',
                         ],
                         secondOptionText: 'mainVariable in timeVariable chanceVariable, Deadline in deadlineVariable, workVariable work left.',
                         optionTwoVariables: {
                             timeVariable: '6 months',
-                            deadlineVariable: '3 weeks',
+                            deadlineVariable: '6 weeks',
                             chanceVariable: 'for sure',
                             workVariable: '20%',
                         },
@@ -543,12 +543,12 @@
                             chanceVariable: 'for sure',
                         },
                         firstOptions: [
-                            '100%',
+                            '80%',
                         ],
                         secondOptionText: 'mainVariable in timeVariable chanceVariable, Deadline in deadlineVariable, workVariable work left.',
                         optionTwoVariables: {
                             timeVariable: '6 months',
-                            deadlineVariable: '4 weeks',
+                            deadlineVariable: '8 weeks',
                             chanceVariable: 'for sure',
                             workVariable: '20%',
                         },
