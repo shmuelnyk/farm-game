@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="7311431d-514a-4575-b29a-701db87c0d91" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/pages/Index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/pages/Index.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,8 +21,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/js/pages/Index.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="371" column="64" selection-start-line="371" selection-start-column="64" selection-end-line="371" selection-end-column="64" />
+            <state relative-caret-position="-127">
+              <caret line="754" column="49" selection-start-line="754" selection-start-column="47" selection-end-line="754" selection-end-column="49" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#a-layout-content#0;n#a-layout#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#img#0;n#div#0;n#a-row#0;n#div#0;n#div#0;n#div#0;n#a-layout-content#0;n#a-layout#0;n#template#0;n#!!top" expanded="true" />
@@ -43,7 +42,6 @@
                 <element signature="e#31528#32919#0" />
                 <element signature="e#32942#34333#0" />
                 <element signature="e#34356#35881#0" />
-                <element signature="e#37629#39211#0" />
               </folding>
             </state>
           </provider>
@@ -564,12 +562,12 @@
       <workItem from="1611673433113" duration="2512000" />
       <workItem from="1611975250914" duration="21018000" />
       <workItem from="1612093780744" duration="15751000" />
-      <workItem from="1612180741855" duration="13403000" />
+      <workItem from="1612180741855" duration="13679000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71997000" />
+    <option name="totallyTimeSpent" value="72273000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -900,8 +898,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/pages/Index.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="371" column="64" selection-start-line="371" selection-start-column="64" selection-end-line="371" selection-end-column="64" />
+        <state relative-caret-position="-127">
+          <caret line="754" column="49" selection-start-line="754" selection-start-column="47" selection-end-line="754" selection-end-column="49" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#a-layout-content#0;n#a-layout#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#div#0;n#a-row#0;n#div#0;n#div#0;n#div#0;n#a-layout-content#0;n#a-layout#0;n#template#0;n#!!top" expanded="true" />
@@ -921,7 +919,6 @@
             <element signature="e#31528#32919#0" />
             <element signature="e#32942#34333#0" />
             <element signature="e#34356#35881#0" />
-            <element signature="e#37629#39211#0" />
           </folding>
         </state>
       </provider>

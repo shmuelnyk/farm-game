@@ -752,7 +752,7 @@
                         firstOptionText: 'amountVariable in a mainVariable chanceVariable, workVariable work left deadline in deadlineVariable',
                         optionOneVariables: {
                             amountVariable: '1000',
-                            deadlineVariable: '52 weeks',
+                            deadlineVariable: '25 weeks',
                             workVariable: '100%',
                             chanceVariable: 'for sure',
                         },
@@ -765,7 +765,7 @@
                         secondOptionText: 'mainVariable in timeVariable chanceVariable, Deadline in deadlineVariable weeks, workVariable work left.',
                         optionTwoVariables: {
                             timeVariable: '1 week ',
-                            deadlineVariable: '52 weeks',
+                            deadlineVariable: '25 weeks',
                             chanceVariable: 'for sure',
                             workVariable: '100%',
                         },
