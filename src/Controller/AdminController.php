@@ -116,7 +116,7 @@ class AdminController extends AbstractController
         ob_end_clean();
         return new JsonResponse(array(
             'file' => "data:application/vnd.ms-excel;base64," . base64_encode($file),
-            'count' => count($participants),
+            'participants' => count($participants),
         ));
     }
 

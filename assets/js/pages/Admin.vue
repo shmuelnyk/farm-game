@@ -15,7 +15,7 @@
         <a-collapse-panel key="1" header="Export">
           <a-row :gutter="24">
             <a-col :span="12">
-              <a-range-picker @change="onChange" style="width: 100%" />
+              <a-range-picker  @change="onChange" style="width: 100%" />
 
             </a-col>
             <a-col :span="12">
@@ -28,7 +28,7 @@
         <a-collapse-panel key="2" header="Settings" :disabled="false">
           <a-row :gutter="24">
             <a-col :span="12">
-              <a-input v-model="link" placeholder="Next part link" style="width: 100%">
+              <a-input addonBefore="Link to the next part: " v-model="link" placeholder="http://google.com" style="width: 100%">
               </a-input>
             </a-col>
             <a-col :span="12">
@@ -143,7 +143,7 @@
                   document.body.appendChild(a);
                   a.click();
                   window.URL.revokeObjectURL(url);
-                  this.$message.success(res.data.count + ' rows exported for the selected range.')
+                  this.$message.success(res.data.participants + ' rows exported for the selected range.')
                 })
                 .catch((err) => {
                   this.$message.error(err.response.data.msg)
