@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7311431d-514a-4575-b29a-701db87c0d91" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AdminController.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,11 +18,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/pages/Index.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-127">
-              <caret line="754" column="49" selection-start-line="754" selection-start-column="47" selection-end-line="754" selection-end-column="49" />
+            <state relative-caret-position="339">
+              <caret line="771" column="40" selection-start-line="771" selection-start-column="40" selection-end-line="771" selection-end-column="40" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#a-layout-content#0;n#a-layout#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#img#0;n#div#0;n#a-row#0;n#div#0;n#div#0;n#div#0;n#a-layout-content#0;n#a-layout#0;n#template#0;n#!!top" expanded="true" />
@@ -132,11 +132,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Controller/AdminController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="68" column="41" selection-start-line="68" selection-start-column="41" selection-end-line="68" selection-end-column="41" />
+            <state relative-caret-position="-1434">
+              <caret line="36" column="9" lean-forward="true" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -145,7 +145,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>:chance=&quot;tutorialTwo.workVariableOne &quot;</find>
       <find>watch</find>
       <find>for sure</find>
       <find>35vw</find>
@@ -175,6 +174,7 @@
       <find>count</find>
       <find>input</find>
       <find>goToLink</find>
+      <find>52 weeks</find>
     </findStrings>
     <replaceStrings>
       <replace>100%</replace>
@@ -186,6 +186,7 @@
       <replace>Two</replace>
       <replace>&lt;Bar style=&quot;max-height:150px&quot;</replace>
       <replace>' CROP'</replace>
+      <replace>25 weeks</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -227,10 +228,10 @@
         <option value="$PROJECT_DIR$/assets/js/components/Bar.vue" />
         <option value="$PROJECT_DIR$/templates/app.html.twig" />
         <option value="$PROJECT_DIR$/.env" />
-        <option value="$PROJECT_DIR$/src/Controller/AdminController.php" />
         <option value="$PROJECT_DIR$/assets/js/pages/Admin.vue" />
         <option value="$PROJECT_DIR$/assets/js/router/index.js" />
         <option value="$PROJECT_DIR$/assets/js/pages/Index.vue" />
+        <option value="$PROJECT_DIR$/src/Controller/AdminController.php" />
       </list>
     </option>
   </component>
@@ -562,12 +563,12 @@
       <workItem from="1611673433113" duration="2512000" />
       <workItem from="1611975250914" duration="21018000" />
       <workItem from="1612093780744" duration="15751000" />
-      <workItem from="1612180741855" duration="13679000" />
+      <workItem from="1612180741855" duration="14025000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72273000" />
+    <option name="totallyTimeSpent" value="72619000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -848,13 +849,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/AdminController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="68" column="41" selection-start-line="68" selection-start-column="41" selection-end-line="68" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/pages/Admin.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
@@ -898,8 +892,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/pages/Index.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-127">
-          <caret line="754" column="49" selection-start-line="754" selection-start-column="47" selection-end-line="754" selection-end-column="49" />
+        <state relative-caret-position="339">
+          <caret line="771" column="40" selection-start-line="771" selection-start-column="40" selection-end-line="771" selection-end-column="40" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#a-layout-content#0;n#a-layout#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#div#0;n#a-row#0;n#div#0;n#div#0;n#div#0;n#a-layout-content#0;n#a-layout#0;n#template#0;n#!!top" expanded="true" />
@@ -920,6 +914,13 @@
             <element signature="e#32942#34333#0" />
             <element signature="e#34356#35881#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/AdminController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1434">
+          <caret line="36" column="9" lean-forward="true" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="9" />
         </state>
       </provider>
     </entry>

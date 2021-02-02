@@ -19,7 +19,6 @@ class AdminController extends AbstractController
      */
     public function participants(Request $request)
     {
-        dump('her');exit;
         $em = $this->getDoctrine()->getManager();
         $params = json_decode($request->get('form'),true);
         $participant = new Participant();
