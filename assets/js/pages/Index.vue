@@ -11,7 +11,10 @@
                 <div v-if="!quiz">
                     <div class="container" style="max-width: 70vw">
                         <a-row>
-                            <img :src="logo" alt="" style="max-width: 20vw;">
+                            <div class="align-center">
+                                <img :src="logo" alt="" style="max-width: 25vw;">
+                            </div>
+
                             <h1 class="align-center">Welcome to the Farmers' decisions study!</h1>
                             <span style="font-weight:600 ">
                             <br>

@@ -20,9 +20,9 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-  let docName = `Quiz`;
+  let docName = `Farm game`;
   if (to.name) {
-    docName = `Quiz | ${to.name.replace(/\b\w/g, l =>
+    docName = `Farm game | ${to.name.replace(/\b\w/g, l =>
       l.toUpperCase()
     )}`;
   }
