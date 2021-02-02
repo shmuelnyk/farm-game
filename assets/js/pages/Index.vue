@@ -369,7 +369,7 @@
                             complete three short questionnaires, please click on the button below:
                             <br><br>
                             <br><br>
-                            <div class="align-center">
+                            <div class="align-center" v-if="link">
                                 <a-button type="primary" @click="goToLink">
                                     Move to the next part.
                                 </a-button>
