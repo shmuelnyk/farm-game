@@ -46,7 +46,7 @@
                             <br>
                             <br>
                             </span>
-                            <a-input style="max-width: 90vw" v-model="mkTurkId" placeholder="MTurk ID"/>
+                            <a-input style="max-width: 90vw" v-model="mkTurkId" placeholder="Please enter MTurk ID"/>
                             <br>
                             <br>
                             <div class="align-center">
@@ -221,8 +221,7 @@
                         </a-row>
                         <a-row v-else :gutter="24">
                             <a-row :gutter="24"  class="questions">
-                                <a-col :span="11" class="flex-col"
-                                       @click="selectAnswer(currentQuestion.option1)">
+                                <a-col :span="11" class="flex-col">
                                     <a-card :title="currentQuestion.vegOne.title.toUpperCase()+ ' CROP'"
                                             :bordered="false">
                                         <transition name="fade" mode="out-in">
@@ -282,9 +281,10 @@
                                         </transition>
 
                                     </a-card>
+                                    <br>
+                                    <a-button type="primary" @click="selectAnswer(currentQuestion.option1)"><b>Select {{ currentQuestion.vegOne.title }}</b></a-button>
                                 </a-col>
-                                <a-col :span="11" class="flex-col"
-                                       @click="selectAnswer(currentQuestion.option2)">
+                                <a-col :span="11" class="flex-col">
                                     <a-card :title="currentQuestion.vegTwo.title.toUpperCase()+ ' CROP'"
                                             :bordered="false">
                                         <transition name="fade" mode="out-in">
@@ -344,6 +344,9 @@
                                             </div>
                                         </transition>
                                     </a-card>
+                                    <br>
+                                    <a-button type="primary" @click="selectAnswer(currentQuestion.option2)"><b>Select {{ currentQuestion.vegTwo.title}}</b></a-button>
+
                                 </a-col>
                             </a-row>
                         </a-row>
