@@ -12,11 +12,11 @@
                     <div class="container" style="max-width: 70vw">
                         <a-row>
                             <div class="align-center">
-                                <img :src="logo" alt="" style="max-width: 25vw;">
+                                <img :src="logo" alt="" style="max-width: 35vw;">
                             </div>
 
                             <h1 class="align-center">Welcome to the Farmers' decisions study!</h1>
-                            <span style="font-weight:600 ">
+                            <p style="font-weight:600;text-align: center">
                             <br>
                             <br>
                             The Hebrew University of Jerusalem supports the practice of protection
@@ -48,8 +48,11 @@
                             participate in the study, click on the "I agree" button to begin the experiment.
                             <br>
                             <br>
-                            </span>
-                            <a-input style="max-width: 90vw" v-model="mkTurkId" placeholder="Please enter MTurk ID"/>
+                            </p>
+                            <div class="align-center">
+                                <a-input style="max-width: 30vw" v-model="mkTurkId" placeholder="Please enter MTurk ID"/>
+                            </div>
+
                             <br>
                             <br>
                             <div class="align-center">
@@ -68,7 +71,7 @@
                             </h1>
                             <br>
                             <br>
-                            <div style="font-weight: 600;padding-left:24px;padding-right: 24px ">
+                            <div style="font-weight: 600;padding-left:24px;padding-right: 24px;text-align: center">
                                 In each situation presented, you will be asked to make a decision which of
                                 two different plants you would like to treat at that time.
                                 <br>
@@ -84,28 +87,41 @@
                             <div>
                                 <a-row :gutter="24" class="questions">
 
-                                    <a-col :span="11" class="flex-col">
-                                        <a-card :title=" tutorialOne.veg.title.toUpperCase() + ' CROP'"
+                                    <a-col :span="11" class="flex-col question-one">
+                                        <a-card :headStyle="{backgroundColor: '#75ab50',borderRadius: '10px'}"
+                                                :title=" tutorialOne.veg.title.toUpperCase() + ' CROP'"
                                                 :bordered="false">
                                             <div class="align-center">
                                                 <img :src="getImage(tutorialOne.veg.img)" alt="">
                                             </div>
 
-                                            <p v-if="currentTutorial == 1">
-
-                                                <a-tooltip :defaultVisible="true">
-                                                    <template slot="title">
-                                                        Shows how much money you will get for each
-                                                        crop.
-                                                    </template>
-                                                    <b>Value of crops: {{ tutorialOne.amountVariable }}</b>
-                                                </a-tooltip>
-
-                                            </p>
-                                            <p v-else>
-                                                Value of crops: {{ tutorialOne.amountVariable }}
-                                            </p>
-                                            <p v-if="currentTutorial == 2">
+                                            <div class="question-one" v-if="currentTutorial == 1">
+                                                <div class="crops">
+                                                    <a-tooltip :defaultVisible="true">
+                                                        <template slot="title">
+                                                            Shows how much money you will get for each
+                                                            crop.
+                                                        </template>
+                                                        <b>
+                                                            <span class="amount">
+                                                                {{ tutorialOne.amountVariable }}
+                                                            </span>
+                                                            <br>
+                                                            Value of crops
+                                                        </b>
+                                                    </a-tooltip>
+                                                </div>
+                                            </div>
+                                            <div class="question-one" v-else>
+                                                <div class="crops">
+                                                <span class="amount">
+                                                                {{ tutorialOne.amountVariable }}
+                                                            </span>
+                                                    <br>
+                                                    Value of crops
+                                                </div>
+                                            </div>
+                                            <p class="question-one" v-if="currentTutorial == 2">
                                                 <a-tooltip :defaultVisible="true">
                                                     <template slot="title">
                                                         Shows how much time you have to
@@ -114,26 +130,34 @@
                                                     <b>Time left in growing season: {{ tutorialOne.timeVariable }}</b>
                                                 </a-tooltip>
                                             </p>
-                                            <p v-else>
+                                            <p class="question-one" v-else>
                                                 Time left in growing season: {{ tutorialOne.timeVariable }}
                                             </p>
-                                            <p v-if="currentTutorial == 3">
+                                            <p class="question-one" v-if="currentTutorial == 3">
                                                 <a-tooltip :defaultVisible="true">
                                                     <template slot="title">
                                                         Sometimes a crop can be damaged by pests and the chance
                                                         of getting the whole value decreases.
                                                     </template>
-                                                    <b>The chances of yielding from the plants and receiving the money: {{ tutorialOne.chanceVariable == 'for sure' ? '100%' :
-                                                        tutorialOne.chanceVariable }}
+                                                    <b>The chances of yielding from the plants and receiving the money:
+                                                        <a-progress status="active"strokeColor="#75ab50" :format="(percent) => percent+'%'"
+                                                                    :percent="tutorialOne.chanceVariable "/>
+                                                        <br>
+                                                        {{ tutorialOne.chanceVariable + '%' }}
                                                     </b>
+
                                                 </a-tooltip>
                                             </p>
-                                            <p v-else>
+                                            <p class="question-one" v-else>
                                                 The chances of yielding from the plants and receiving the money:
-                                                {{ tutorialOne.chanceVariable == 'for sure' ? '100%' :
-                                                tutorialOne.chanceVariable }}
+                                                <br>
+
+                                                <a-progress status="active"strokeColor="#75ab50" :format="(percent) => percent+'%'"
+                                                            :percent="tutorialOne.chanceVariable "/>
+                                                <br>
+                                                {{ tutorialOne.chanceVariable + '%' }}
                                             </p>
-                                            <p v-if="currentTutorial == 4">
+                                            <p class="question-one" v-if="currentTutorial == 4">
                                                 <a-tooltip :defaultVisible="true">
                                                     <template slot="title">
                                                         When money is received.
@@ -142,10 +166,10 @@
                                                 </a-tooltip>
 
                                             </p>
-                                            <p v-else>
+                                            <p class="question-one" v-else>
                                                 Time until harvesting: {{ tutorialOne.deadlineVariable }}
                                             </p>
-                                            <p v-if="currentTutorial == 5">
+                                            <p class="question-one" v-if="currentTutorial == 5">
                                                 <a-tooltip :defaultVisible="true">
                                                     <template slot="title">
                                                         Shows how much
@@ -158,33 +182,74 @@
                                                 </a-tooltip>
                                                 <Bar style="max-height:150px" :chance="tutorialOne.workVariable "></Bar>
                                             </p>
-                                            <p v-else>
-                                                Percentage of work left in growing season: : {{ tutorialOne.workVariable
+                                            <p class="question-one" v-else>
+                                                Percentage of work left in growing season: {{ tutorialOne.workVariable
                                                 }}
                                                 <Bar style="max-height:150px" :chance="tutorialOne.workVariable "></Bar>
                                             </p>
                                         </a-card>
                                     </a-col>
-                                    <a-col :span="11" class="flex-col">
-                                        <a-card :title="tutorialTwo.veg.title.toUpperCase()+ ' CROP'" :bordered="false">
+                                    <a-col :span="11" class="flex-col question-two">
+                                        <a-card :headStyle="{backgroundColor: '#609dd2',borderRadius: '10px'}"
+                                                :title="tutorialTwo.veg.title.toUpperCase()+ ' CROP'" :bordered="false">
                                             <div class="align-center">
                                                 <img :src="getImage(tutorialTwo.veg.img)" alt="">
                                             </div>
-                                            <p>
-                                                Value of crops: {{ tutorialTwo.amountVariable }}
+                                            <div class="question-two" v-if="currentTutorial == 1">
+                                                <div class="crops">
+                                                <span class="amount">
+                                                    <b>{{ tutorialTwo.amountVariable }}</b>
+                                                        </span>
+                                                    <br>
+                                                    <b>Value of crops</b>
+                                                </div>
+                                            </div>
+                                            <div class="question-two" v-else>
+                                                <div class="crops">
+                                                <span class="amount">
+                                                            {{ tutorialTwo.amountVariable }}
+                                                        </span>
+                                                    <br>
+                                                    Value of crops
+                                                </div>
+
+                                            </div>
+                                            <p class="question-two" v-if="currentTutorial == 2">
+                                                <b>Time left in growing season: {{ tutorialTwo.timeVariable }}</b>
+
                                             </p>
-                                            <p>
+                                            <p class="question-two" v-else>
                                                 Time left in growing season: {{ tutorialTwo.timeVariable }}
                                             </p>
-                                            <p>
-                                                The chances of yielding from the plants and receiving the money: {{
-                                                tutorialTwo.chanceVariable == 'for sure' ? '100%' :
-                                                tutorialTwo.chanceVariable }}
+                                            <p class="question-two" v-if="currentTutorial == 3">
+                                                <b>The chances of yielding from the plants and receiving the money:
+                                                    <a-progress status="active"strokeColor="#609dd2" :format="(percent) => percent+'%'"
+                                                                :percent="tutorialTwo.chanceVariable "/>
+                                                    <br>
+                                                    {{ tutorialTwo.chanceVariable + '%' }}
+                                                </b>
                                             </p>
-                                            <p>
+                                            <p class="question-two" v-else>
+                                                The chances of yielding from the plants and receiving the money:
+                                                <br>
+
+                                                <a-progress status="active"strokeColor="#609dd2" :format="(percent) => percent+'%'"
+                                                            :percent="tutorialTwo.chanceVariable "/>
+                                                <br>
+                                                {{ tutorialTwo.chanceVariable + '%' }}
+                                            </p>
+                                            <p class="question-two" v-if="currentTutorial == 4">
+                                                <b>Time until harvesting: {{ tutorialTwo.deadlineVariable }}</b>
+                                            </p>
+                                            <p class="question-two" v-else>
                                                 Time until harvesting: {{ tutorialTwo.deadlineVariable }}
                                             </p>
-                                            <p>
+                                            <p class="question-two" v-if="currentTutorial == 5">
+                                                <b>Percentage of work left in growing season: {{
+                                                    tutorialTwo.workVariable }}</b>
+                                                <Bar style="max-height:150px" :chance="tutorialTwo.workVariable "></Bar>
+                                            </p>
+                                            <p class="question-two" v-else>
                                                 Percentage of work left in growing season: {{ tutorialTwo.workVariable
                                                 }}
                                                 <Bar style="max-height:150px" :chance="tutorialTwo.workVariable "></Bar>
@@ -200,7 +265,7 @@
                                     <a-button type="primary" :disabled="currentTutorial == 1" @click="prevTutorial">
                                         Prev
                                     </a-button>
-                                    <a-button type="primary" @click="isTutorial = false">
+                                    <a-button type="primary" @click="startGame">
                                         Start The Game
                                     </a-button>
                                 </div>
@@ -223,53 +288,74 @@
                             </div>
                         </a-row>
                         <a-row v-else :gutter="24">
-                            <a-row :gutter="24"  class="questions">
-                                <a-col :span="11" class="flex-col">
-                                    <a-card :title="currentQuestion.vegOne.title.toUpperCase()+ ' CROP'"
+                            <a-row :gutter="24" class="questions">
+                                <a-col :span="11" class="flex-col question-one">
+                                    <a-card :headStyle="{backgroundColor: '#75ab50',borderRadius: '10px'}"
+                                            :title="currentQuestion.vegOne.title.toUpperCase()+ ' CROP'"
                                             :bordered="false">
                                         <transition name="fade" mode="out-in">
-                                            <div :key="currentQuestion">
-                                                <div class="align-center" >
+                                            <div :key="currentQuestion.id">
+                                                <div class="align-center">
                                                     <img :src="getImage(currentQuestion.vegOne.img)" alt="">
                                                 </div>
-                                                <p>
-                                                    <b v-if="currentQuestion.highlightOne == 'amountVariableOne'">
-                                                        Value of crops: {{ currentQuestion.amountVariableOne }}
-                                                    </b>
-                                                    <span v-else>
-                                            Value of crops: {{ currentQuestion.amountVariableOne }}
-                                        </span>
-                                                </p>
-                                                <p>
-                                                    <b v-if="currentQuestion.highlightOne == 'timeVariableOne'">
-                                                        Time left in growing season: {{ currentQuestion.timeVariableOne }}
+                                                <div class="question-one"
+                                                     v-if="currentQuestion.highlightOne == 'amountVariableOne' || currentQuestion.highlightTwo == 'amountVariableTwo'">
+                                                    <div class="crops">
+                                                            <span class="amount">
+                                                                <b>{{ currentQuestion.amountVariableOne }}</b>
+                                                            </span>
+                                                        <br>
+                                                        <b>Value of crops</b>
+                                                    </div>
+                                                </div>
+                                                <div class="question-one" v-else>
+                                                    <div class="crops">
+                                                    <span class="amount">
+                                                                {{ currentQuestion.amountVariableOne }}
+                                                            </span>
+                                                        <br>
+                                                        Value of crops
+                                                    </div>
+
+                                                </div>
+                                                <p class="question-one">
+                                                    <b v-if="currentQuestion.highlightOne == 'timeVariableOne' || currentQuestion.highlightTwo == 'timeVariableTwo'">
+                                                        Time left in growing season: {{ currentQuestion.timeVariableOne
+                                                        }}
                                                     </b>
                                                     <span v-else>
                                             Time left in growing season: {{ currentQuestion.timeVariableOne }}
                                         </span>
                                                 </p>
-                                                <p>
-                                                    <b v-if="currentQuestion.highlightOne == 'chanceVariableOne'">
-                                                        The chances of yielding from the plants and receiving the money : {{
-                                                        currentQuestion.chanceVariableOne == 'for sure' ? '100%' :
-                                                        currentQuestion.chanceVariableOne }}
+                                                <p class="question-one">
+                                                    <b v-if="currentQuestion.highlightOne == 'chanceVariableOne'|| currentQuestion.highlightTwo == 'chanceVariableTwo'">
+                                                        The chances of yielding from the plants and receiving the money:
+                                                        <a-progress status="active"strokeColor="#75ab50" :format="(percent) => percent+'%'"
+                                                                    :percent="currentQuestion.chanceVariableOne"/>
+                                                        <br>
+                                                        {{ currentQuestion.chanceVariableOne + '%' }}
+
                                                     </b>
                                                     <span v-else>
-                                                    The chances of yielding from the plants and receiving the money : {{ currentQuestion.chanceVariableOne == 'for sure' ? '100%' : currentQuestion.chanceVariableOne }}
+                                                    The chances of yielding from the plants and receiving the money:
+                                                        <a-progress status="active"strokeColor="#75ab50" :format="(percent) => percent+'%'"
+                                                                    :percent="currentQuestion.chanceVariableOne"/>
+                                                        <br>
+                                                {{ currentQuestion.chanceVariableOne+ '%' }}
                                                 </span>
                                                 </p>
 
-                                                <p>
-                                                    <b v-if="currentQuestion.highlightOne == 'deadlineVariableOne'">
+                                                <p class="question-one">
+                                                    <b v-if="currentQuestion.highlightOne == 'deadlineVariableOne' || currentQuestion.highlightTwo == 'deadlineVariableTwo'">
                                                         Time until harvesting: {{ currentQuestion.deadlineVariableOne }}
                                                     </b>
                                                     <span v-else>
                                             Time until harvesting: {{ currentQuestion.deadlineVariableOne }}
                                         </span>
                                                 </p>
-                                                <p>
+                                                <p class="question-one">
 
-                                                    <b v-if="currentQuestion.highlightOne == 'workVariableOne'">
+                                                    <b v-if="currentQuestion.highlightOne == 'workVariableOne' || currentQuestion.highlightTwo == 'workVariableTwo'">
                                                         Percentage of work left in growing season: {{
                                                         currentQuestion.workVariableOne }}
                                                     </b>
@@ -281,7 +367,9 @@
 
                                                 </p>
                                                 <br>
-                                                <a-button style="width: 100%" type="primary" @click="selectAnswer(currentQuestion.option1)"><b>Select {{ currentQuestion.vegOne.title }}</b></a-button>
+                                                <a-button style="width: 100%" type="primary"
+                                                          @click="selectAnswer(currentQuestion.option1)"><b>Select {{
+                                                    currentQuestion.vegOne.title }}</b></a-button>
                                             </div>
 
                                         </transition>
@@ -289,65 +377,87 @@
                                     </a-card>
 
                                 </a-col>
-                                <a-col :span="11" class="flex-col">
-                                    <a-card :title="currentQuestion.vegTwo.title.toUpperCase()+ ' CROP'"
+                                <a-col :span="11" class="flex-col question-two">
+                                    <a-card :headStyle="{backgroundColor: '#609dd2',borderRadius: '10px'}"
+                                            :title="currentQuestion.vegTwo.title.toUpperCase()+ ' CROP'"
                                             :bordered="false">
                                         <transition name="fade" mode="out-in">
-                                            <div :key="currentQuestion">
-                                        <div class="align-center">
-                                            <img :src="getImage(currentQuestion.vegTwo.img)" alt="">
-                                        </div>
-                                        <p>
-                                            <b v-if="currentQuestion.highlightTwo == 'amountVariableTwo'">
-                                                Value of crops: {{ currentQuestion.amountVariableTwo }}
-                                            </b>
-                                            <span v-else>
-                                            Value of crops: {{ currentQuestion.amountVariableTwo }}
-                                        </span>
-                                        </p>
-                                        <p>
-                                            <b v-if="currentQuestion.highlightTwo == 'timeVariableTwo'">
-                                                Time left in growing season: {{ currentQuestion.timeVariableTwo }}
-                                            </b>
-                                            <span v-else>
+                                            <div :key="currentQuestion.id">
+                                                <div class="align-center">
+                                                    <img :src="getImage(currentQuestion.vegTwo.img)" alt="">
+                                                </div>
+                                                <div class="question-one"
+                                                     v-if="currentQuestion.highlightTwo == 'amountVariableTwo' || currentQuestion.highlightOne == 'amountVariableOne'">
+                                                    <div class="crops">
+                                                    <span class="amount">
+                                                        <b>{{ currentQuestion.amountVariableTwo }}</b>
+                                                            </span>
+                                                        <br>
+                                                        <b>Value of crops</b>
+                                                    </div>
+                                                </div>
+                                                <div class="question-one" v-else>
+                                                    <div class="crops">
+                                                    <span class="amount">
+                                                                {{ currentQuestion.amountVariableTwoe }}
+                                                            </span>
+                                                        <br>
+                                                        Value of crops
+                                                    </div>
+
+                                                </div>
+                                                <p class="question-two">
+                                                    <b v-if="currentQuestion.highlightTwo == 'timeVariableTwo' || currentQuestion.highlightOne == 'timeVariableOne'">
+                                                        Time left in growing season: {{ currentQuestion.timeVariableTwo
+                                                        }}
+                                                    </b>
+                                                    <span v-else>
                                             Time left in growing season: {{ currentQuestion.timeVariableTwo }}
                                         </span>
-                                        </p>
-                                        <p>
-                                            <b v-if="currentQuestion.highlightTwo == 'chanceVariableTwo'">
-                                                The chances of yielding from the plants and receiving the money : {{
-                                                currentQuestion.chanceVariableTwo == 'for sure' ? '100%' :
-                                                currentQuestion.chanceVariableTwo }}
-                                            </b>
-                                            <span v-else>
-                                            The chances of yielding from the plants and receiving the money : {{ currentQuestion.chanceVariableTwo == 'for sure' ? '100%' : currentQuestion.chanceVariableTwo }}
+                                                </p>
+                                                <p class="question-two">
+                                                    <b v-if="currentQuestion.highlightTwo == 'chanceVariableTwo'|| currentQuestion.highlightOne == 'chanceVariableOne'">
+                                                        The chances of yielding from the plants and receiving the money:
+                                                        <a-progress status="active"strokeColor="#609dd2" :format="(percent) => percent+'%'"
+                                                                    :percent="currentQuestion.chanceVariableTwo"/>
+                                                        <br>
+                                                        {{ currentQuestion.chanceVariableTwo + '%' }}
+                                                    </b>
+                                                    <span v-else>
+                                            The chances of yielding from the plants and receiving the money:
+                                            <a-progress status="active"strokeColor="#609dd2" :format="(percent) => percent+'%'"
+                                                        :percent="currentQuestion.chanceVariableTwo"/>
+                                                         <br>
+                                                        {{ currentQuestion.chanceVariableTwo + '%' }}
 
                                         </span>
-                                        </p>
+                                                </p>
 
-                                        <p>
-                                            <b v-if="currentQuestion.highlightTwo == 'deadlineVariableTwo'">
-                                                Time until harvesting: {{ currentQuestion.deadlineVariableTwo }}
-                                            </b>
-                                            <span v-else>
+                                                <p class="question-two">
+                                                    <b v-if="currentQuestion.highlightTwo == 'deadlineVariableTwo' || currentQuestion.highlightOne == 'deadlineVariableOne'">
+                                                        Time until harvesting: {{ currentQuestion.deadlineVariableTwo }}
+                                                    </b>
+                                                    <span v-else>
                                             Time until harvesting: {{ currentQuestion.deadlineVariableTwo }}
                                         </span>
-                                        </p>
-                                        <p>
+                                                </p>
+                                                <p class="question-two">
 
-                                            <b v-if="currentQuestion.highlightTwo == 'workVariableTwo'">
-                                                Percentage of work left in growing season: {{
-                                                currentQuestion.workVariableTwo }}
-                                            </b>
-                                            <span v-else>
+                                                    <b v-if="currentQuestion.highlightTwo == 'workVariableTwo' || currentQuestion.highlightOne == 'workVariableOne'">
+                                                        Percentage of work left in growing season: {{
+                                                        currentQuestion.workVariableTwo }}
+                                                    </b>
+                                                    <span v-else>
                                             Percentage of work left in growing season: {{ currentQuestion.workVariableTwo }}
                                         </span>
-                                            <Bar style="max-height:150px"
-                                                 :chance="currentQuestion.workVariableTwo "></Bar>
+                                                    <Bar style="max-height:150px"
+                                                         :chance="currentQuestion.workVariableTwo "></Bar>
 
-                                        </p>
+                                                </p>
                                                 <br>
-                                                <a-button style="width: 100%" type="primary" @click="selectAnswer(currentQuestion.option2)"><b>Select {{ currentQuestion.vegTwo.title}}</b></a-button>
+                                                <a-button style="width: 100%" type="primary"
+                                                          @click="selectAnswer(currentQuestion.option2)"><b>Select {{
+                                                    currentQuestion.vegTwo.title}}</b></a-button>
                                             </div>
 
                                         </transition>
@@ -426,7 +536,7 @@
                     amountVariable: '1000',
                     timeVariable: '6 month',
                     deadlineVariable: '6 months',
-                    chanceVariable: 'for sure',
+                    chanceVariable: 100,
                     workVariable: '50%',
                 },
                 tutorialTwo: {
@@ -437,7 +547,7 @@
                     amountVariable: '300',
                     timeVariable: '6 month',
                     deadlineVariable: '6 months',
-                    chanceVariable: 'for sure',
+                    chanceVariable: 75,
                     workVariable: '20%',
                 },
                 quizOptions: [
@@ -449,7 +559,7 @@
                             amountVariable: '1000',
                             timeVariable: '6 month',
                             deadlineVariable: '6 months',
-                            chanceVariable: 'for sure',
+                            chanceVariable: 100,
                         },
                         firstOptions: [
                             '50%',
@@ -460,7 +570,7 @@
                         optionTwoVariables: {
                             timeVariable: '6 months',
                             deadlineVariable: '6 months',
-                            chanceVariable: 'for sure',
+                            chanceVariable: 100,
                             workVariable: '20%',
                         },
                         secondOptions: [
@@ -484,7 +594,7 @@
                             amountVariable: '1000',
                             timeVariable: '6 month',
                             deadlineVariable: '4 months',
-                            chanceVariable: 'for sure',
+                            chanceVariable: 100,
                         },
                         firstOptions: [
                             '40%',
@@ -493,7 +603,7 @@
                         optionTwoVariables: {
                             timeVariable: '6 months',
                             deadlineVariable: '4 weeks',
-                            chanceVariable: 'for sure',
+                            chanceVariable: 100,
                             workVariable: '20%',
                         },
                         secondOptions: [
@@ -517,7 +627,7 @@
                             amountVariable: '1000',
                             timeVariable: '6 months',
                             deadlineVariable: '4 months',
-                            chanceVariable: 'for sure',
+                            chanceVariable: 100,
                         },
                         firstOptions: [
                             '60%',
@@ -526,7 +636,7 @@
                         optionTwoVariables: {
                             timeVariable: '6 months',
                             deadlineVariable: '6 weeks',
-                            chanceVariable: 'for sure',
+                            chanceVariable: 100,
                             workVariable: '20%',
                         },
                         secondOptions: [
@@ -550,7 +660,7 @@
                             amountVariable: '1000',
                             timeVariable: '6 month',
                             deadlineVariable: '4 months',
-                            chanceVariable: 'for sure',
+                            chanceVariable: 100,
                         },
                         firstOptions: [
                             '80%',
@@ -559,7 +669,7 @@
                         optionTwoVariables: {
                             timeVariable: '6 months',
                             deadlineVariable: '8 weeks',
-                            chanceVariable: 'for sure',
+                            chanceVariable: 100,
                             workVariable: '20%',
                         },
                         secondOptions: [
@@ -583,7 +693,7 @@
                             amountVariable: '1000',
                             timeVariable: '6 months',
                             workVariable: '20%',
-                            chanceVariable: 'for sure',
+                            chanceVariable: 100
                         },
                         firstOptions: [
                             '1 month',
@@ -594,7 +704,7 @@
                         optionTwoVariables: {
                             timeVariable: '6 months',
                             deadlineVariable: 'a week',
-                            chanceVariable: 'for sure',
+                            chanceVariable: 100,
                             workVariable: '20%',
                         },
                         secondOptions: [
@@ -617,7 +727,7 @@
                         optionOneVariables: {
                             amountVariable: '1000',
                             timeVariable: '6 months',
-                            chanceVariable: 'for sure',
+                            chanceVariable: 100,
                             workVariable: '40%'
                         },
                         firstOptions: [
@@ -627,7 +737,7 @@
                         optionTwoVariables: {
                             timeVariable: '6 months',
                             deadlineVariable: '2 weeks',
-                            chanceVariable: 'for sure',
+                            chanceVariable: 100,
                             workVariable: '20%',
                         },
                         secondOptions: [
@@ -650,7 +760,7 @@
                         optionOneVariables: {
                             amountVariable: '1000',
                             timeVariable: '6 months',
-                            chanceVariable: 'for sure',
+                            chanceVariable: 100,
                             workVariable: '60%'
                         },
                         firstOptions: [
@@ -660,7 +770,7 @@
                         optionTwoVariables: {
                             timeVariable: '6 months',
                             deadlineVariable: '2 weeks',
-                            chanceVariable: 'for sure',
+                            chanceVariable: 100,
                             workVariable: '20%',
                         },
                         secondOptions: [
@@ -683,7 +793,7 @@
                         optionOneVariables: {
                             amountVariable: '1000',
                             timeVariable: '6 months',
-                            chanceVariable: 'for sure',
+                            chanceVariable: 100,
                             workVariable: '80%'
                         },
                         firstOptions: [
@@ -693,7 +803,7 @@
                         optionTwoVariables: {
                             timeVariable: '6 months',
                             deadlineVariable: '2 weeks',
-                            chanceVariable: 'for sure',
+                            chanceVariable: 100,
                             workVariable: '20%',
                         },
                         secondOptions: [
@@ -721,16 +831,16 @@
 
                         },
                         firstOptions: [
-                            '75% chance',
-                            '50% chance',
-                            '25% chance',
+                            75,
+                            50,
+                            25,
 
                         ],
                         secondOptionText: 'mainVariable in timeVariable chanceVariable, Deadline in deadlineVariable, workVariable work left.',
                         optionTwoVariables: {
                             timeVariable: '6 months',
                             deadlineVariable: '25 weeks',
-                            chanceVariable: 'for sure',
+                            chanceVariable: 100,
                             workVariable: '100%',
                         },
                         secondOptions: [
@@ -754,7 +864,7 @@
                             amountVariable: '1000',
                             deadlineVariable: '25 weeks',
                             workVariable: '100%',
-                            chanceVariable: 'for sure',
+                            chanceVariable: 100,
                         },
                         firstOptions: [
                             '1 month',
@@ -766,7 +876,7 @@
                         optionTwoVariables: {
                             timeVariable: '1 week ',
                             deadlineVariable: '25 weeks',
-                            chanceVariable: 'for sure',
+                            chanceVariable: 100,
                             workVariable: '100%',
                         },
                         secondOptions: [
@@ -820,22 +930,11 @@
             this.generateQuestions()
         },
         methods: {
-            fillData() {
-                this.datacollection = {
-                    labels: [this.getRandomInt(), this.getRandomInt()],
-                    datasets: [
-                        {
-                            label: 'Data One',
-                            backgroundColor: '#f87979',
-                            data: [this.getRandomInt(), this.getRandomInt()]
-                        }, {
-                            label: 'Data One',
-                            backgroundColor: '#f87979',
-                            data: [this.getRandomInt(), this.getRandomInt()]
-                        }
-                    ]
-                }
+            startGame(){
+                this.scrollToTop()
+                this.isTutorial = false;
             },
+
             getImage(path) {
                 return this[path]
             },
@@ -926,9 +1025,22 @@
                     this.currentQuizQuestion = 0;
 
                 }
-                this.getQuestion();
 
+                this.showConfirm()
             },
+            showConfirm() {
+                let self = this
+                this.$success({
+                    title: 'Good job',
+                    centered: true,
+                    okText: 'Next',
+                    content: 'Move to the next question',
+                    onOk() {
+                        self.getQuestion();
+                    }
+                });
+            },
+
             async submitQuiz() {
                 this.submitting = true;
                 let data = new FormData()
@@ -945,12 +1057,13 @@
                     this.submitting = false;
                 }
             },
-            createOptions(element, qOne, qTwo, veg) {
+            createOptions(element, qOne, qTwo, veg,id) {
                 let firstVariables = element.optionOneVariables
                 let secondVariables = element.optionTwoVariables
                 let highlightOne = '';
                 let highlightTwo = '';
                 let option = {
+                    id: id,
                     quizName: '',
                     firstOptionText: '',
                     secondOptionText: '',
@@ -1067,6 +1180,7 @@
             generateQuestions() {
                 let quiz = []
                 let vegetables;
+                let idCount = 1;
                 this.quizOptions.forEach((element, index) => {
                     let testQuestions = []
                     if (!this.currentQuizTask) {
@@ -1078,13 +1192,13 @@
                     }
                     element.firstOptions.forEach(firstOption => {
                         element.secondOptions.forEach(secondOption => {
-                            let option = this.createOptions(element, firstOption, secondOption, vegetables)
+                            let option = this.createOptions(element, firstOption, secondOption, vegetables,idCount)
                             testQuestions.push(option)
+                            idCount++;
                         })
                     })
                     quiz[index + 1] = this.shuffleArray(testQuestions);
                 })
-                console.log(quiz)
                 this.quizQuestions = quiz
             },
             getQuestionTime() {
@@ -1113,7 +1227,12 @@
                 this.currentQuestion = this.quizQuestions[this.currentPart][this.currentQuizQuestion];
 
             },
+            scrollToTop(){
+                document.body.scrollTop = 0; // For Safari
+                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+            },
             startQuiz() {
+                this.scrollToTop()
                 if (!this.mkTurkId) {
                     this.$message.error('MTurk ID is required');
                     return;
@@ -1132,6 +1251,8 @@
 </script>
 
 <style lang="scss" scoped>
+
+
     .question {
         border: 1px solid grey;
         padding: 15px;
@@ -1208,6 +1329,7 @@
     }
 
     .questions {
+        text-align: center;
         display: flex;
         justify-content: space-between;
 
@@ -1225,6 +1347,35 @@
             border-radius: 100%;
         }
 
+    }
+
+    .crops {
+        .amount {
+            font-size: 30px;
+
+        }
+
+        padding: 10px;
+        margin: auto;
+        width: 50%;
+        border: 3px solid;
+        font-size: 17px;
+        margin-bottom: 20px;
+    }
+
+    .question-one {
+        color: #75ab50 !important;
+        .ant-progress-text{
+            color: #75ab50 !important;
+        }
+    }
+
+    .question-two {
+
+        color: #609dd2 !important;
+        .ant-progress-text{
+            color: #609dd2!important;
+        }
     }
 
     .ant-card {
@@ -1253,13 +1404,15 @@
         }
     }
 
-    .fade-enter-active{
+    .fade-enter-active {
         transition: opacity 0.2s;
     }
+
     .fade-leave-active {
         transition: opacity 0.4s;
     }
-    .fade-enter, .fade-leave-to,.fade-leave-active{
+
+    .fade-enter, .fade-leave-to, .fade-leave-active {
         opacity: 0;
     }
 
