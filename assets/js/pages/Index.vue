@@ -471,17 +471,20 @@
                     <div v-else>
                         <a-row :gutter="24" class="container-absolute">
                             <div class="align-center">
-                                <h3>You have completed the farm game.</h3>
+                                <h1 style="font-size: 1.6em">You have completed the farm game.</h1>
                             </div>
                             <br>
                             <br>
-                            In order to move on to the next part of the study, in which you will be asked to
-                            complete three short questionnaires, please click on the button below:
+                            <p style="font-size: 1.3em;">
+                                In order to move on to the next part of the study, in which you will be asked to
+                                complete three short questionnaires, please click on the button below:
+                            </p>
+
                             <br><br>
                             <br><br>
                             <div class="align-center" v-if="link">
                                 <a-button type="primary" @click="goToLink">
-                                    Move to the next part.
+                                    <b>Move to the next part.</b>
                                 </a-button>
                             </div>
                         </a-row>
