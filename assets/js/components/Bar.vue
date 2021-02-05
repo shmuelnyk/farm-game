@@ -1,51 +1,66 @@
 <script>
-    import { Doughnut } from 'vue-chartjs'
+    import { HorizontalBar } from 'vue-chartjs'
 
     export default {
-        extends: Doughnut,
-        props: ['chance'],
-        data() {
-            return {
+        extends: HorizontalBar,
+        props: ['time','color'],
+        data: () => ({
             characterData: {
-                labels: false,
-                datasets: []
+                labels: ['Weeks'],
+                datasets: [
+
+                ]
             },
             options: {
+                scales: {
+                    yAxes:[{
+                        left: 0, // left edge of the scale bounding box
+                        right: 25, // right edge of the bounding box
+                    }],
+                },
+                legend: {
+                    display: false
+                },
+                tooltips: {
+                    enabled: false
+                },
                 responsive: true,
                 maintainAspectRatio: false
-            },
-            myNumber:0
             }
-        }
-        ,
-        watch:{
-            chance: {
-                handler(val){
-                    this.renderMyChart()
-                },
-                deep: true
-            }
-        },
+
+        }),
         methods: {
             renderMyChart(){
-                let number;
-
-                if(this.chance == 'for sure' ){
-                    number = 100
+                let isMonths = this.time.includes("month");
+                let months;
+                let weeks;
+                let label;
+                if(isMonths){
+                    months = this.time.replace(/\D/g,'');
+                    weeks = months * 4;
+                    label = weeks+' weeks'
                 }else{
-                    number =  this.chance.replace(/\D/g,'');
+                    if(this.time == 'a week'){
+                        weeks = 1;
+                        label = 'a week'
+                    }else{
+                        weeks = this.time.replace(/\D/g,'');
+                        label = weeks+' weeks'
+                    }
+
                 }
-                this.myNumber++;
-                let numberTwo = 100 - number;
-                this.characterData.labels = ['Left','Done']
-                this.characterData .datasets =
-                    [
-                        {
-                            label: [number+'%',numberTwo+'%'],
-                            data: [number,numberTwo],
-                            backgroundColor: ['#ff0b00','#2dff1a'],
-                        },
-                    ];
+                this.characterData=
+                    {
+                        labels: [label],
+                        datasets: [
+                            {
+                                label: '',
+                                backgroundColor: this.color,
+                                data: [weeks,0,25]
+                            }
+                        ]
+                    }
+                    ;
                 this.renderChart(this.characterData, this.options)
             }
         },

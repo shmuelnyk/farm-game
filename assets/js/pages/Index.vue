@@ -162,12 +162,15 @@
                                                     <template slot="title">
                                                         When money is received.
                                                     </template>
-                                                    <b>Time until harvesting: {{ tutorialOne.deadlineVariable }}</b>
+                                                    <b>Time until harvesting
+                                                        <Bar color="#75ab50" :time="tutorialOne.deadlineVariable" style="max-height:50px"></Bar>
+                                                    </b>
                                                 </a-tooltip>
 
                                             </p>
                                             <p class="question-one" v-else>
-                                                Time until harvesting: {{ tutorialOne.deadlineVariable }}
+                                                Time until harvesting
+                                                <Bar color="#75ab50" :time="tutorialOne.deadlineVariable" style="max-height:50px"></Bar>
                                             </p>
                                             <p class="question-one" v-if="currentTutorial == 5">
                                                 <a-tooltip :defaultVisible="true">
@@ -180,12 +183,12 @@
                                                     <b>Percentage of work left in growing season: {{
                                                         tutorialOne.workVariable }}</b>
                                                 </a-tooltip>
-                                                <Bar style="max-height:150px" :chance="tutorialOne.workVariable "></Bar>
+                                                <Pie style="max-height:150px" :chance="tutorialOne.workVariable "></Pie>
                                             </p>
                                             <p class="question-one" v-else>
                                                 Percentage of work left in growing season: {{ tutorialOne.workVariable
                                                 }}
-                                                <Bar style="max-height:150px" :chance="tutorialOne.workVariable "></Bar>
+                                                <Pie style="max-height:150px" :chance="tutorialOne.workVariable "></Pie>
                                             </p>
                                         </a-card>
                                     </a-col>
@@ -239,20 +242,23 @@
                                                 {{ tutorialTwo.chanceVariable + '%' }}
                                             </p>
                                             <p class="question-two" v-if="currentTutorial == 4">
-                                                <b>Time until harvesting: {{ tutorialTwo.deadlineVariable }}</b>
+                                                <b>Time until harvesting
+                                                    <Bar color="#609dd2" :time="tutorialTwo.deadlineVariable" style="max-height:50px"></Bar>
+                                                </b>
                                             </p>
                                             <p class="question-two" v-else>
-                                                Time until harvesting: {{ tutorialTwo.deadlineVariable }}
+                                                Time until harvesting
+                                                <Bar color="#609dd2" :time="tutorialTwo.deadlineVariable" style="max-height:50px"></Bar>
                                             </p>
                                             <p class="question-two" v-if="currentTutorial == 5">
                                                 <b>Percentage of work left in growing season: {{
                                                     tutorialTwo.workVariable }}</b>
-                                                <Bar style="max-height:150px" :chance="tutorialTwo.workVariable "></Bar>
+                                                <Pie style="max-height:150px" :chance="tutorialTwo.workVariable "></Pie>
                                             </p>
                                             <p class="question-two" v-else>
                                                 Percentage of work left in growing season: {{ tutorialTwo.workVariable
                                                 }}
-                                                <Bar style="max-height:150px" :chance="tutorialTwo.workVariable "></Bar>
+                                                <Pie style="max-height:150px" :chance="tutorialTwo.workVariable "></Pie>
                                             </p>
                                         </a-card>
                                     </a-col>
@@ -347,11 +353,14 @@
 
                                                 <p class="question-one">
                                                     <b v-if="currentQuestion.highlightOne == 'deadlineVariableOne' || currentQuestion.highlightTwo == 'deadlineVariableTwo'">
-                                                        Time until harvesting: {{ currentQuestion.deadlineVariableOne }}
+                                                        Time until harvesting
+                                                        <Bar color="#75ab50" :time="currentQuestion.deadlineVariableOne" style="max-height:50px"></Bar>
+
                                                     </b>
                                                     <span v-else>
-                                            Time until harvesting: {{ currentQuestion.deadlineVariableOne }}
-                                        </span>
+                                                        Time until harvesting
+                                                        <Bar color="#75ab50" :time="currentQuestion.deadlineVariableOne" style="max-height:50px"></Bar>
+                                                    </span>
                                                 </p>
                                                 <p class="question-one">
 
@@ -362,8 +371,8 @@
                                                     <span v-else>
                                                     Percentage of work left in growing season: {{ currentQuestion.workVariableOne }}
                                                  </span>
-                                                    <Bar style="max-height:150px"
-                                                         :chance="currentQuestion.workVariableOne "></Bar>
+                                                    <Pie style="max-height:150px"
+                                                         :chance="currentQuestion.workVariableOne "></Pie>
 
                                                 </p>
                                                 <br>
@@ -435,11 +444,13 @@
 
                                                 <p class="question-two">
                                                     <b v-if="currentQuestion.highlightTwo == 'deadlineVariableTwo' || currentQuestion.highlightOne == 'deadlineVariableOne'">
-                                                        Time until harvesting: {{ currentQuestion.deadlineVariableTwo }}
+                                                        Time until harvesting
+                                                        <Bar color="#609dd2" :time="currentQuestion.deadlineVariableTwo" style="max-height:50px"></Bar>
                                                     </b>
                                                     <span v-else>
-                                            Time until harvesting: {{ currentQuestion.deadlineVariableTwo }}
-                                        </span>
+                                                        Time until harvesting
+                                                        <Bar color="#609dd2" :time="currentQuestion.deadlineVariableTwo" style="max-height:50px"></Bar>
+                                                    </span>
                                                 </p>
                                                 <p class="question-two">
 
@@ -450,8 +461,8 @@
                                                     <span v-else>
                                             Percentage of work left in growing season: {{ currentQuestion.workVariableTwo }}
                                         </span>
-                                                    <Bar style="max-height:150px"
-                                                         :chance="currentQuestion.workVariableTwo "></Bar>
+                                                    <Pie style="max-height:150px"
+                                                         :chance="currentQuestion.workVariableTwo "></Pie>
 
                                                 </p>
                                                 <br>
@@ -501,11 +512,12 @@
 
     import {mapGetters} from 'vuex';
     import moment from "moment";
+    import Pie from '../components/Pie'
     import Bar from '../components/Bar'
 
     export default {
         components: {
-            Bar
+            Pie,Bar
         },
         computed: {
             ...mapGetters({
@@ -550,7 +562,7 @@
                     },
                     amountVariable: '300',
                     timeVariable: '6 month',
-                    deadlineVariable: '6 months',
+                    deadlineVariable: '3 months',
                     chanceVariable: 75,
                     workVariable: '20%',
                 },
