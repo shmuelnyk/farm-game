@@ -386,7 +386,7 @@
                                                 <div class="align-center">
                                                     <img :src="getImage(currentQuestion.vegTwo.img)" alt="">
                                                 </div>
-                                                <div class="question-one"
+                                                <div class="question-two"
                                                      v-if="currentQuestion.highlightTwo == 'amountVariableTwo' || currentQuestion.highlightOne == 'amountVariableOne'">
                                                     <div class="crops">
                                                     <span class="amount">
@@ -396,7 +396,7 @@
                                                         <b>Value of crops</b>
                                                     </div>
                                                 </div>
-                                                <div class="question-one" v-else>
+                                                <div class="question-two" v-else>
                                                     <div class="crops">
                                                     <span class="amount">
                                                                 {{ currentQuestion.amountVariableTwoe }}
