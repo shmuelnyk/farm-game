@@ -15,8 +15,8 @@
                                 <img :src="logo" alt="" style="max-width: 35vw;">
                             </div>
 
-                            <h1 class="align-center">Welcome to the Farmers' decisions study!</h1>
-                            <p style="font-weight:600;text-align: center">
+                            <h1 class="align-center" style="font-size: 1.6em;">Welcome to the Farmers' decisions study!</h1>
+                            <p style="font-size: 1.3em;">
                             <br>
                             <br>
                             The Hebrew University of Jerusalem supports the practice of protection
@@ -66,12 +66,12 @@
                 <div v-else>
                     <div v-if="!quizDone" class="container">
                         <a-row v-if="isTutorial">
-                            <h1 class="align-center">
+                            <h1 class="align-center" style="font-size: 1.6em;">
                                 Hello, Welcome to the farm game, in this game you will be the farmer.
                             </h1>
                             <br>
                             <br>
-                            <div style="font-weight: 600;padding-left:24px;padding-right: 24px;text-align: center">
+                            <div style="padding-left:24px;padding-right: 24px;font-size: 1.3em;">
                                 In each situation presented, you will be asked to make a decision which of
                                 two different plants you would like to treat at that time.
                                 <br>
@@ -527,6 +527,7 @@
                 quiz: false,
                 quizDone: false,
                 isTutorial: false,
+                currentTaskName: false,
                 currentTutorial: 0,
                 tutorialOne: {
                     veg: {
@@ -722,7 +723,7 @@
 
                     {
                         task: 3,
-                        name: 'Deadline',
+                        name: 'Deadline - b',
                         firstOptionText: 'amountVariable in a timeVariable chanceVariable, workVariable work left deadline in mainVariable month',
                         optionOneVariables: {
                             amountVariable: '1000',
@@ -755,7 +756,7 @@
 
                     {
                         task: 3,
-                        name: 'Deadline',
+                        name: 'Deadline - b',
                         firstOptionText: 'amountVariable in a timeVariable chanceVariable,workVariable work left deadline in mainVariable',
                         optionOneVariables: {
                             amountVariable: '1000',
@@ -788,7 +789,7 @@
 
                     {
                         task: 3,
-                        name: 'Deadline',
+                        name: 'Deadline - b',
                         firstOptionText: 'amountVariable in a timeVariable chanceVariable,workVariable work left deadline in mainVariable',
                         optionOneVariables: {
                             amountVariable: '1000',
@@ -1015,6 +1016,8 @@
                 this.form[this.currentPart].push(quizAnswer)
                 if (this.currentQuizQuestion < (this.currentQuizLength - 1)) {
                     this.currentQuizQuestion++;
+                    this.getQuestion();
+
                 } else if (this.currentQuizQuestion === (this.currentQuizLength - 1)) {
                     this.currentPart++;
                     if (!this.quizQuestions[this.currentPart] || this.quizQuestions[this.currentPart].length == 0) {
@@ -1023,18 +1026,22 @@
                     }
                     this.currentQuizLength = this.quizQuestions[this.currentPart].length;
                     this.currentQuizQuestion = 0;
+                    if(this.quizQuestions[this.currentPart][this.currentQuizQuestion].quizName != this.currentQuestion.quizName){
+                        this.showConfirm()
+                    }else{
+                        this.getQuestion();
+                    }
 
                 }
 
-                this.showConfirm()
             },
             showConfirm() {
                 let self = this
                 this.$success({
                     title: 'Good job',
                     centered: true,
-                    okText: 'Next',
-                    content: 'Move to the next question',
+                    okText: 'Next task',
+                    content: 'You have completed a task.',
                     onOk() {
                         self.getQuestion();
                     }
@@ -1225,6 +1232,7 @@
                     this.currentQuizQuestion = 0;
                 }
                 this.currentQuestion = this.quizQuestions[this.currentPart][this.currentQuizQuestion];
+                this.currentTaskName = this.quizQuestions[this.currentPart][this.currentQuizQuestion].quizName;
 
             },
             scrollToTop(){

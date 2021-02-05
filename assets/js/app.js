@@ -14,7 +14,7 @@ Vue.config.productionTip = false;
 Vue.prototype.$axios = API;
 Vue.use(Antd);
 
-const accessToken = Cookies.get("foil-sports");
+const accessToken = Cookies.get("quiz-auth");
 if (accessToken) {
   Vue.prototype.$axios.defaults.headers.common = {
     Authorization: `bearer ${accessToken}`
