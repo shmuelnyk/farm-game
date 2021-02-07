@@ -20,11 +20,11 @@ class AdminController extends AbstractController
     public function participants(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $params = json_decode($request->get('form'),true);
+        $params = json_decode($request->get('form'), true);
         $participant = new Participant();
         $em->persist($participant);
-        foreach ($params as $test => $answers){
-            foreach ($answers as $answer){
+        foreach ($params as $test => $answers) {
+            foreach ($answers as $answer) {
                 $quizAnswer = new QuizAnswer();
                 $quizAnswer->setTest($answer['quizName']);
                 $quizAnswer->setOptionOne($answer['option1']);
@@ -37,12 +37,12 @@ class AdminController extends AbstractController
         }
         $em->flush();
 
-        return new JsonResponse(null,200);
+        return new JsonResponse(null, 200);
     }
 
     /**
-    * @Route("/api/participants/export", name="participants_export", methods="POST")
-    */
+     * @Route("/api/participants/export", name="participants_export", methods="POST")
+     */
     public function exportParticipants(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
@@ -57,23 +57,23 @@ class AdminController extends AbstractController
             'Time in milliseconds',
 
         );
-        $data = json_decode($request->getContent(),true);
-        $start = date_create_from_format('d-m-Y',$data['start']);
-        $start->setTime(0,0,0,0);
-        $end = date_create_from_format('d-m-Y',$data['end']);
-        $end ->setTime(23,59);
+        $data = json_decode($request->getContent(), true);
+        $start = date_create_from_format('d-m-Y', $data['start']);
+        $start->setTime(0, 0, 0, 0);
+        $end = date_create_from_format('d-m-Y', $data['end']);
+        $end->setTime(23, 59);
         $participants = $em->getRepository(Participant::class)->createQueryBuilder('p')
             ->andwhere('p.createdAt >= :start')
             ->andwhere('p.createdAt <= :end')
-            ->setParameter('start',$start)
-            ->setParameter('end',$end)
+            ->setParameter('start', $start)
+            ->setParameter('end', $end)
             ->getQuery()
             ->getResult();
 
-        if(count($participants) == 0){
+        if (count($participants) == 0) {
             return new JsonResponse(array(
-                'msg'=>'No participants for the selected range.'
-            ),500);
+                'msg' => 'No participants for the selected range.'
+            ), 500);
         }
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();;
@@ -88,7 +88,7 @@ class AdminController extends AbstractController
         $date = new \DateTime();
         $sheet->setTitle("Participants export");
         foreach ($participants as $result) {
-            foreach($result->getQuizAnswers() as $answer){
+            foreach ($result->getQuizAnswers() as $answer) {
                 $column = 'A';
                 $sheet->setCellValue($column . $row, $result->getMTurkId());
                 $column++;
@@ -127,19 +127,19 @@ class AdminController extends AbstractController
         $em = $this->getDoctrine()->getManager();
 
         $link = $request->get('link');
-        $option = $em->getRepository(AdminOption::class)->findOneBy(array('optionKey'=>'pageLink'));
-        if($option){
+        $option = $em->getRepository(AdminOption::class)->findOneBy(array('optionKey' => 'pageLink'));
+        if ($option) {
             $option->setOptionValue($link);
             $em->persist($option);
             $em->flush();
-        }else{
+        } else {
             $option = new AdminOption();
             $option->setOptionValue($link);
             $option->setOptionKey('pageLink');
             $em->persist($option);
             $em->flush();
         }
-        return new JsonResponse(null,200);
+        return new JsonResponse(null, 200);
     }
 
     /**
@@ -150,15 +150,49 @@ class AdminController extends AbstractController
         $em = $this->getDoctrine()->getManager();
 
         $link = null;
-        $option = $em->getRepository(AdminOption::class)->findOneBy(array('optionKey'=>'pageLink'));
-        if($option){
+        $option = $em->getRepository(AdminOption::class)->findOneBy(array('optionKey' => 'pageLink'));
+        if ($option) {
             $link = $option->getOptionValue();
-        }else{
+        } else {
             $option = new AdminOption();
             $option->setOptionKey('pageLink');
             $em->persist($option);
             $em->flush();
         }
-        return new JsonResponse(array('link'=>$link),200);
+        return new JsonResponse(array('link' => $link), 200);
     }
+
+    /**
+     * @Route("/api/participants/export/curve", name="participants_export_curve", methods="POST")
+     */
+    public function exportParticipantsCurve(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $data = json_decode($request->getContent(), true);
+        $start = date_create_from_format('d-m-Y', $data['start']);
+        $start->setTime(0, 0, 0, 0);
+        $end = date_create_from_format('d-m-Y', $data['end']);
+        $end->setTime(23, 59);
+        $participants = $em->getRepository(Participant::class)->createQueryBuilder('p')
+            ->andwhere('p.createdAt >= :start')
+            ->andwhere('p.createdAt <= :end')
+            ->setParameter('start', $start)
+            ->setParameter('end', $end)
+            ->getQuery()
+            ->getResult();
+        $rows = array();
+        foreach ($participants as $participant) {
+            foreach ($participant->getQuizAnswers() as $answer)
+            array_push($rows,array(
+                "MTurk ID"=>$participant->getMTurkId(),
+                "Test Name"=>$answer->getTest(),
+                "Option one"=>$answer->getOptionOne(),
+                "Option two"=>$answer->getOptionTwo(),
+                "Answer"=>$answer->getAnswer(),
+                "Time in milliseconds"=>(int)$answer->getTime(),
+            ));
+        }
+        return new JsonResponse(array('json' => $rows,'participants'=>count($participants)), 200);
+    }
+
 }
