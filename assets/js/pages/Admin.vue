@@ -38,11 +38,30 @@
                             </a-input>
                         </a-col>
                         <a-col :span="12">
-
                             <div class="new-button" :span="4" style="padding: 0!important;text-align: right">
                                 <a-button type="primary" :size="'default'" @click="saveLink">Save</a-button>
                             </div>
                         </a-col>
+                    </a-row>
+                </a-collapse-panel>
+                <a-collapse-panel key="3" header="Password" :disabled="false">
+                    <a-row :gutter="24">
+                        <a-col :span="10">
+                            <a-input-password addonBefore="Current password: " v-model="oldPassword" style="width: 100%">
+                            </a-input-password>
+                        </a-col>
+                        <a-col :span="10">
+                            <a-input-password addonBefore="New password: " v-model="newPassword" style="width: 100%">
+                            </a-input-password>
+                        </a-col>
+                        <a-col :span="4" >
+                            <div class="new-button"  :span="6" style="padding: 0!important;text-align: right">
+                                <a-button type="primary" :size="'default'" @click="updatePassword">Save</a-button>
+                            </div>
+                        </a-col>
+                    </a-row>
+                    <a-row :gutter="24">
+
                     </a-row>
                 </a-collapse-panel>
             </a-collapse>
@@ -73,6 +92,8 @@
         data() {
             return {
                 link: '',
+                newPassword: '',
+                oldPassword: '',
                 activeKey: ['1'],
                 exportRange: [],
                 columns: [
@@ -98,6 +119,24 @@
             this.getData();
         },
         methods: {
+            updatePassword(){
+                if (this.newPassword == '' || this.oldPassword == '') {
+                    this.$message.error('New or current password cant be empty.')
+                    return;
+                }
+                let data = new FormData();
+
+                data.append('password', this.newPassword)
+                data.append('old_password', this.oldPassword)
+                this.$axios.post("/api/update/password", data)
+                    .then((res) => {
+                        this.$message.success('Password updated successfully.')
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                        this.$message.error(err.response.data.error)
+                    })
+            },
             logout() {
                 this.$store.dispatch("auth/logout");
                 ;

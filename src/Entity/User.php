@@ -220,5 +220,15 @@ class User implements UserInterface
         $this->phoneNumber = $phoneNumber;
     }
 
+    /**
+     * @param string $password
+     */
+    public function setPassword(string $password): void
+    {
+        $this->password = $password;
+    }
+
+
+
 
 }

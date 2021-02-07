@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AdminController extends AbstractController
 {
@@ -194,5 +195,27 @@ class AdminController extends AbstractController
         }
         return new JsonResponse(array('json' => $rows,'participants'=>count($participants)), 200);
     }
+
+    /**
+     * @Route("/api/update/password", name="update_password", methods="POST")
+     */
+    public function updatePassword(Request $request,UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $oldPwd = $request->get('old_password');
+        $newPwd = $request->get('password');
+        $user = $this->getUser();
+        $checkPass = $passwordEncoder->isPasswordValid($user, $oldPwd);
+        if($checkPass === true) {
+            $newPwdEncoded = $passwordEncoder->encodePassword($user, $newPwd);
+            $user->setPassword($newPwdEncoded);
+            $em->persist($user);
+            $em->flush();
+            return new JsonResponse(null, 200);
+        } else {
+            return new jsonresponse(array('error' => 'The current password is incorrect.'),400);
+        }
+    }
+
 
 }

@@ -46,9 +46,10 @@
         },
         methods: {
             onSubmitLogin() {
-                console.log('submit...')
                 this.$store.dispatch("auth/login", this.login).then(() => {
                     this.$router.push({name: "admin"});
+                }).catch(err=>{
+                    this.$message.error(err)
                 })
             }
         },
