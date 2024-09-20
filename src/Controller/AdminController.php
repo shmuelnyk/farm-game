@@ -216,6 +216,4 @@ class AdminController extends AbstractController
             return new jsonresponse(array('error' => 'The current password is incorrect.'),400);
         }
     }
-
-
 }

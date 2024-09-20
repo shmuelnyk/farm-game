@@ -299,6 +299,7 @@
                                     <a-card :headStyle="{backgroundColor: '#75ab50',borderRadius: '10px'}"
                                             :title="currentQuestion.vegOne.title.toUpperCase()+ ' CROP'"
                                             :bordered="false">
+                                            {{currentQuestion}}
                                         <transition name="fade" mode="out-in">
                                             <div :key="currentQuestion.id">
                                                 <div class="align-center">
@@ -1221,6 +1222,7 @@
                     })
                     quiz[index + 1] = this.shuffleArray(testQuestions);
                 })
+                console.log(quiz)
                 this.quizQuestions = quiz
             },
             getQuestionTime() {
