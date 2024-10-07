@@ -9,7 +9,6 @@
 /vendor/
 /.env
 /test/
-/public/
 /.idea/
 ###< symfony/framework-bundle ###
 
