@@ -127,11 +127,19 @@
                                                         Shows how much time you have to
                                                         irrigate each crop.
                                                     </template>
-                                                    <b>Time left in growing season: {{ tutorialOne.timeVariable }}</b>
+                                                    <b>
+                                                        <span>
+                                                            Time left in growing season
+                                                            <Bar color="#75ab50" :time="tutorialOne.timeVariable" style="max-height:50px"></Bar>
+                                                        </span>
+                                                    </b>
                                                 </a-tooltip>
                                             </p>
                                             <p class="question-one" v-else>
-                                                Time left in growing season: {{ tutorialOne.timeVariable }}
+                                                <span>
+                                                    Time left in growing season
+                                                    <Bar color="#75ab50" :time="tutorialOne.timeVariable" style="max-height:50px"></Bar>
+                                                </span>
                                             </p>
                                             <p class="question-one" v-if="currentTutorial == 3">
                                                 <a-tooltip :defaultVisible="true">
@@ -218,11 +226,12 @@
 
                                             </div>
                                             <p class="question-two" v-if="currentTutorial == 2">
-                                                <b>Time left in growing season: {{ tutorialTwo.timeVariable }}</b>
-
+                                                Time left in growing season
+                                                <Bar color="#75ab50" :time="tutorialTwo.timeVariable" style="max-height:50px"></Bar>
                                             </p>
                                             <p class="question-two" v-else>
                                                 Time left in growing season: {{ tutorialTwo.timeVariable }}
+                                                <Bar color="#75ab50" :time="tutorialTwo.timeVariable" style="max-height:50px"></Bar>
                                             </p>
                                             <p class="question-two" v-if="currentTutorial == 3">
                                                 <b>The chances of yielding from the plants and receiving the money:
@@ -299,7 +308,6 @@
                                     <a-card :headStyle="{backgroundColor: '#75ab50',borderRadius: '10px'}"
                                             :title="currentQuestion.vegOne.title.toUpperCase()+ ' CROP'"
                                             :bordered="false">
-                                            {{currentQuestion}}
                                         <transition name="fade" mode="out-in">
                                             <div :key="currentQuestion.id">
                                                 <div class="align-center">
@@ -551,8 +559,8 @@
                         img: 'carrot',
                     },
                     amountVariable: '1000',
-                    timeVariable: '6 month',
-                    deadlineVariable: '6 months',
+                    timeVariable: '1 week',
+                    deadlineVariable: '2 weeks',
                     chanceVariable: 100,
                     workVariable: '50%',
                 },
@@ -562,21 +570,120 @@
                         img: 'corn',
                     },
                     amountVariable: '300',
-                    timeVariable: '6 month',
-                    deadlineVariable: '3 months',
+                    timeVariable: '1 week',
+                    deadlineVariable: '2 weeks',
                     chanceVariable: 75,
                     workVariable: '20%',
                 },
                 quizOptions: [
                     {
                         task: 1,
-                        name: 'Distance to goal - a',
+                        name: 'Delay',
+                        firstOptionText: 'amountVariable in a timeVariable chanceVariable, workVariable work left, Deadline in mainVariable',
+                        optionOneVariables: {
+                            timeVariable: '1 week',
+                            amountVariable: '1000',
+                            chanceVariable: 98,
+                            workVariable: '25%',
+
+                        },
+                        firstOptions: ['2 weeks', '3 weeks', '4 weeks'],
+                        secondOptionText: 'mainVariable in timeVariable chanceVariable, Deadline in deadlineVariable, workVariable work left.',
+                        optionTwoVariables: {
+                            timeVariable: '1 week',
+                            deadlineVariable: '1 week',
+                            chanceVariable: 98,
+                            workVariable: '25%',
+                        },
+                        secondOptions: [
+                            100,
+                            200,
+                            300,
+                            400,
+                            500,
+                            600,
+                            700,
+                            800,
+                            900,
+                        ]
+                    },
+                    {
+                        task: 2,
+                        name: 'Expectency',
+                        firstOptionText: 'amountVariable in a timeVariable mainVariable, workVariable work left, Deadline in deadlineVariable',
+                        optionOneVariables: {
+                            amountVariable: '1000',
+                            timeVariable: '4 weeks',
+                            deadlineVariable: '1 week',
+                            workVariable: '25%',
+                        },
+                        firstOptions: [
+                            '20%',
+                            '50%',
+                            '80%',
+                        ],
+                        secondOptionText: 'mainVariable in timeVariable chanceVariable, Deadline in deadlineVariable, workVariable work left.',
+                        optionTwoVariables: {
+                            timeVariable: '4 weeks',
+                            deadlineVariable: '1 week',
+                            chanceVariable: 98,
+                            workVariable: '25%',
+                        },
+                        secondOptions: [
+                            100,
+                            200,
+                            300,
+                            400,
+                            500,
+                            600,
+                            700,
+                            800,
+                            900,
+                        ]
+                    },
+                    {
+                        task: 3,
+                        name: 'Deadline',
+                        firstOptionText: 'amountVariable in a timeVariable chanceVariable, workVariable work left, Deadline in mainVariable',
+                        optionOneVariables: {
+                            amountVariable: '1000',
+                            timeVariable: '4 weeks',
+                            workVariable: '25%',
+                            chanceVariable: 98,
+                        },
+                        firstOptions: [
+                            '1 week',
+                            '1 week',
+                            '1 week',
+                        ],
+                        secondOptionText: 'mainVariable in timeVariable chanceVariable, Deadline in deadlineVariable, workVariable work left.',
+                        optionTwoVariables: {
+                            timeVariable: '4 weeks',
+                            deadlineVariable: ['2, weeks', '3 weeks', '4 weeks'],
+                            chanceVariable: 98,
+                            workVariable: '25%',
+                        },
+                        secondOptions: [
+                            100,
+                            200,
+                            300,
+                            400,
+                            500,
+                            600,
+                            700,
+                            800,
+                            900,
+                        ]
+                    },
+                    {
+                        task: 4,
+                        name: 'Distance',
                         firstOptionText: 'amountVariable in a timeVariable chanceVariable, mainVariable work left, Deadline in deadlineVariable',
                         optionOneVariables: {
                             amountVariable: '1000',
-                            timeVariable: '6 month',
-                            deadlineVariable: '6 months',
-                            chanceVariable: 100,
+                            timeVariable: '4 weeks',
+                            deadlineVariable: '1 week',
+                            chanceVariable: 98,
                         },
                         firstOptions: [
                             '50%',
@@ -585,10 +692,10 @@
                         ],
                         secondOptionText: 'mainVariable in timeVariable chanceVariable, Deadline in deadlineVariable, workVariable work left.',
                         optionTwoVariables: {
-                            timeVariable: '6 months',
-                            deadlineVariable: '6 months',
-                            chanceVariable: 100,
-                            workVariable: '20%',
+                            timeVariable: '4 weeks',
+                            deadlineVariable: '1 week',
+                            chanceVariable: 98,
+                            workVariable: '25%',
                         },
                         secondOptions: [
                             100,
@@ -602,299 +709,65 @@
                             900,
                         ]
                     },
-
-                    {
-                        task: 2,
-                        name: 'Distance to goal - b',
-                        firstOptionText: 'amountVariable in a timeVariable chanceVariable, mainVariable work left, Deadline in deadlineVariable',
-                        optionOneVariables: {
-                            amountVariable: '1000',
-                            timeVariable: '6 month',
-                            deadlineVariable: '4 months',
-                            chanceVariable: 100,
-                        },
-                        firstOptions: [
-                            '40%',
-                        ],
-                        secondOptionText: 'mainVariable in timeVariable chanceVariable, Deadline in deadlineVariable, workVariable work left.',
-                        optionTwoVariables: {
-                            timeVariable: '6 months',
-                            deadlineVariable: '4 weeks',
-                            chanceVariable: 100,
-                            workVariable: '20%',
-                        },
-                        secondOptions: [
-                            100,
-                            200,
-                            300,
-                            400,
-                            500,
-                            600,
-                            700,
-                            800,
-                            900,
-                        ]
-                    },
-
-                    {
-                        task: 2,
-                        name: 'Distance to goal - b',
-                        firstOptionText: 'amountVariable in timeVariable chanceVariable, mainVariable work left, Deadline in deadlineVariable',
-                        optionOneVariables: {
-                            amountVariable: '1000',
-                            timeVariable: '6 months',
-                            deadlineVariable: '4 months',
-                            chanceVariable: 100,
-                        },
-                        firstOptions: [
-                            '60%',
-                        ],
-                        secondOptionText: 'mainVariable in timeVariable chanceVariable, Deadline in deadlineVariable, workVariable work left.',
-                        optionTwoVariables: {
-                            timeVariable: '6 months',
-                            deadlineVariable: '6 weeks',
-                            chanceVariable: 100,
-                            workVariable: '20%',
-                        },
-                        secondOptions: [
-                            100,
-                            200,
-                            300,
-                            400,
-                            500,
-                            600,
-                            700,
-                            800,
-                            900,
-                        ]
-                    },
-
-                    {
-                        task: 2,
-                        name: 'Distance to goal - b',
-                        firstOptionText: 'amountVariable in a timeVariable chanceVariable, mainVariable work left, Deadline in deadlineVariable',
-                        optionOneVariables: {
-                            amountVariable: '1000',
-                            timeVariable: '6 month',
-                            deadlineVariable: '4 months',
-                            chanceVariable: 100,
-                        },
-                        firstOptions: [
-                            '80%',
-                        ],
-                        secondOptionText: 'mainVariable in timeVariable chanceVariable, Deadline in deadlineVariable, workVariable work left.',
-                        optionTwoVariables: {
-                            timeVariable: '6 months',
-                            deadlineVariable: '8 weeks',
-                            chanceVariable: 100,
-                            workVariable: '20%',
-                        },
-                        secondOptions: [
-                            100,
-                            200,
-                            300,
-                            400,
-                            500,
-                            600,
-                            700,
-                            800,
-                            900,
-                        ]
-                    },
-
-                    {
-                        task: 3,
-                        name: 'Deadline',
-                        firstOptionText: 'amountVariable in a timeVariable chanceVariable, workVariable work left deadline in mainVariable',
-                        optionOneVariables: {
-                            amountVariable: '1000',
-                            timeVariable: '6 months',
-                            workVariable: '20%',
-                            chanceVariable: 100
-                        },
-                        firstOptions: [
-                            '1 month',
-                            '3 month',
-                            '6 month',
-                        ],
-                        secondOptionText: 'mainVariable in timeVariable chanceVariable, Deadline in deadlineVariable, workVariable work left.',
-                        optionTwoVariables: {
-                            timeVariable: '6 months',
-                            deadlineVariable: 'a week',
-                            chanceVariable: 100,
-                            workVariable: '20%',
-                        },
-                        secondOptions: [
-                            100,
-                            200,
-                            300,
-                            400,
-                            500,
-                            600,
-                            700,
-                            800,
-                            900,
-                        ]
-                    },
-
-                    {
-                        task: 3,
-                        name: 'Deadline - b',
-                        firstOptionText: 'amountVariable in a timeVariable chanceVariable, workVariable work left deadline in mainVariable month',
-                        optionOneVariables: {
-                            amountVariable: '1000',
-                            timeVariable: '6 months',
-                            chanceVariable: 100,
-                            workVariable: '40%'
-                        },
-                        firstOptions: [
-                            '4 weeks',
-                        ],
-                        secondOptionText: 'mainVariable in timeVariable months chanceVariable, Deadline in deadlineVariable, workVariable work left.',
-                        optionTwoVariables: {
-                            timeVariable: '6 months',
-                            deadlineVariable: '2 weeks',
-                            chanceVariable: 100,
-                            workVariable: '20%',
-                        },
-                        secondOptions: [
-                            100,
-                            200,
-                            300,
-                            400,
-                            500,
-                            600,
-                            700,
-                            800,
-                            900,
-                        ]
-                    },
-
-                    {
-                        task: 3,
-                        name: 'Deadline - b',
-                        firstOptionText: 'amountVariable in a timeVariable chanceVariable,workVariable work left deadline in mainVariable',
-                        optionOneVariables: {
-                            amountVariable: '1000',
-                            timeVariable: '6 months',
-                            chanceVariable: 100,
-                            workVariable: '60%'
-                        },
-                        firstOptions: [
-                            '6 weeks',
-                        ],
-                        secondOptionText: 'mainVariable in timeVariable chanceVariable, Deadline in deadlineVariable, workVariable work left.',
-                        optionTwoVariables: {
-                            timeVariable: '6 months',
-                            deadlineVariable: '2 weeks',
-                            chanceVariable: 100,
-                            workVariable: '20%',
-                        },
-                        secondOptions: [
-                            100,
-                            200,
-                            300,
-                            400,
-                            500,
-                            600,
-                            700,
-                            800,
-                            900,
-                        ]
-                    },
-
-                    {
-                        task: 3,
-                        name: 'Deadline - b',
-                        firstOptionText: 'amountVariable in a timeVariable chanceVariable,workVariable work left deadline in mainVariable',
-                        optionOneVariables: {
-                            amountVariable: '1000',
-                            timeVariable: '6 months',
-                            chanceVariable: 100,
-                            workVariable: '80%'
-                        },
-                        firstOptions: [
-                            '8 weeks',
-                        ],
-                        secondOptionText: 'mainVariable in timeVariable chanceVariable, Deadline in deadlineVariable, workVariable work left.',
-                        optionTwoVariables: {
-                            timeVariable: '6 months',
-                            deadlineVariable: '2 weeks',
-                            chanceVariable: 100,
-                            workVariable: '20%',
-                        },
-                        secondOptions: [
-                            100,
-                            200,
-                            300,
-                            400,
-                            500,
-                            600,
-                            700,
-                            800,
-                            900,
-                        ]
-                    },
-
-                    {
-                        task: 4,
-                        name: 'Expectancy',
-                        firstOptionText: 'amountVariable in a timeVariable mainVariable,workVariable work left deadline in deadlineVariable',
-                        optionOneVariables: {
-                            amountVariable: '1000',
-                            timeVariable: '6 months',
-                            workVariable: '80%',
-                            deadlineVariable: '25 weeks',
-
-                        },
-                        firstOptions: [
-                            75,
-                            50,
-                            25,
-
-                        ],
-                        secondOptionText: 'mainVariable in timeVariable chanceVariable, Deadline in deadlineVariable, workVariable work left.',
-                        optionTwoVariables: {
-                            timeVariable: '6 months',
-                            deadlineVariable: '25 weeks',
-                            chanceVariable: 100,
-                            workVariable: '100%',
-                        },
-                        secondOptions: [
-                            100,
-                            200,
-                            300,
-                            400,
-                            500,
-                            600,
-                            700,
-                            800,
-                            900,
-                        ]
-                    },
-
                     {
                         task: 5,
-                        name: 'Delay',
-                        firstOptionText: 'amountVariable in a mainVariable chanceVariable, workVariable work left deadline in deadlineVariable',
+                        name: 'Rate A',
+                        firstOptionText: 'amountVariable in a timeVariable chanceVariable, mainVariable work left, Deadline in deadlineVariable',
                         optionOneVariables: {
                             amountVariable: '1000',
-                            deadlineVariable: '25 weeks',
-                            workVariable: '100%',
-                            chanceVariable: 100,
+                            timeVariable: '4 weeks',
+                            deadlineVariable: ['2 weeks','3 weeks','3 weeks'],
+                            chanceVariable: 98,
                         },
                         firstOptions: [
-                            '1 month',
-                            '6 month',
-                            '12 month',
-
+                            '50%',
+                            '75%',
+                            '100%',
                         ],
-                        secondOptionText: 'mainVariable in timeVariable chanceVariable, Deadline in deadlineVariable weeks, workVariable work left.',
+                        secondOptionText: 'mainVariable in timeVariable chanceVariable, Deadline in deadlineVariable, workVariable work left.',
                         optionTwoVariables: {
-                            timeVariable: '1 week ',
-                            deadlineVariable: '25 weeks',
-                            chanceVariable: 100,
-                            workVariable: '100%',
+                            timeVariable: '4 weeks',
+                            deadlineVariable: '1 week',
+                            chanceVariable: 98,
+                            workVariable: '25%',
+                        },
+                        secondOptions: [
+                            100,
+                            200,
+                            300,
+                            400,
+                            500,
+                            600,
+                            700,
+                            800,
+                            900,
+                        ]
+                    },
+                    {
+                        task: 6,
+                        name: 'Rate B',
+                        firstOptionText: 'amountVariable in a timeVariable chanceVariable, mainVariable work left, Deadline in deadlineVariable',
+                        optionOneVariables: {
+                            amountVariable: '1000',
+                            timeVariable: '4 weeks',
+                            deadlineVariable: '1 week',
+                            chanceVariable: 98,
+                        },
+                        firstOptions: [
+                            '25%',
+                            '25%',
+                            '25%',
+                        ],
+                        secondOptionText: 'mainVariable in timeVariable chanceVariable, Deadline in deadlineVariable, workVariable work left.',
+                        optionTwoVariables: {
+                            timeVariable: '4 weeks',
+                            deadlineVariable: ['2 weeks','3 weeks','3 weeks'],
+                            workVariable: [
+                                '50%',
+                                '75%',
+                                '100%',
+                            ],
+                            chanceVariable: 98,
                         },
                         secondOptions: [
                             100,
@@ -1080,7 +953,8 @@
                     this.submitting = false;
                 }
             },
-            createOptions(element, qOne, qTwo, veg,id) {
+            createOptions(element, qOne, qTwo, veg,id, quizIndex) {
+                console.log(quizIndex)
                 let firstVariables = element.optionOneVariables
                 let secondVariables = element.optionTwoVariables
                 let highlightOne = '';
@@ -1108,8 +982,11 @@
                     answer: undefined,
 
                 }
+                
                 let firstString = element.firstOptionText;
                 let secondString = element.secondOptionText;
+
+
                 if (firstVariables['amountVariable'] == undefined) {
                     highlightOne = 'amountVariableOne'
                     firstString = firstString.replaceAll('mainVariable', qOne)
@@ -1120,6 +997,7 @@
                 if (firstVariables['timeVariable'] == undefined) {
                     highlightOne = 'timeVariableOne'
                     firstString = firstString.replaceAll('mainVariable', qOne)
+                    option.timeVariableOne = qOne
                 } else {
                     option.timeVariableOne = firstVariables.timeVariable
                     firstString = firstString.replaceAll('timeVariable', firstVariables.timeVariable)
@@ -1127,7 +1005,7 @@
                 if (firstVariables['deadlineVariable'] == undefined) {
                     highlightOne = 'deadlineVariableOne'
                     firstString = firstString.replaceAll('mainVariable', qOne)
-
+                    option.deadlineVariableOne = qOne
                 } else {
                     option.deadlineVariableOne = firstVariables.deadlineVariable
                     firstString = firstString.replaceAll('deadlineVariable', firstVariables.deadlineVariable)
@@ -1135,6 +1013,7 @@
                 if (firstVariables['chanceVariable'] == undefined) {
                     highlightOne = 'chanceVariableOne'
                     firstString = firstString.replaceAll('mainVariable', qOne)
+                    option.chanceVariableOne = qOne
                 } else {
                     option.chanceVariableOne = firstVariables.chanceVariable
                     firstString = firstString.replaceAll('chanceVariable', firstVariables.chanceVariable)
@@ -1142,6 +1021,7 @@
                 if (firstVariables['workVariable'] == undefined) {
                     highlightOne = 'workVariableOne'
                     firstString = firstString.replaceAll('mainVariable', qOne)
+                    option.workVariableOne = qOne
                 } else {
                     option.workVariableOne = firstVariables.workVariable
                     firstString = firstString.replaceAll('workVariable', firstVariables.workVariable)
@@ -1150,6 +1030,7 @@
                 if (secondVariables['amountVariable'] == undefined) {
                     highlightTwo = 'amountVariableTwo'
                     secondString = secondString.replaceAll('mainVariable', qTwo)
+                    option.amountVariableTwo = qTwo
                 } else {
                     option.amountVariableTwo = secondVariables.amountVariable
                     secondString = secondString.replaceAll('amountVariable', secondVariables.amountVariable)
@@ -1157,6 +1038,7 @@
                 if (secondVariables['timeVariable'] == undefined) {
                     highlightTwo = 'timeVariableTwo'
                     secondString = secondString.replaceAll('mainVariable', qTwo)
+                    option.timeVariableTwo = qTwo
                 } else {
                     option.timeVariableTwo = secondVariables.timeVariable
                     secondString = secondString.replaceAll('timeVariable', secondVariables.timeVariable)
@@ -1164,14 +1046,30 @@
                 if (secondVariables['deadlineVariable'] == undefined) {
                     highlightTwo = 'deadlineVariableTwo'
                     secondString = secondString.replaceAll('mainVariable', qTwo)
+                    option.deadlineVariableTwo = qTwo
                 } else {
-                    option.deadlineVariableTwo = secondVariables.deadlineVariable
-                    secondString = secondString.replaceAll('deadlineVariable', secondVariables.deadlineVariable)
+                    if (Array.isArray(secondVariables.deadlineVariable)) {
+                        if (quizIndex <= 9) {
+                            option.deadlineVariableTwo = secondVariables.deadlineVariable[0]
+                            secondString = secondString.replaceAll('deadlineVariable', secondVariables.deadlineVariable[0])
+                        }else if (quizIndex > 9 && quizIndex < 18) {
+                            option.deadlineVariableTwo = secondVariables.deadlineVariable[1]
+                            secondString = secondString.replaceAll('deadlineVariable', secondVariables.deadlineVariable[1])
+                        }else {
+                            option.deadlineVariableTwo = secondVariables.deadlineVariable[2]
+                            secondString = secondString.replaceAll('deadlineVariable', secondVariables.deadlineVariable[2])
+                        }
+                    } else {
+                        option.deadlineVariableTwo = secondVariables.deadlineVariable
+                        secondString = secondString.replaceAll('deadlineVariable', secondVariables.deadlineVariable)
+                    }
+                    
 
                 }
                 if (secondVariables['chanceVariable'] == undefined) {
                     highlightTwo = 'chanceVariableTwo'
                     secondString = secondString.replace('mainVariable', qTwo)
+                    option.chanceVariableTwo = qTwo
                 } else {
                     option.chanceVariableTwo = secondVariables.chanceVariable
                     secondString = secondString.replace('chanceVariable', secondVariables.chanceVariable)
@@ -1180,10 +1078,10 @@
                 if (secondVariables['workVariable'] == undefined) {
                     highlightTwo = 'workVariableTwo'
                     secondString = secondString.replace('mainVariable', qTwo)
+                    option.workVariableTwo = qTwo
                 } else {
                     option.workVariableTwo = secondVariables.workVariable
                     secondString = secondString.replace('workVariable', secondVariables.workVariable)
-
                 }
                 option.highlightOne = highlightOne
                 option.highlightTwo = highlightTwo
@@ -1204,7 +1102,9 @@
                 let quiz = []
                 let vegetables;
                 let idCount = 1;
+                let quizIndex = 1
                 this.quizOptions.forEach((element, index) => {
+                    quizIndex = 1
                     let testQuestions = []
                     if (!this.currentQuizTask) {
                         this.currentQuizTask = element.task;
@@ -1215,9 +1115,10 @@
                     }
                     element.firstOptions.forEach(firstOption => {
                         element.secondOptions.forEach(secondOption => {
-                            let option = this.createOptions(element, firstOption, secondOption, vegetables,idCount)
+                            let option = this.createOptions(element, firstOption, secondOption, vegetables,idCount, quizIndex)
                             testQuestions.push(option)
                             idCount++;
+                            quizIndex ++;
                         })
                     })
                     quiz[index + 1] = this.shuffleArray(testQuestions);
