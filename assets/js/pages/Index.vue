@@ -956,7 +956,6 @@
                 }
             },
             createOptions(element, qOne, qTwo, veg,id, quizIndex) {
-                console.log(quizIndex)
                 let firstVariables = element.optionOneVariables
                 let secondVariables = element.optionTwoVariables
                 let highlightOne = '';
@@ -1009,8 +1008,21 @@
                     firstString = firstString.replaceAll('mainVariable', qOne)
                     option.deadlineVariableOne = qOne
                 } else {
-                    option.deadlineVariableOne = firstVariables.deadlineVariable
-                    firstString = firstString.replaceAll('deadlineVariable', firstVariables.deadlineVariable)
+                    if (Array.isArray(firstVariables.deadlineVariable)) {
+                        if (quizIndex <= 9) {
+                            option.deadlineVariableOne = firstVariables.deadlineVariable[0]
+                            firstString = firstString.replaceAll('deadlineVariable', firstVariables.deadlineVariable[0])
+                        }else if (quizIndex > 9 && quizIndex < 18) {
+                            option.deadlineVariableOne = firstVariables.deadlineVariable[1]
+                            firstString = firstString.replaceAll('deadlineVariable', firstVariables.deadlineVariable[1])
+                        }else {
+                            option.deadlineVariableOne = firstVariables.deadlineVariable[2]
+                            firstString = firstString.replaceAll('deadlineVariable', firstVariables.deadlineVariable[2])
+                        }
+                    } else {
+                        option.deadlineVariableOne = firstVariables.deadlineVariable
+                        firstString = firstString.replaceAll('deadlineVariable', firstVariables.deadlineVariable)
+                    }
                 }
                 if (firstVariables['chanceVariable'] == undefined) {
                     highlightOne = 'chanceVariableOne'
@@ -1078,12 +1090,42 @@
 
                 }
                 if (secondVariables['workVariable'] == undefined) {
-                    highlightTwo = 'workVariableTwo'
-                    secondString = secondString.replace('mainVariable', qTwo)
-                    option.workVariableTwo = qTwo
+                    if (Array.isArray(secondVariables.workVariable)) {
+                        if (quizIndex <= 9) {
+                            highlightTwo = 'workVariableTwo'
+                            secondString = secondString.replace('mainVariable', qTwo[0])
+                            option.workVariableTwo = qTwo[0]
+                        }else if (quizIndex > 9 && quizIndex < 18) {
+                            highlightTwo = 'workVariableTwo'
+                            secondString = secondString.replace('mainVariable', qTwo[1])
+                            option.workVariableTwo = qTwo[1]
+                        }else {
+                            highlightTwo = 'workVariableTwo'
+                            secondString = secondString.replace('mainVariable', qTwo[2])
+                            option.workVariableTwo = qTwo[2]
+                        }
+                    } else {
+                        highlightTwo = 'workVariableTwo'
+                        secondString = secondString.replace('mainVariable', qTwo)
+                        option.workVariableTwo = qTwo
+                    }
+                    
                 } else {
-                    option.workVariableTwo = secondVariables.workVariable
-                    secondString = secondString.replace('workVariable', secondVariables.workVariable)
+                    if (Array.isArray(secondVariables.workVariable)) {
+                        if (quizIndex <= 9) {
+                            option.workVariableTwo = secondVariables.workVariable[0]
+                            secondString = secondString.replace('workVariable', secondVariables.workVariable[0])
+                        }else if (quizIndex > 9 && quizIndex < 18) {
+                            option.workVariableTwo = secondVariables.workVariable[1]
+                            secondString = secondString.replace('workVariable', secondVariables.workVariable[1])
+                        }else {
+                            option.workVariableTwo = secondVariables.workVariable[2]
+                            secondString = secondString.replace('workVariable', secondVariables.workVariable[2])
+                        }
+                    } else {
+                        option.workVariableTwo = secondVariables.workVariable
+                        secondString = secondString.replace('workVariable', secondVariables.workVariable)
+                    }
                 }
                 option.highlightOne = highlightOne
                 option.highlightTwo = highlightTwo
@@ -1125,7 +1167,6 @@
                     })
                     quiz[index + 1] = this.shuffleArray(testQuestions);
                 })
-                console.log(quiz)
                 this.quizQuestions = quiz
             },
             getQuestionTime() {
