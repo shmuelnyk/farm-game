@@ -230,7 +230,7 @@
                                                 <Bar color="#75ab50" :time="tutorialTwo.timeVariable" style="max-height:50px"></Bar>
                                             </p>
                                             <p class="question-two" v-else>
-                                                Time left in growing season: {{ tutorialTwo.timeVariable }}
+                                                Time left in growing season
                                                 <Bar color="#75ab50" :time="tutorialTwo.timeVariable" style="max-height:50px"></Bar>
                                             </p>
                                             <p class="question-two" v-if="currentTutorial == 3">
