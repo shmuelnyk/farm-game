@@ -615,8 +615,8 @@
                         firstOptionText: 'amountVariable in a timeVariable mainVariable, workVariable work left, Deadline in deadlineVariable',
                         optionOneVariables: {
                             amountVariable: '1000',
-                            timeVariable: '4 weeks',
-                            deadlineVariable: '1 week',
+                            timeVariable: '1 weeks',
+                            deadlineVariable: '4 week',
                             workVariable: '25%',
                         },
                         firstOptions: [
@@ -626,8 +626,8 @@
                         ],
                         secondOptionText: 'mainVariable in timeVariable chanceVariable, Deadline in deadlineVariable, workVariable work left.',
                         optionTwoVariables: {
-                            timeVariable: '4 weeks',
-                            deadlineVariable: '1 week',
+                            timeVariable: '1 weeks',
+                            deadlineVariable: '4 week',
                             chanceVariable: 98,
                             workVariable: '25%',
                         },
@@ -649,7 +649,7 @@
                         firstOptionText: 'amountVariable in a timeVariable chanceVariable, workVariable work left, Deadline in mainVariable',
                         optionOneVariables: {
                             amountVariable: '1000',
-                            timeVariable: '4 weeks',
+                            deadlineVariable: '4 weeks',
                             workVariable: '25%',
                             chanceVariable: 98,
                         },
@@ -660,8 +660,8 @@
                         ],
                         secondOptionText: 'mainVariable in timeVariable chanceVariable, Deadline in deadlineVariable, workVariable work left.',
                         optionTwoVariables: {
-                            timeVariable: '4 weeks',
-                            deadlineVariable: ['2, weeks', '3 weeks', '4 weeks'],
+                            timeVariable: ['2, weeks', '3 weeks', '4 weeks'],
+                            deadlineVariable: '4 weeks',
                             chanceVariable: 98,
                             workVariable: '25%',
                         },
@@ -683,8 +683,8 @@
                         firstOptionText: 'amountVariable in a timeVariable chanceVariable, mainVariable work left, Deadline in deadlineVariable',
                         optionOneVariables: {
                             amountVariable: '1000',
-                            timeVariable: '4 weeks',
-                            deadlineVariable: '1 week',
+                            timeVariable: '1 weeks',
+                            deadlineVariable: '4 week',
                             chanceVariable: 98,
                         },
                         firstOptions: [
@@ -694,8 +694,8 @@
                         ],
                         secondOptionText: 'mainVariable in timeVariable chanceVariable, Deadline in deadlineVariable, workVariable work left.',
                         optionTwoVariables: {
-                            timeVariable: '4 weeks',
-                            deadlineVariable: '1 week',
+                            timeVariable: '1 weeks',
+                            deadlineVariable: '4 week',
                             chanceVariable: 98,
                             workVariable: '25%',
                         },
@@ -717,8 +717,8 @@
                         firstOptionText: 'amountVariable in a timeVariable chanceVariable, mainVariable work left, Deadline in deadlineVariable',
                         optionOneVariables: {
                             amountVariable: '1000',
-                            timeVariable: '4 weeks',
-                            deadlineVariable: ['2 weeks','3 weeks','3 weeks'],
+                            deadlineVariable: '4 weeks',
+                            timeVariable: ['2 weeks','3 weeks','3 weeks'],
                             chanceVariable: 98,
                         },
                         firstOptions: [
@@ -728,8 +728,8 @@
                         ],
                         secondOptionText: 'mainVariable in timeVariable chanceVariable, Deadline in deadlineVariable, workVariable work left.',
                         optionTwoVariables: {
-                            timeVariable: '4 weeks',
-                            deadlineVariable: '1 week',
+                            timeVariable: '1 weeks',
+                            deadlineVariable: '4 week',
                             chanceVariable: 98,
                             workVariable: '25%',
                         },
@@ -751,8 +751,8 @@
                         firstOptionText: 'amountVariable in a timeVariable chanceVariable, mainVariable work left, Deadline in deadlineVariable',
                         optionOneVariables: {
                             amountVariable: '1000',
-                            timeVariable: '4 weeks',
-                            deadlineVariable: '1 week',
+                            timeVariable: '1 weeks',
+                            deadlineVariable: '4 week',
                             chanceVariable: 98,
                         },
                         firstOptions: [
@@ -762,8 +762,8 @@
                         ],
                         secondOptionText: 'mainVariable in timeVariable chanceVariable, Deadline in deadlineVariable, workVariable work left.',
                         optionTwoVariables: {
-                            timeVariable: '4 weeks',
-                            deadlineVariable: ['2 weeks','3 weeks','3 weeks'],
+                            deadlineVariable: '4 weeks',
+                            timeVariable: ['2 weeks','3 weeks','3 weeks'],
                             workVariable: [
                                 '50%',
                                 '75%',
@@ -1000,8 +1000,22 @@
                     firstString = firstString.replaceAll('mainVariable', qOne)
                     option.timeVariableOne = qOne
                 } else {
-                    option.timeVariableOne = firstVariables.timeVariable
-                    firstString = firstString.replaceAll('timeVariable', firstVariables.timeVariable)
+                    if (Array.isArray(firstVariables.timeVariable)) {
+                        if (quizIndex <= 9) {
+                            option.timeVariableOne = firstVariables.timeVariable[0]
+                            firstString = firstString.replaceAll('timeVariable', firstVariables.timeVariable[0])
+                        }else if (quizIndex > 9 && quizIndex < 18) {
+                            option.timeVariableOne = firstVariables.timeVariable[1]
+                            firstString = firstString.replaceAll('timeVariable', firstVariables.timeVariable[1])
+                        }else {
+                            option.timeVariableOne = firstVariables.timeVariable[2]
+                            firstString = firstString.replaceAll('timeVariable', firstVariables.timeVariable[2])
+                        }
+                    } else {
+                        option.timeVariableOne = firstVariables.timeVariable
+                        firstString = firstString.replaceAll('timeVariable', firstVariables.timeVariable)
+                    }
+                    
                 }
                 if (firstVariables['deadlineVariable'] == undefined) {
                     highlightOne = 'deadlineVariableOne'
@@ -1050,12 +1064,41 @@
                     secondString = secondString.replaceAll('amountVariable', secondVariables.amountVariable)
                 }
                 if (secondVariables['timeVariable'] == undefined) {
-                    highlightTwo = 'timeVariableTwo'
-                    secondString = secondString.replaceAll('mainVariable', qTwo)
-                    option.timeVariableTwo = qTwo
+                    if (Array.isArray(qTwo)) {
+                        if (quizIndex <= 9) {
+                            highlightTwo = 'timeVariableTwo'
+                            secondString = secondString.replaceAll('mainVariable', qTwo[0])
+                            option.timeVariableTwo = qTwo[0]
+                        }else if (quizIndex > 9 && quizIndex < 18) {
+                            highlightTwo = 'timeVariableTwo'
+                            secondString = secondString.replaceAll('mainVariable', qTwo[1])
+                            option.timeVariableTwo = qTwo[1]
+                        }else {
+                            highlightTwo = 'timeVariableTwo'
+                            secondString = secondString.replaceAll('mainVariable', qTwo[2])
+                            option.timeVariableTwo = qTwo[2]
+                        }
+                    } else {
+                        highlightTwo = 'timeVariableTwo'
+                        secondString = secondString.replaceAll('mainVariable', qTwo)
+                        option.timeVariableTwo = qTwo
+                    }
                 } else {
-                    option.timeVariableTwo = secondVariables.timeVariable
-                    secondString = secondString.replaceAll('timeVariable', secondVariables.timeVariable)
+                    if (Array.isArray(secondVariables.timeVariable)) {
+                        if (quizIndex <= 9) {
+                            option.timeVariableTwo = secondVariables.timeVariable[0]
+                            secondString = secondString.replaceAll('timeVariable', secondVariables.timeVariable[0])
+                        }else if (quizIndex > 9 && quizIndex < 18) {
+                            option.timeVariableTwo = secondVariables.timeVariable[1]
+                            secondString = secondString.replaceAll('timeVariable', secondVariables.timeVariable[1])
+                        }else {
+                            option.timeVariableTwo = secondVariables.timeVariable[2]
+                            secondString = secondString.replaceAll('timeVariable', secondVariables.timeVariable[2])
+                        }
+                    } else {
+                        option.timeVariableTwo = secondVariables.timeVariable
+                        secondString = secondString.replaceAll('timeVariable', secondVariables.timeVariable)
+                    }
                 }
                 if (secondVariables['deadlineVariable'] == undefined) {
                     highlightTwo = 'deadlineVariableTwo'
@@ -1090,7 +1133,7 @@
 
                 }
                 if (secondVariables['workVariable'] == undefined) {
-                    if (Array.isArray(secondVariables.workVariable)) {
+                    if (Array.isArray(qTwo)) {
                         if (quizIndex <= 9) {
                             highlightTwo = 'workVariableTwo'
                             secondString = secondString.replace('mainVariable', qTwo[0])
@@ -1167,6 +1210,7 @@
                     })
                     quiz[index + 1] = this.shuffleArray(testQuestions);
                 })
+                console.log(quiz)
                 this.quizQuestions = quiz
             },
             getQuestionTime() {
