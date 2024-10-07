@@ -335,12 +335,13 @@
                                                 </div>
                                                 <p class="question-one">
                                                     <b v-if="currentQuestion.highlightOne == 'timeVariableOne' || currentQuestion.highlightTwo == 'timeVariableTwo'">
-                                                        Time left in growing season: {{ currentQuestion.timeVariableOne
-                                                        }}
+                                                        Time left in growing season
+                                                        <Bar color="#75ab50" :time="currentQuestion.timeVariableOne" style="max-height:50px"></Bar>
                                                     </b>
                                                     <span v-else>
-                                            Time left in growing season: {{ currentQuestion.timeVariableOne }}
-                                        </span>
+                                                        Time left in growing season
+                                                        <Bar color="#75ab50" :time="currentQuestion.timeVariableOne" style="max-height:50px"></Bar>
+                                                    </span>
                                                 </p>
                                                 <p class="question-one">
                                                     <b v-if="currentQuestion.highlightOne == 'chanceVariableOne'|| currentQuestion.highlightTwo == 'chanceVariableTwo'">
@@ -426,12 +427,13 @@
                                                 </div>
                                                 <p class="question-two">
                                                     <b v-if="currentQuestion.highlightTwo == 'timeVariableTwo' || currentQuestion.highlightOne == 'timeVariableOne'">
-                                                        Time left in growing season: {{ currentQuestion.timeVariableTwo
-                                                        }}
+                                                        Time left in growing season
+                                                        <Bar color="#75ab50" :time="currentQuestion.timeVariableTwo" style="max-height:50px"></Bar>
                                                     </b>
                                                     <span v-else>
-                                            Time left in growing season: {{ currentQuestion.timeVariableTwo }}
-                                        </span>
+                                                        Time left in growing season
+                                                        <Bar color="#75ab50" :time="currentQuestion.timeVariableTwo" style="max-height:50px"></Bar>
+                                                    </span>
                                                 </p>
                                                 <p class="question-two">
                                                     <b v-if="currentQuestion.highlightTwo == 'chanceVariableTwo'|| currentQuestion.highlightOne == 'chanceVariableOne'">
@@ -441,7 +443,7 @@
                                                         <br>
                                                         {{ currentQuestion.chanceVariableTwo + '%' }}
                                                     </b>
-                                                    <span v-else>
+                                            <span v-else>
                                             The chances of yielding from the plants and receiving the money:
                                             <a-progress status="active"strokeColor="#609dd2" :format="(percent) => percent+'%'"
                                                         :percent="currentQuestion.chanceVariableTwo"/>

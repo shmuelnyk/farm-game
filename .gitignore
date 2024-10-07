@@ -9,7 +9,7 @@
 /vendor/
 /.env
 /test/
-/.idea/
+  /.idea/
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###
