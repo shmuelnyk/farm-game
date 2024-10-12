@@ -56,7 +56,7 @@
                             {
                                 label: '',
                                 backgroundColor: this.color,
-                                data: [weeks,0,4]
+                                data: [weeks,0,6]
                             }
                         ]
                     }
