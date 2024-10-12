@@ -227,11 +227,11 @@
                                             </div>
                                             <p class="question-two" v-if="currentTutorial == 2">
                                                 Time left in growing season
-                                                <Bar color="#75ab50" :time="tutorialTwo.timeVariable" style="max-height:50px"></Bar>
+                                                <Bar color="#609dd2" :time="tutorialTwo.timeVariable" style="max-height:50px"></Bar>
                                             </p>
                                             <p class="question-two" v-else>
                                                 Time left in growing season
-                                                <Bar color="#75ab50" :time="tutorialTwo.timeVariable" style="max-height:50px"></Bar>
+                                                <Bar color="#609dd2" :time="tutorialTwo.timeVariable" style="max-height:50px"></Bar>
                                             </p>
                                             <p class="question-two" v-if="currentTutorial == 3">
                                                 <b>The chances of yielding from the plants and receiving the money:
@@ -428,11 +428,11 @@
                                                 <p class="question-two">
                                                     <b v-if="currentQuestion.highlightTwo == 'timeVariableTwo' || currentQuestion.highlightOne == 'timeVariableOne'">
                                                         Time left in growing season
-                                                        <Bar color="#75ab50" :time="currentQuestion.timeVariableTwo" style="max-height:50px"></Bar>
+                                                        <Bar color="#609dd2" :time="currentQuestion.timeVariableTwo" style="max-height:50px"></Bar>
                                                     </b>
                                                     <span v-else>
                                                         Time left in growing season
-                                                        <Bar color="#75ab50" :time="currentQuestion.timeVariableTwo" style="max-height:50px"></Bar>
+                                                        <Bar color="#609dd2" :time="currentQuestion.timeVariableTwo" style="max-height:50px"></Bar>
                                                     </span>
                                                 </p>
                                                 <p class="question-two">
@@ -563,7 +563,7 @@
                     amountVariable: '1000',
                     timeVariable: '1 week',
                     deadlineVariable: '2 weeks',
-                    chanceVariable: 100,
+                    chanceVariable: 25,
                     workVariable: '50%',
                 },
                 tutorialTwo: {
@@ -589,7 +589,7 @@
                             workVariable: '25%',
 
                         },
-                        firstOptions: ['2 weeks', '3 weeks', '4 weeks'],
+                        firstOptions: ['2 weeks', '4 weeks', '6 weeks'],
                         secondOptionText: 'mainVariable in timeVariable chanceVariable, Deadline in deadlineVariable, workVariable work left.',
                         optionTwoVariables: {
                             timeVariable: '1 week',
@@ -620,9 +620,9 @@
                             workVariable: '25%',
                         },
                         firstOptions: [
-                            '20%',
-                            '50%',
-                            '80%',
+                            20,
+                            50,
+                            80,
                         ],
                         secondOptionText: 'mainVariable in timeVariable chanceVariable, Deadline in deadlineVariable, workVariable work left.',
                         optionTwoVariables: {
@@ -718,7 +718,7 @@
                         optionOneVariables: {
                             amountVariable: '1000',
                             deadlineVariable: '4 weeks',
-                            timeVariable: ['2 weeks','3 weeks','3 weeks'],
+                            timeVariable: ['2 weeks','3 weeks','4 weeks'],
                             chanceVariable: 98,
                         },
                         firstOptions: [
@@ -763,7 +763,7 @@
                         secondOptionText: 'mainVariable in timeVariable chanceVariable, Deadline in deadlineVariable, workVariable work left.',
                         optionTwoVariables: {
                             deadlineVariable: '4 weeks',
-                            timeVariable: ['2 weeks','3 weeks','3 weeks'],
+                            timeVariable: ['2 weeks','3 weeks','4 weeks'],
                             workVariable: [
                                 '50%',
                                 '75%',
@@ -944,7 +944,7 @@
                 let data = new FormData()
                 data.append('form', JSON.stringify(this.form))
                 data.append('mkturk', this.mkTurkId)
-                let res = await this.$axios.post('/api/submit/quiz', data)
+                let res = await this.$axios.post('/index.php/api/submit/quiz', data)
                 if (res.status == 200) {
                     this.link = res.data.link
                     this.quizDone = true;
