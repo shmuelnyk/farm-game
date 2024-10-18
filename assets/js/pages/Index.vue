@@ -846,10 +846,6 @@
                     return;
                 }
                 this.currentTutorial++
-
-                this.tutorialTimout = setTimeout(() => {
-                    this.nextTutorial()
-                }, 3000)
             },
             onChange(a, b, c) {
                 this.currentTutorial++
@@ -1254,9 +1250,6 @@
                 this.quiz = true;
                 this.isTutorial = true;
                 this.currentTutorial = 0
-                setTimeout(() => {
-                    this.nextTutorial()
-                }, 10000)
             }
 
         }
