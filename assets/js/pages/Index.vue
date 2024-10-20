@@ -940,7 +940,7 @@
                 let data = new FormData()
                 data.append('form', JSON.stringify(this.form))
                 data.append('mkturk', this.mkTurkId)
-                let res = await this.$axios.post('/index.php/api/submit/quiz', data)
+                let res = await this.$axios.post('/api/submit/quiz', data)
                 if (res.status == 200) {
                     this.link = res.data.link
                     this.quizDone = true;
