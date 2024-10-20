@@ -265,14 +265,16 @@
             },
 
             calcTask(taskName, taskAnswers) {
-                const pointsData = this.groupBy(taskAnswers, "Option one");
+                const taskType = Object.keys(pointsData).length  === 1 ? "Option two" : "Option one"
+                const pointsData = this.groupBy(taskAnswers, taskType);
+                
                 let res = {};
                 let time = 0;
                 let taskRecs = Object.keys(pointsData).map(point => {
                     pointsData[point].forEach(x => time += parseInt(x["Time in milliseconds"]));
-                    const {cutoffPoint, consistency} = this.calcPoint(point, pointsData[point]);
+                    const {cutoffPoint, consistency} = this.calcPoint(point, pointsData[point], taskType);
                     return {
-                        optionOne: this.getNumberFromOptionOne(pointsData[point][0]["Option one"]),
+                        optionOne: this.getNumberFromOptionOne(pointsData[point][0][taskType]),
                         cutoff: cutoffPoint,
                         consistency,
                     };
@@ -288,17 +290,18 @@
             },
 
             // for each "option one" need to calc where did the user changed his mind and his consistency level
-            calcPoint(point, data) {
-                const sorted = this.sortPoint(data, "Option two");
-                const cutoffPoint = this.getCutoffPoint(sorted);
-                const consistency = this.getConsistency(sorted, cutoffPoint);
+            calcPoint(point, data, taskType) {
+                const sorted = this.sortPoint(data, taskType);
+                const cutoffPoint = this.getCutoffPoint(sorted, taskType);
+                const consistency = this.getConsistency(sorted, cutoffPoint, taskType);
 
                 return {cutoffPoint, consistency}
             },
 
-            getCutoffPoint(answers) {
+            getCutoffPoint(answers, taskType) {
                 let changingPoints;
-                if (answers.every(answer => answer["Answer"] === answer["Option one"])) {
+                const oposite = taskType == "Option one"  ? "Option two" : "Option one"
+                if (answers.every(answer => answer["Answer"] === answer[taskType])) {
                     // this is an edge case, just solving it hard coded
                     changingPoints = [950]
                 } else {
@@ -313,11 +316,11 @@
                             if (currIndex === changingIndex) {
                                 shouldEqual = true
                             }
-                            if ((answer["Answer"] === answer["Option two"]) === shouldEqual) {
+                            if ((answer["Answer"] === answer[oposite]) === shouldEqual) {
                                 numOfCorrects++
                             }
                         });
-                        indexesResults.push({numOfCorrects, value: parseInt(answers[changingIndex]["Option two"])})
+                        indexesResults.push({numOfCorrects, value: parseInt(answers[changingIndex][oposite])})
                     }
                     const maxResult = Math.max(...indexesResults.map(y => y.numOfCorrects));
                     changingPoints = indexesResults.filter(x => x.numOfCorrects === maxResult).map(x => x.value - 50);
@@ -326,11 +329,12 @@
                 let cutoff = Math.pow(allTogether, 1 / changingPoints.length);
                 return cutoff
             },
-            getConsistency(answers, cutoff) {
+            getConsistency(answers, cutoff, taskType) {
                 // counting consistent answers. consistent answer is choosing option1 when option2 is less than cutoff and choosing option2 when it's more than cutoff
+                const oposite = taskType == "Option one"  ? "Option two" : "Option one"
                 const numOfConsistencies = answers.filter(answer => {
-                    return (answer["Answer"] === answer["Option one"] && parseInt(answer["Option two"]) < cutoff) ||
-                        (answer["Answer"] === answer["Option two"] && parseInt(answer["Option two"]) >= cutoff)
+                    return (answer["Answer"] === answer[taskType] && parseInt(answer[oposite]) < cutoff) ||
+                        (answer["Answer"] === answer[taskType] && parseInt(answer[oposite]) >= cutoff)
                 }).length;
 
                 // consistency number is consistent answers num / all answers num

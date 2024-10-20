@@ -772,7 +772,7 @@
                             ],
                             chanceVariable: 98,
                         },
-                        secondOptionProp: 'timeVariableTwo',
+                        secondOptionProp: 'workVariableTwo',
                         secondOptions: [
                             100,
                             200,
@@ -1173,7 +1173,7 @@
                 }
 
                 if (element.secondOptionProp) {
-                    qTwo = option[element.secondOptionProp]
+                    qTwo = option[element.secondOptionProp].replace(/\D/g, '');
                 }
                 option.highlightOne = highlightOne
                 option.highlightTwo = highlightTwo
