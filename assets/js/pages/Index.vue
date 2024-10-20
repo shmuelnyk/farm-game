@@ -660,11 +660,12 @@
                         ],
                         secondOptionText: 'mainVariable in timeVariable chanceVariable, Deadline in deadlineVariable, workVariable work left.',
                         optionTwoVariables: {
-                            timeVariable: ['2, weeks', '3 weeks', '4 weeks'],
+                            timeVariable: ['2 weeks', '3 weeks', '4 weeks'],
                             deadlineVariable: '4 weeks',
                             chanceVariable: 98,
                             workVariable: '25%',
                         },
+                        secondOptionProp: 'timeVariableTwo',
                         secondOptions: [
                             100,
                             200,
@@ -771,6 +772,7 @@
                             ],
                             chanceVariable: 98,
                         },
+                        secondOptionProp: 'timeVariableTwo',
                         secondOptions: [
                             100,
                             200,
@@ -977,8 +979,11 @@
                     highlightTwo: '',
                     time: undefined,
                     answer: undefined,
-
+                    optionOneProp:undefined,
+                    optionTwoProp:undefined,
                 }
+
+
                 
                 let firstString = element.firstOptionText;
                 let secondString = element.secondOptionText;
@@ -1165,6 +1170,10 @@
                         option.workVariableTwo = secondVariables.workVariable
                         secondString = secondString.replace('workVariable', secondVariables.workVariable)
                     }
+                }
+
+                if (element.secondOptionProp) {
+                    qTwo = option[element.secondOptionProp]
                 }
                 option.highlightOne = highlightOne
                 option.highlightTwo = highlightTwo
