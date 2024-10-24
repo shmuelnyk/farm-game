@@ -266,13 +266,15 @@
 
             calcTask(taskName, taskAnswers) {
                 const taskType = Object.keys(this.groupBy(taskAnswers, "Option one")).length  === 1 ? "Option two" : "Option one"
+                const oposite = taskType == "Option one"  ? "Option two" : "Option one"
+
                 const pointsData = this.groupBy(taskAnswers, taskType);
                 
                 let res = {};
                 let time = 0;
                 let taskRecs = Object.keys(pointsData).map(point => {
                     pointsData[point].forEach(x => time += parseInt(x["Time in milliseconds"]));
-                    const {cutoffPoint, consistency} = this.calcPoint(point, pointsData[point], taskType);
+                    const {cutoffPoint, consistency} = this.calcPoint(point, pointsData[point], taskType, oposite);
                     return {
                         optionOne: this.getNumberFromOptionOne(pointsData[point][0][taskType]),
                         cutoff: cutoffPoint,
@@ -290,8 +292,8 @@
             },
 
             // for each "option one" need to calc where did the user changed his mind and his consistency level
-            calcPoint(point, data, taskType) {
-                const sorted = this.sortPoint(data, taskType);
+            calcPoint(point, data, taskType, oposite) {
+                const sorted = this.sortPoint(data, oposite);
                 const cutoffPoint = this.getCutoffPoint(sorted, taskType);
                 const consistency = this.getConsistency(sorted, cutoffPoint, taskType);
 
