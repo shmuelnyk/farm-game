@@ -418,7 +418,7 @@
                                                 <div class="question-two" v-else>
                                                     <div class="crops">
                                                     <span class="amount">
-                                                                {{ currentQuestion.amountVariableTwoe }}
+                                                                {{ currentQuestion.amountVariableTwo }}
                                                             </span>
                                                         <br>
                                                         Value of crops
@@ -590,7 +590,8 @@
 
                         },
                         firstOptionProp: 'deadlineVariableOne',
-                        firstOptions: ['2 weeks',
+                        firstOptions: [
+                         '2 weeks',
                          '4 weeks',
                          '6 weeks'
                         ],
@@ -935,7 +936,6 @@
                     }
 
                 }
-                console.log(this.form)
 
             },
             showConfirm() {
@@ -1190,20 +1190,21 @@
                         secondString = secondString.replace('workVariable', secondVariables.workVariable)
                     }
                 }
-
                 if (element.firstOptionProp) {
-                    qTwo = option[element.firstOptionProp]
+                    option.option1 = option[element.firstOptionProp]
+                }else {
+                    option.option1 = qOne
                 }
                 if (element.secondOptionProp) {
-                    qTwo = option[element.secondOptionProp]
+                    option.option2 = option[element.secondOptionProp]
+                }else {
+                    option.option2 = qTwo
                 }
                 option.highlightOne = highlightOne
                 option.highlightTwo = highlightTwo
                 option.quizName = element.name
                 option[highlightOne] = qOne
                 option[highlightTwo] = qTwo
-                option.option1 = qOne
-                option.option2 = qTwo
                 option.firstOptionText = firstString
                 option.secondOptionText = secondString
                 option.time = undefined
@@ -1237,7 +1238,6 @@
                     })
                     quiz[index + 1] = this.shuffleArray(testQuestions);
                 })
-                console.log(quiz)
                 this.quizQuestions = quiz
             },
             getQuestionTime() {
