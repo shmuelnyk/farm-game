@@ -219,9 +219,9 @@ class AdminController extends AbstractController
             array_push($rows,array(
                 "MTurk ID"=>$participant->getMTurkId(),
                 "Test Name"=>$answer->getTest(),
-                "Option one"=>preg_replace('/[^0-9]/', '', $answer->getOptionOne()),
-                "Option two"=>preg_replace('/[^0-9]/', '', $answer->getOptionTwo()),
-                "Answer"=>preg_replace('/[^0-9]/', '', $answer->getAnswer()),
+                "Option one"=>(int)preg_replace('/[^0-9]/', '', $answer->getOptionOne()),
+                "Option two"=>(int)preg_replace('/[^0-9]/', '', $answer->getOptionTwo()),
+                "Answer"=>(int)preg_replace('/[^0-9]/', '', $answer->getAnswer()),
                 "Time in milliseconds"=>(int)$answer->getTime(),
             ));
         }
