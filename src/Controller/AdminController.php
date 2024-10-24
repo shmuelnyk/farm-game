@@ -100,7 +100,7 @@ class AdminController extends AbstractController
         $sheet->setTitle("Participants export");
         foreach ($participants as $result) {
             foreach ($result->getQuizAnswers() as $answer) {
-                $testData = json_decode($result->getRaw());
+                $testData = json_decode($answer->getRaw());
 
                 $column = 'A';
                 $sheet->setCellValue($column . $row, $result->getMTurkId());
