@@ -53,7 +53,17 @@ class AdminController extends AbstractController
             'MTurk ID',
             'Test Name',
             'Option one',
+            'Amount one',
+            'Time one',
+            'Deadline one',
+            'Chance one',
+            'Work one',
             'Option two',
+            'Amount two',
+            'Time two',
+            'Deadline two',
+            'Chance two',
+            'Work two',
             'Answer',
             'Time in milliseconds',
 
@@ -90,6 +100,8 @@ class AdminController extends AbstractController
         $sheet->setTitle("Participants export");
         foreach ($participants as $result) {
             foreach ($result->getQuizAnswers() as $answer) {
+                $testData = json_decode($result->getRaw());
+
                 $column = 'A';
                 $sheet->setCellValue($column . $row, $result->getMTurkId());
                 $column++;
@@ -97,7 +109,27 @@ class AdminController extends AbstractController
                 $column++;
                 $sheet->setCellValue($column . $row, $answer->getOptionOne());
                 $column++;
+                $sheet->setCellValue($column . $row, $testData['amountVariableTwo']);
+                $column++;
+                $sheet->setCellValue($column . $row, $testData['timeVariableTwo']);
+                $column++;
+                $sheet->setCellValue($column . $row, $testData['deadlineVariableTwo']);
+                $column++;
+                $sheet->setCellValue($column . $row, $testData['chanceVariableTwo']);
+                $column++;
+                $sheet->setCellValue($column . $row, $testData['workVariableTwo']);
+                $column++;
                 $sheet->setCellValue($column . $row, $answer->getOptionTwo());
+                $column++;
+                $sheet->setCellValue($column . $row, $testData['amountVariableOne']);
+                $column++;
+                $sheet->setCellValue($column . $row, $testData['timeVariableOne']);
+                $column++;
+                $sheet->setCellValue($column . $row, $testData['deadlineVariableOne']);
+                $column++;
+                $sheet->setCellValue($column . $row, $testData['chanceVariableOne']);
+                $column++;
+                $sheet->setCellValue($column . $row, $testData['workVariableOne']);
                 $column++;
                 $sheet->setCellValue($column . $row, $answer->getAnswer());
                 $column++;

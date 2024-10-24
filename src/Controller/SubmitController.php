@@ -22,26 +22,31 @@ class SubmitController extends AbstractController
         $participant = new Participant();
         $participant->setMTurkId($request->get('mkturk'));
         $em->persist($participant);
-
-        foreach ($params as $test => $answers){
-            foreach ($answers as $answer){
-
-                $quizAnswer = new QuizAnswer();
-                $quizAnswer->setTest($answer['quizName']);
-                $quizAnswer->setOptionOne($answer['option1']);
-                $quizAnswer->setOptionTwo($answer['option2']);
-                $quizAnswer->setAnswer($answer['answer']);
-                $quizAnswer->setTime($answer['time']);
-                $em->persist($quizAnswer);
-                $participant->addQuizAnswer($quizAnswer);
-                $em->persist($participant);
-            }
-        }
-        $em->flush();
         $options = $em->getRepository(AdminOption::class)->findOneBy(array('optionKey'=>'pageLink'));
         $link = null;
         if($options){
             $link = $options->getOptionValue();
+        }
+        
+        try {
+            foreach ($params as $test => $answers){
+                foreach ($answers as $answer){
+
+                    $quizAnswer = new QuizAnswer();
+                    $quizAnswer->setTest($answer['quizName']);
+                    $quizAnswer->setOptionOne($answer['option2']);
+                    $quizAnswer->setOptionTwo($answer['option1']);
+                    $quizAnswer->setAnswer($answer['answer']);
+                    $quizAnswer->setTime($answer['time']);
+                    $quizAnswer->setRaw(json_encode($answer));
+                    $em->persist($quizAnswer);
+                    $participant->addQuizAnswer($quizAnswer);
+                    $em->persist($participant);
+                }
+            }
+            $em->flush();
+        } catch (Exception $e) {
+            return new JsonResponse($e->getMessage(),500);
         }
 
         return new JsonResponse(array('link'=>$link),200);

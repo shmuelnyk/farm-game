@@ -61,6 +61,13 @@ class QuizAnswer
     private $answer;
 
     /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $raw;
+
+    /**
      * @var string
      *
      * @ORM\Column(type="string", length=64)
@@ -145,6 +152,22 @@ class QuizAnswer
     public function setAnswer(string $answer): void
     {
         $this->answer = $answer;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getRaw(): ?string
+    {
+        return $this->raw;
+    }
+
+    /**
+     * @param string|null $raw
+     */
+    public function setRaw(?string $raw): void
+    {
+        $this->raw = $raw;
     }
 
 

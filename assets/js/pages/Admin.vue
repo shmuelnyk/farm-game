@@ -265,7 +265,7 @@
             },
 
             calcTask(taskName, taskAnswers) {
-                const taskType = Object.keys(pointsData).length  === 1 ? "Option two" : "Option one"
+                const taskType = Object.keys(this.groupBy(taskAnswers, "Option one")).length  === 1 ? "Option two" : "Option one"
                 const pointsData = this.groupBy(taskAnswers, taskType);
                 
                 let res = {};

@@ -589,7 +589,11 @@
                             workVariable: '25%',
 
                         },
-                        firstOptions: ['2 weeks', '4 weeks', '6 weeks'],
+                        firstOptionProp: 'deadlineVariableOne',
+                        firstOptions: ['2 weeks',
+                         '4 weeks',
+                         '6 weeks'
+                        ],
                         secondOptionText: 'mainVariable in timeVariable chanceVariable, Deadline in deadlineVariable, workVariable work left.',
                         optionTwoVariables: {
                             timeVariable: '1 week',
@@ -597,6 +601,7 @@
                             chanceVariable: 98,
                             workVariable: '25%',
                         },
+                        secondOptionProp: 'deadlineVariableTwo',
                         secondOptions: [
                             100,
                             200,
@@ -631,6 +636,8 @@
                             chanceVariable: 98,
                             workVariable: '25%',
                         },
+                        firstOptionProp: 'chanceVariableOne',
+                        secondOptionProp: 'chanceVariableTwo',
                         secondOptions: [
                             100,
                             200,
@@ -665,6 +672,7 @@
                             chanceVariable: 98,
                             workVariable: '25%',
                         },
+                        firstOptionProp: 'timeVariableOne',
                         secondOptionProp: 'timeVariableTwo',
                         secondOptions: [
                             100,
@@ -700,6 +708,8 @@
                             chanceVariable: 98,
                             workVariable: '25%',
                         },
+                        firstOptionProp: 'workVariableOne',
+                        secondOptionProp: 'workVariableTwo',
                         secondOptions: [
                             100,
                             200,
@@ -734,6 +744,8 @@
                             chanceVariable: 98,
                             workVariable: '25%',
                         },
+                        firstOptionProp: 'workVariableOne',
+                        secondOptionProp: 'workVariableTwo',
                         secondOptions: [
                             100,
                             200,
@@ -772,6 +784,7 @@
                             ],
                             chanceVariable: 98,
                         },
+                        firstOptionProp: 'workVariableOne',
                         secondOptionProp: 'workVariableTwo',
                         secondOptions: [
                             100,
@@ -922,6 +935,7 @@
                     }
 
                 }
+                console.log(this.form)
 
             },
             showConfirm() {
@@ -942,16 +956,21 @@
                 let data = new FormData()
                 data.append('form', JSON.stringify(this.form))
                 data.append('mkturk', this.mkTurkId)
-                let res = await this.$axios.post('/api/submit/quiz', data)
-                if (res.status == 200) {
-                    this.link = res.data.link
-                    this.quizDone = true;
-                    this.submitting = false;
-
-                } else {
-                    this.$message.error('Something went wrong please try again')
-                    this.submitting = false;
+                
+                try {
+                    const res = await this.$axios.post('/api/submit/quiz', data)
+                    if (res.status == 200) {
+                        this.link = res.data.link
+                        this.quizDone = true;
+                        this.submitting = false;
+                    } else {
+                        this.$message.error('Something went wrong please try again')
+                        this.submitting = false;
+                    }
+                }catch (e) {
+                    console.log(e)
                 }
+                
             },
             createOptions(element, qOne, qTwo, veg,id, quizIndex) {
                 let firstVariables = element.optionOneVariables
@@ -1172,8 +1191,11 @@
                     }
                 }
 
+                if (element.firstOptionProp) {
+                    qTwo = option[element.firstOptionProp]
+                }
                 if (element.secondOptionProp) {
-                    qTwo = option[element.secondOptionProp].replace(/\D/g, '');
+                    qTwo = option[element.secondOptionProp]
                 }
                 option.highlightOne = highlightOne
                 option.highlightTwo = highlightTwo
