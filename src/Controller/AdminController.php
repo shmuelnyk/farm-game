@@ -222,6 +222,7 @@ class AdminController extends AbstractController
                 "Option one"=>(int)preg_replace('/[^0-9]/', '', $answer->getOptionOne()),
                 "Option two"=>(int)preg_replace('/[^0-9]/', '', $answer->getOptionTwo()),
                 "Answer"=>(int)preg_replace('/[^0-9]/', '', $answer->getAnswer()),
+                "Raw"=>json_decode($answer->getRaw(), true),
                 "Time in milliseconds"=>(int)$answer->getTime(),
             ));
         }
