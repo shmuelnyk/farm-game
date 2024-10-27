@@ -274,12 +274,23 @@
                 let time = 0;
                 let taskRecs = Object.keys(pointsData).map(point => {
                     pointsData[point].forEach(x => time += parseInt(x["Time in milliseconds"]));
+                    for (let i = 0; i < pointsData[point].length;i++) {
+                        if (pointsData[point][i]['Option one'] === pointsData[point][i]['Answer']) {
+                            pointsData[point][i]['answerAmount'] = parseInt(pointsData[point][i]['Raw']['amountVariableOne'])
+                        }else {
+                            pointsData[point][i]['answerAmount'] = parseInt(pointsData[point][i]['Raw']['amountVariableTwo'])
+                        }
+                        pointsData[point][i]['amountOne'] = parseInt(pointsData[point][i]['Raw']['amountVariableOne']) 
+                        pointsData[point][i]['amountTwo'] = parseInt(pointsData[point][i]['Raw']['amountVariableTwo'])
+                    }
                     const {cutoffPoint, consistency} = this.calcPoint(point, pointsData[point], taskType, oposite);
-                    return {
-                        optionOne: this.getNumberFromOptionOne(pointsData[point][0][taskType]),
+                    const res = {
+                        optionOne: pointsData[point][0][taskType],
+                        optionOneAmount: pointsData[point][0]['answerAmount'],
                         cutoff: cutoffPoint,
                         consistency,
-                    };
+                    }
+                    return res;
                 });
                 const area = this.getAreaUnderTheCurve(taskRecs);
                 taskRecs.forEach(task => {
@@ -294,51 +305,84 @@
             // for each "option one" need to calc where did the user changed his mind and his consistency level
             calcPoint(point, data, taskType, oposite) {
                 const sorted = this.sortPoint(data, oposite);
+                
                 const cutoffPoint = this.getCutoffPoint(sorted, taskType);
+                
                 const consistency = this.getConsistency(sorted, cutoffPoint, taskType);
 
                 return {cutoffPoint, consistency}
             },
+        //     getCutoffPoint(answers, taskType) {
+        //     // Determine the opposite amount based on the taskType
+        //     const oppositeAmount = taskType === "Option one" ? "amountTwo" : "amountOne";
 
+        //     // Array to store consistency count and cutoff value for each index
+        //     const consistencyResults = answers.map((answer, cutoffIndex) => {
+        //         let consistentCount = 0;
+
+        //         // Calculate the number of consistent answers for this cutoff
+        //         answers.forEach((currentAnswer, currentIndex) => {
+        //             const isBeyondCutoff = currentIndex >= cutoffIndex;
+        //             const targetAmount = isBeyondCutoff ? oppositeAmount : answer.answerAmount;
+
+        //             // Check consistency
+        //             if (currentAnswer.answerAmount === targetAmount) {
+        //                 consistentCount++;
+        //             }
+        //         });
+
+        //         // Store the consistency count and cutoff amount
+        //         return { consistentCount, cutoffValue: answer[oppositeAmount] };
+        //     });
+
+        //     // Find the maximum consistency and the corresponding cutoff points
+        //     const maxConsistency = Math.max(...consistencyResults.map(result => result.consistentCount));
+        //     const bestCutoffs = consistencyResults
+        //         .filter(result => result.consistentCount === maxConsistency)
+        //         .map(result => result.cutoffValue);
+
+        //     // Calculate the geometric mean of the best cutoffs
+        //     const productOfCutoffs = bestCutoffs.reduce((product, value) => product * value, 1);
+        //     const geometricMeanCutoff = Math.pow(productOfCutoffs, 1 / bestCutoffs.length);
+
+        //     return geometricMeanCutoff;
+        // },
             getCutoffPoint(answers, taskType) {
                 let changingPoints;
-                const oposite = taskType == "Option one"  ? "Option two" : "Option one"
-                if (answers.every(answer => answer["Answer"] === answer[taskType])) {
-                    // this is an edge case, just solving it hard coded
-                    changingPoints = [950]
-                } else {
-                    // trying to find the best index to put a cutoff point -> counting all consistent answers for every index
-                    // consistent answer is when answer is option1 and option2 is less than cutoff, or choosing option2 when it's more than cutoff
-                    // add all cutoff points that gives maximum consistent answers.
-                    let indexesResults = [];
-                    for (let changingIndex = 0; changingIndex < answers.length; changingIndex++) {
-                        let numOfCorrects = 0;
-                        let shouldEqual = false;
-                        answers.forEach((answer, currIndex) => {
-                            if (currIndex === changingIndex) {
-                                shouldEqual = true
-                            }
-                            if ((answer["Answer"] === answer[oposite]) === shouldEqual) {
-                                numOfCorrects++
-                            }
-                        });
-                        indexesResults.push({numOfCorrects, value: parseInt(answers[changingIndex][oposite])})
-                    }
-                    const maxResult = Math.max(...indexesResults.map(y => y.numOfCorrects));
-                    changingPoints = indexesResults.filter(x => x.numOfCorrects === maxResult).map(x => x.value - 50);
+                const oposite = taskType == "Option one"  ? "amountTwo" : "amountOne"
+                // trying to find the best index to put a cutoff point -> counting all consistent answers for every index
+                // consistent answer is when answer is option1 and option2 is less than cutoff, or choosing option2 when it's more than cutoff
+                // add all cutoff points that gives maximum consistent answers.
+                let indexesResults = [];
+                for (let changingIndex = 0; changingIndex < answers.length; changingIndex++) {
+                    let numOfCorrects = 0;
+                    let shouldEqual = false;
+                    answers.forEach((answer, currIndex) => {
+                        if (currIndex === changingIndex) {
+                            shouldEqual = true
+                        }
+                        if ((answer["answerAmount"] === answer[oposite]) === shouldEqual) {
+                            numOfCorrects++
+                        }
+                    });
+                    indexesResults.push({numOfCorrects, value: parseInt(answers[changingIndex][oposite])})
                 }
+                const maxResult = Math.max(...indexesResults.map(y => y.numOfCorrects));
+                changingPoints = indexesResults.filter(x => x.numOfCorrects === maxResult).map(x => {
+                    return x.value
+                });
                 const allTogether = changingPoints.reduce((a, b) => a * b);
                 let cutoff = Math.pow(allTogether, 1 / changingPoints.length);
                 return cutoff
             },
             getConsistency(answers, cutoff, taskType) {
                 // counting consistent answers. consistent answer is choosing option1 when option2 is less than cutoff and choosing option2 when it's more than cutoff
-                const oposite = taskType == "Option one"  ? "Option two" : "Option one"
+                const oposite = taskType == "Option one"  ? "amountTwo" : "amountOne"
+                const select = taskType == "Option one"  ? "amountOne" : "amountTwo"
                 const numOfConsistencies = answers.filter(answer => {
-                    return (answer["Answer"] === answer[taskType] && parseInt(answer[oposite]) < cutoff) ||
-                        (answer["Answer"] === answer[taskType] && parseInt(answer[oposite]) >= cutoff)
+                    return (answer['answerAmount'] === answer[select] && parseInt(answer[oposite]) < cutoff) ||
+                        (answer['answerAmount'] === answer[select] && parseInt(answer[oposite]) >= cutoff)
                 }).length;
-
                 // consistency number is consistent answers num / all answers num
                 return numOfConsistencies / answers.length
             },
@@ -349,10 +393,10 @@
 
             getAreaUnderTheCurve(points) {
                 const yFactor = 1000;
-                const xFactor = Math.max(...points.map(point => point.optionOne));
+                const xFactor = Math.max(...points.map(point => point.optionOneAmount));
 
                 const factoredPoints = this.sortPoint(points.map(point => ({
-                    x: point.optionOne / xFactor,
+                    x: point.optionOneAmount / xFactor,
                     y: point.cutoff / yFactor,
                 })), 'x');
 
@@ -361,7 +405,6 @@
                     y: 1,
                 };
                 let area = 0;
-
                 factoredPoints.forEach(point => {
                     area += ((leftPoint.y + point.y) * (point.x - leftPoint.x)) / 2;
                     leftPoint = point;

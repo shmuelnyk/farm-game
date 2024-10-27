@@ -34,8 +34,8 @@ class SubmitController extends AbstractController
 
                     $quizAnswer = new QuizAnswer();
                     $quizAnswer->setTest($answer['quizName']);
-                    $quizAnswer->setOptionOne($answer['option2']);
-                    $quizAnswer->setOptionTwo($answer['option1']);
+                    $quizAnswer->setOptionOne($answer['option1']);
+                    $quizAnswer->setOptionTwo($answer['option2']);
                     $quizAnswer->setAnswer($answer['answer']);
                     $quizAnswer->setTime($answer['time']);
                     $quizAnswer->setRaw(json_encode($answer));
