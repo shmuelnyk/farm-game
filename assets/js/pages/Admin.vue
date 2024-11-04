@@ -285,14 +285,15 @@
                     }
                     const {cutoffPoint, consistency} = this.calcPoint(point, pointsData[point], taskType, oposite);
                     const res = {
-                        optionOne: pointsData[point][0][taskType],
-                        optionOneAmount: pointsData[point][0]['answerAmount'],
+                        optionOne: pointsData[point][0][taskType], 
+                        optionOneAmount: pointsData[point][0]['Raw']['amountVariableOne'],
+                        optionTwoAmount: pointsData[point][0]['Raw']['amountVariableTwo'],
                         cutoff: cutoffPoint,
                         consistency,
                     }
                     return res;
                 });
-                const area = this.getAreaUnderTheCurve(taskRecs);
+                const area = this.getAreaUnderTheCurve(taskRecs, taskType);
                 taskRecs.forEach(task => {
                     res[taskName + ": cutoff for " + task.optionOne] = task.cutoff;
                     res[taskName + ": consistency for " + task.optionOne] = task.consistency;
@@ -312,41 +313,6 @@
 
                 return {cutoffPoint, consistency}
             },
-        //     getCutoffPoint(answers, taskType) {
-        //     // Determine the opposite amount based on the taskType
-        //     const oppositeAmount = taskType === "Option one" ? "amountTwo" : "amountOne";
-
-        //     // Array to store consistency count and cutoff value for each index
-        //     const consistencyResults = answers.map((answer, cutoffIndex) => {
-        //         let consistentCount = 0;
-
-        //         // Calculate the number of consistent answers for this cutoff
-        //         answers.forEach((currentAnswer, currentIndex) => {
-        //             const isBeyondCutoff = currentIndex >= cutoffIndex;
-        //             const targetAmount = isBeyondCutoff ? oppositeAmount : answer.answerAmount;
-
-        //             // Check consistency
-        //             if (currentAnswer.answerAmount === targetAmount) {
-        //                 consistentCount++;
-        //             }
-        //         });
-
-        //         // Store the consistency count and cutoff amount
-        //         return { consistentCount, cutoffValue: answer[oppositeAmount] };
-        //     });
-
-        //     // Find the maximum consistency and the corresponding cutoff points
-        //     const maxConsistency = Math.max(...consistencyResults.map(result => result.consistentCount));
-        //     const bestCutoffs = consistencyResults
-        //         .filter(result => result.consistentCount === maxConsistency)
-        //         .map(result => result.cutoffValue);
-
-        //     // Calculate the geometric mean of the best cutoffs
-        //     const productOfCutoffs = bestCutoffs.reduce((product, value) => product * value, 1);
-        //     const geometricMeanCutoff = Math.pow(productOfCutoffs, 1 / bestCutoffs.length);
-
-        //     return geometricMeanCutoff;
-        // },
             getCutoffPoint(answers, taskType) {
                 let changingPoints;
                 const oposite = taskType == "Option one"  ? "amountTwo" : "amountOne"
@@ -392,24 +358,32 @@
             },
 
             getAreaUnderTheCurve(points) {
-                const yFactor = 1000;
-                const xFactor = Math.max(...points.map(point => point.optionOneAmount));
+                try {
+                    const yFactor = Math.max(...points.map(point => {
+                        return parseInt(point.optionOneAmount)
+                    }));
+                    const xFactor = Math.max(...points.map(point => {
+                        return parseInt(point.optionTwoAmount)
+                    }));
 
-                const factoredPoints = this.sortPoint(points.map(point => ({
-                    x: point.optionOneAmount / xFactor,
-                    y: point.cutoff / yFactor,
-                })), 'x');
+                    const factoredPoints = this.sortPoint(points.map(point => ({
+                        x: parseInt(point.optionOneAmount) / xFactor,
+                        y: point.cutoff / yFactor,
+                    })), 'x');
 
-                let leftPoint = {
-                    x: 0,
-                    y: 1,
-                };
-                let area = 0;
-                factoredPoints.forEach(point => {
-                    area += ((leftPoint.y + point.y) * (point.x - leftPoint.x)) / 2;
-                    leftPoint = point;
-                });
-                return area;
+                    let leftPoint = {
+                        x: 0,
+                        y: 1,
+                    };
+                    let area = 0;
+                    factoredPoints.forEach(point => {
+                        area += ((leftPoint.y + point.y) * (point.x - leftPoint.x)) / 2;
+                        leftPoint = point;
+                    });
+                    return area;
+                }catch(err) {
+                    console.log(err)
+                }
             }
 
         },
