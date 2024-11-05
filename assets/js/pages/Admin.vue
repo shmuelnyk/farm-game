@@ -309,13 +309,12 @@
                 
                 const cutoffPoint = this.getCutoffPoint(sorted, taskType);
                 
-                const consistency = this.getConsistency(sorted, cutoffPoint, taskType);
+                const consistency = this.getConsistency(sorted, cutoffPoint);
 
                 return {cutoffPoint, consistency}
             },
             getCutoffPoint(answers, taskType) {
                 let changingPoints;
-                const oposite = taskType == "Option one"  ? "amountTwo" : "amountOne"
                 // trying to find the best index to put a cutoff point -> counting all consistent answers for every index
                 // consistent answer is when answer is option1 and option2 is less than cutoff, or choosing option2 when it's more than cutoff
                 // add all cutoff points that gives maximum consistent answers.
@@ -327,11 +326,11 @@
                         if (currIndex === changingIndex) {
                             shouldEqual = true
                         }
-                        if ((answer["answerAmount"] === answer[oposite]) === shouldEqual) {
+                        if ((answer["answerAmount"] === answer['amountTwo']) === shouldEqual) {
                             numOfCorrects++
                         }
                     });
-                    indexesResults.push({numOfCorrects, value: parseInt(answers[changingIndex][oposite])})
+                    indexesResults.push({numOfCorrects, value: parseInt(answers[changingIndex]['amountTwo'])})
                 }
                 const maxResult = Math.max(...indexesResults.map(y => y.numOfCorrects));
                 changingPoints = indexesResults.filter(x => x.numOfCorrects === maxResult).map(x => {
@@ -339,15 +338,13 @@
                 });
                 const allTogether = changingPoints.reduce((a, b) => a * b);
                 let cutoff = Math.pow(allTogether, 1 / changingPoints.length);
+                
                 return cutoff
             },
-            getConsistency(answers, cutoff, taskType) {
+            getConsistency(answers, cutoff) {
                 // counting consistent answers. consistent answer is choosing option1 when option2 is less than cutoff and choosing option2 when it's more than cutoff
-                const oposite = taskType == "Option one"  ? "amountTwo" : "amountOne"
-                const select = taskType == "Option one"  ? "amountOne" : "amountTwo"
                 const numOfConsistencies = answers.filter(answer => {
-                    return (answer['answerAmount'] === answer[select] && parseInt(answer[oposite]) < cutoff) ||
-                        (answer['answerAmount'] === answer[select] && parseInt(answer[oposite]) >= cutoff)
+                    return answer['answerAmount'] >= cutoff
                 }).length;
                 // consistency number is consistent answers num / all answers num
                 return numOfConsistencies / answers.length
