@@ -10,7 +10,11 @@
                 </a-button>
             </template>
         </a-page-header>
+        <div v-if="loading" class="loader">
+            <a-spin size="large"/>
+        </div>
         <div class="main-container">
+            
             <a-collapse v-model="activeKey">
                 <a-collapse-panel key="1" header="Export">
                     <a-row :gutter="24">
@@ -92,6 +96,7 @@
         data() {
             return {
                 link: '',
+                loading: false,
                 newPassword: '',
                 oldPassword: '',
                 activeKey: ['1'],
@@ -167,6 +172,7 @@
 
             },
             async exportParticipants() {
+                this.loading=true
                 if (this.exportRange.length == 0) {
                     this.$message.error('Please select a date range.')
                     return;
@@ -192,6 +198,7 @@
                     .catch((err) => {
                         this.$message.error(err.response.data.msg)
                     })
+                this.loading=false
             },
 
             async getData(params = {}) {
@@ -226,6 +233,7 @@
             },
 
             buttonPressed() {
+                this.loading = true
                 if (this.exportRange.length == 0) {
                     this.$message.error('Please select a date range.')
                     return;
@@ -252,6 +260,7 @@
                     resultJson.push(this.forOnePerson(id, personsAnswers[id]))
                 });
                 this.exportData(resultJson, 'Curve area from ' + this.exportRange[0].format('DD-MM-YYYY') + ' to ' + this.exportRange[1].format('DD-MM-YYYY'))
+                this.loading = false
             },
 
             // first need to do everything separated for each person
@@ -265,42 +274,39 @@
             },
 
             calcTask(taskName, taskAnswers) {
-                const taskType = Object.keys(this.groupBy(taskAnswers, "Option one")).length  === 1 ? "Option two" : "Option one"
-                const oposite = taskType == "Option one"  ? "Option two" : "Option one"
+                try {
+                    const taskType = Object.keys(this.groupBy(taskAnswers, "Option one")).length  === 1 ? "Option two" : "Option one"
+                    const oposite = taskType == "Option one"  ? "Option two" : "Option one"
 
-                const pointsData = this.groupBy(taskAnswers, taskType);
-                
-                let res = {};
-                let time = 0;
-                let taskRecs = Object.keys(pointsData).map(point => {
-                    pointsData[point].forEach(x => time += parseInt(x["Time in milliseconds"]));
-                    for (let i = 0; i < pointsData[point].length;i++) {
-                        if (pointsData[point][i]['Option one'] === pointsData[point][i]['Answer']) {
-                            pointsData[point][i]['answerAmount'] = parseInt(pointsData[point][i]['Raw']['amountVariableOne'])
-                        }else {
-                            pointsData[point][i]['answerAmount'] = parseInt(pointsData[point][i]['Raw']['amountVariableTwo'])
+                    const pointsData = this.groupBy(taskAnswers, taskType);
+                    
+                    let res = {};
+                    let time = 0;
+                    console.log(pointsData)
+                    let taskRecs = Object.keys(pointsData).map(point => {
+                        pointsData[point].forEach(x => time += parseInt(x["Time in milliseconds"]));
+                        const {cutoffPoint, consistency} = this.calcPoint(point, pointsData[point], taskType, oposite);
+                        const res = {
+                            optionOne: pointsData[point][0][taskType], 
+                            optionOneAmount: pointsData[point][0]['amountVariableOne'],
+                            optionTwoAmount: pointsData[point][0]['amountVariableTwo'],
+                            cutoff: cutoffPoint,
+                            consistency,
                         }
-                        pointsData[point][i]['amountOne'] = parseInt(pointsData[point][i]['Raw']['amountVariableOne']) 
-                        pointsData[point][i]['amountTwo'] = parseInt(pointsData[point][i]['Raw']['amountVariableTwo'])
-                    }
-                    const {cutoffPoint, consistency} = this.calcPoint(point, pointsData[point], taskType, oposite);
-                    const res = {
-                        optionOne: pointsData[point][0][taskType], 
-                        optionOneAmount: pointsData[point][0]['Raw']['amountVariableOne'],
-                        optionTwoAmount: pointsData[point][0]['Raw']['amountVariableTwo'],
-                        cutoff: cutoffPoint,
-                        consistency,
-                    }
-                    return res;
-                });
-                const area = this.getAreaUnderTheCurve(taskRecs, taskType);
-                taskRecs.forEach(task => {
-                    res[taskName + ": cutoff for " + task.optionOne] = task.cutoff;
-                    res[taskName + ": consistency for " + task.optionOne] = task.consistency;
-                });
-                res[taskName + ": area under the curve"] = area;
-                res[taskName + ": time"] = time;
-                return res
+                        return res;
+                    });
+                    const area = this.getAreaUnderTheCurve(taskRecs, taskType);
+                    taskRecs.forEach(task => {
+                        res[taskName + ": cutoff for " + task.optionOne] = task.cutoff;
+                        res[taskName + ": consistency for " + task.optionOne] = task.consistency;
+                    });
+                    res[taskName + ": area under the curve"] = area;
+                    res[taskName + ": time"] = time;
+                    return res
+                } catch(err) {
+                    console.log(err)
+                }
+                
             },
 
             // for each "option one" need to calc where did the user changed his mind and his consistency level
@@ -313,7 +319,7 @@
 
                 return {cutoffPoint, consistency}
             },
-            getCutoffPoint(answers, taskType) {
+            getCutoffPoint(answers) {
                 let changingPoints;
                 // trying to find the best index to put a cutoff point -> counting all consistent answers for every index
                 // consistent answer is when answer is option1 and option2 is less than cutoff, or choosing option2 when it's more than cutoff
@@ -323,6 +329,7 @@
                     let numOfCorrects = 0;
                     let shouldEqual = false;
                     answers.forEach((answer, currIndex) => {
+                        console.log(answer['amountTwo'], answer['amountOne'])
                         if (currIndex === changingIndex) {
                             shouldEqual = true
                         }
@@ -394,6 +401,22 @@
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
+    }
+    .loader {
+        background: rgba(0, 0, 0, 0.4);
+        position: fixed;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 999;
+
+        .ant-spin {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
     }
 
 </style>

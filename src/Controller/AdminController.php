@@ -47,7 +47,8 @@ class AdminController extends AbstractController
     public function exportParticipants(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-
+        set_time_limit(0);
+        ini_set('memory_limit','1024M');
 
         $columns = array(
             'MTurk ID',
@@ -200,13 +201,17 @@ class AdminController extends AbstractController
      */
     public function exportParticipantsCurve(Request $request)
     {
+        set_time_limit(0);
+        ini_set('memory_limit','1024M');
+
         $em = $this->getDoctrine()->getManager();
         $data = json_decode($request->getContent(), true);
         $start = date_create_from_format('d-m-Y', $data['start']);
         $start->setTime(0, 0, 0, 0);
         $end = date_create_from_format('d-m-Y', $data['end']);
         $end->setTime(23, 59);
-        $participants = $em->getRepository(Participant::class)->createQueryBuilder('p')
+        $answers = $em->getRepository(QuizAnswer::class)->createQueryBuilder('q')
+            ->leftJoin('q.participant', 'p')
             ->andwhere('p.createdAt >= :start')
             ->andwhere('p.createdAt <= :end')
             ->setParameter('start', $start)
@@ -214,17 +219,31 @@ class AdminController extends AbstractController
             ->getQuery()
             ->getResult();
         $rows = array();
-        foreach ($participants as $participant) {
-            foreach ($participant->getQuizAnswers() as $answer)
-            array_push($rows,array(
-                "MTurk ID"=>$participant->getMTurkId(),
+        $participants = array();
+        foreach ($answers as $answer){
+            if (!in_array($answer->getParticipant()->getMTurkId(), $participants)) {
+                array_push($participants, $answer->getParticipant()->getMTurkId());
+            }
+            $data =array(
+                "MTurk ID"=>$answer->getParticipant()->getMTurkId(),
                 "Test Name"=>$answer->getTest(),
                 "Option one"=>(int)preg_replace('/[^0-9]/', '', $answer->getOptionOne()),
                 "Option two"=>(int)preg_replace('/[^0-9]/', '', $answer->getOptionTwo()),
                 "Answer"=>(int)preg_replace('/[^0-9]/', '', $answer->getAnswer()),
-                "Raw"=>json_decode($answer->getRaw(), true),
                 "Time in milliseconds"=>(int)$answer->getTime(),
-            ));
+            );
+            $raw = json_decode($answer->getRaw(), true);
+
+            if ($answer->getOptionOne() === $answer->getAnswer()) {
+                $data['answerAmount'] = (int)$raw['amountVariableOne'];
+            } else {
+                $data['answerAmount'] = (int)$raw['amountVariableTwo'];
+            }
+            $data['amountVariableOne'] = (int)$raw['amountVariableOne'];
+            $data['amountOne'] = (int)$raw['amountVariableOne'];
+            $data['amountVariableTwo'] = (int)$raw['amountVariableTwo'];
+            $data['amountTwo'] = (int)$raw['amountVariableTwo'];
+            array_push($rows,$data);
         }
         return new JsonResponse(array('json' => $rows,'participants'=>count($participants)), 200);
     }
