@@ -172,11 +172,12 @@
 
             },
             async exportParticipants() {
-                this.loading=true
                 if (this.exportRange.length == 0) {
                     this.$message.error('Please select a date range.')
                     return;
                 }
+                this.loading=true
+
                 let params = {};
                 params.pagination = Object.assign({}, this.pagination);
                 params.search = this.search;
@@ -208,7 +209,7 @@
                         this.link = res.data.link;
                     })
                     .catch((err) => {
-                        console.log(err);
+                        console.log(err)
                     })
             },
             groupBy(xs, key) {
@@ -233,11 +234,11 @@
             },
 
             buttonPressed() {
-                this.loading = true
                 if (this.exportRange.length == 0) {
                     this.$message.error('Please select a date range.')
                     return;
                 }
+                this.loading = true
                 let params = {};
                 params.start = this.exportRange[0].format('DD-MM-YYYY');
                 params.end = this.exportRange[1].format('DD-MM-YYYY');
@@ -282,7 +283,6 @@
                     
                     let res = {};
                     let time = 0;
-                    console.log(pointsData)
                     let taskRecs = Object.keys(pointsData).map(point => {
                         pointsData[point].forEach(x => time += parseInt(x["Time in milliseconds"]));
                         const {cutoffPoint, consistency} = this.calcPoint(point, pointsData[point], taskType, oposite);
@@ -313,52 +313,116 @@
             calcPoint(point, data, taskType, oposite) {
                 const sorted = this.sortPoint(data, oposite);
                 
-                const cutoffPoint = this.getCutoffPoint(sorted, taskType);
-                
-                const consistency = this.getConsistency(sorted, cutoffPoint);
+                const res = this.getCutoffPoint(sorted, taskType);
 
-                return {cutoffPoint, consistency}
+                
+                return {cutoffPoint: res.cutoff, consistency: res.consistency}
+            },
+            filterAnswersAndOrder(answers) {
+                if (answers[0]['Test Name'] == 'Deadline') {
+                    return answers.sort(({amountTwo:a}, {amountTwo:b}) => b-a).filter(x=>x.amountTwo != 900).reverse();
+                }
+                else {
+                    return answers.sort(({amountTwo:a}, {amountTwo:b}) => b-a).reverse();
+                }
+            },
+            getCutoffPoints(answers) {
+                const cutoffs = [50]
+                answers.forEach(x => {
+                    cutoffs.push(x.amountTwo + 50)
+                });
+                
+                return [...new Set(cutoffs)];
             },
             getCutoffPoint(answers) {
-                let changingPoints;
-                // trying to find the best index to put a cutoff point -> counting all consistent answers for every index
-                // consistent answer is when answer is option1 and option2 is less than cutoff, or choosing option2 when it's more than cutoff
-                // add all cutoff points that gives maximum consistent answers.
-                let indexesResults = [];
-                for (let changingIndex = 0; changingIndex < answers.length; changingIndex++) {
-                    let numOfCorrects = 0;
-                    let shouldEqual = false;
-                    answers.forEach((answer, currIndex) => {
-                        console.log(answer['amountTwo'], answer['amountOne'])
-                        if (currIndex === changingIndex) {
-                            shouldEqual = true
-                        }
-                        if ((answer["answerAmount"] === answer['amountTwo']) === shouldEqual) {
-                            numOfCorrects++
-                        }
-                    });
-                    indexesResults.push({numOfCorrects, value: parseInt(answers[changingIndex]['amountTwo'])})
-                }
-                const maxResult = Math.max(...indexesResults.map(y => y.numOfCorrects));
-                changingPoints = indexesResults.filter(x => x.numOfCorrects === maxResult).map(x => {
-                    return x.value
+                let consistentAnswers50 = 0;
+                let consistentAnswers100 = 0;
+                const filteredAnswers = this.filterAnswersAndOrder(answers)
+                const possibleCutoffPoints = this.getCutoffPoints(filteredAnswers)
+                answers.forEach(answer => {
+                    if (answer.Answer === answer["Option two"]) {
+                        consistentAnswers50++;
+                    }else if (answer.Answer === answer["Option one"]) {
+                        consistentAnswers100++;
+                    }
                 });
-                const allTogether = changingPoints.reduce((a, b) => a * b);
-                let cutoff = Math.pow(allTogether, 1 / changingPoints.length);
-                
-                return cutoff
-            },
-            getConsistency(answers, cutoff) {
-                // counting consistent answers. consistent answer is choosing option1 when option2 is less than cutoff and choosing option2 when it's more than cutoff
-                const numOfConsistencies = answers.filter(answer => {
-                    return answer['answerAmount'] >= cutoff
-                }).length;
-                // consistency number is consistent answers num / all answers num
-                return numOfConsistencies / answers.length
-            },
 
-            getNumberFromOptionOne(optionOne) {
-                return parseInt(optionOne.match(/\d+/)[0])
+                if (consistentAnswers50 === answers.length) {
+                    return {
+                        cutoff: 50,
+                        consistency: 1
+                    }
+                }else if (consistentAnswers100 === answers.length) {
+                    const cutoff = Math.max(...possibleCutoffPoints)
+                    return {
+                        cutoff,
+                        consistency: 1
+                    }
+                }
+                let indexesResults = [];
+                for (let i = 0; i < possibleCutoffPoints.length; i++){
+                    const cutoff = possibleCutoffPoints[i]
+                    const befores = filteredAnswers.filter(an => an.amountTwo < cutoff)
+                    const afters = filteredAnswers.filter(an => an.amountTwo > cutoff)
+                    const beforeOptions = [...new Set(befores)]
+                    let afterChoice
+                    let beforeChoice
+                    let afterChanges = 0
+                    let beforeChanges = 0
+                    if (beforeOptions.length > 0) {
+                        if (beforeOptions[beforeOptions.length -1].Answer == answers[0]['Option one']) {
+                            afterChoice = answers[0]['Option two']
+                            beforeChoice = answers[0]['Option one']
+                        } else {
+                            afterChoice = answers[0]['Option one']
+                            beforeChoice = answers[0]['Option two']
+                        }
+                        befores.forEach(bf => {
+                            if (bf['Answer'] != beforeChoice) {
+                                beforeChanges ++
+                            }
+                        })
+                    } else {
+                        afterChoice = afters[0].Answer
+                    }
+                    
+                    afters.forEach(af => {
+                        if (af['Answer'] != afterChoice) {
+                            afterChanges ++
+                        }
+                    })
+                    indexesResults.push ({
+                        cutoff,
+                        numOfSwitches: beforeChanges + afterChanges
+                    })
+                }
+
+                // Find the maximum number of correct answers
+                const maxChanges = Math.min(...indexesResults.map(result => result.numOfSwitches));
+
+
+                // Filter to get all cutoff values that have the max number of correct answers
+                const bestCutoffs = indexesResults.filter(result => result.numOfSwitches === maxChanges);
+                if (bestCutoffs.length == 1) {
+                    return {
+                        cutoff:  bestCutoffs[0].cutoff,
+                        consistency: 1
+                    }
+                } else {
+                    let cutoffSum = 0
+                    bestCutoffs.forEach(x => cutoffSum += x.cutoff)
+
+                    const cutoff = cutoffSum / bestCutoffs.length
+                    const consistency = 1 - bestCutoffs[0].numOfSwitches * 0.2
+                    if (isNaN(cutoff)) {
+                        console.log(bestCutoffs)
+                    }
+                    return {
+                        cutoff,
+                        consistency
+                    }
+
+                }
             },
 
             getAreaUnderTheCurve(points) {

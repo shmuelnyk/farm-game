@@ -60,6 +60,7 @@ export default {
             commit("SET_ITEMS", res.data["hydra:member"]);
           })
           .catch((err) => {
+            return err
             throw err.response.data.message;
           });
     },

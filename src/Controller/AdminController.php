@@ -55,14 +55,14 @@ class AdminController extends AbstractController
             'Test Name',
             'Option one',
             'Amount one',
-            'Time one',
             'Deadline one',
+            'Delay one',
             'Chance one',
             'Work one',
             'Option two',
             'Amount two',
-            'Time two',
             'Deadline two',
+            'Delay two',
             'Chance two',
             'Work two',
             'Answer',
@@ -102,7 +102,9 @@ class AdminController extends AbstractController
         foreach ($participants as $result) {
             foreach ($result->getQuizAnswers() as $answer) {
                 $testData = json_decode($answer->getRaw(), true);
-
+                if ($answer->getTest() == 'Deadline' && (int)$testData['amountVariableTwo'] == 900)  {
+                    continue;
+                }
                 $column = 'A';
                 $sheet->setCellValue($column . $row, $result->getMTurkId());
                 $column++;
