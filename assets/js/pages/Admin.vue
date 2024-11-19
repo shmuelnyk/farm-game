@@ -319,7 +319,7 @@
                 return {cutoffPoint: res.cutoff, consistency: res.consistency}
             },
             filterAnswersAndOrder(answers) {
-                if (answers[0]['Test Name'] == 'Deadline') {
+                if (answers[0]['Test Name'] == 'Deadline' || answers[0]['Test Name'] == 'Rate B') {
                     return answers.sort(({amountTwo:a}, {amountTwo:b}) => b-a).filter(x=>x.amountTwo != 900).reverse();
                 }
                 else {
@@ -327,7 +327,7 @@
                 }
             },
             getCutoffPoints(answers) {
-                const cutoffs = [50]
+                const cutoffs = []
                 answers.forEach(x => {
                     cutoffs.push(x.amountTwo + 50)
                 });
@@ -412,13 +412,11 @@
                     let cutoffSum = 0
                     bestCutoffs.forEach(x => cutoffSum += x.cutoff)
 
-                    const cutoff = cutoffSum / bestCutoffs.length
+                    const cutoffReturn = cutoffSum / bestCutoffs.length
                     const consistency = 1 - bestCutoffs[0].numOfSwitches * 0.2
-                    if (isNaN(cutoff)) {
-                        console.log(bestCutoffs)
-                    }
+
                     return {
-                        cutoff,
+                        cutoff: cutoffReturn,
                         consistency
                     }
 

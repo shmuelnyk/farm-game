@@ -102,7 +102,7 @@ class AdminController extends AbstractController
         foreach ($participants as $result) {
             foreach ($result->getQuizAnswers() as $answer) {
                 $testData = json_decode($answer->getRaw(), true);
-                if ($answer->getTest() == 'Deadline' && (int)$testData['amountVariableTwo'] == 900)  {
+                if (($answer->getTest() == 'Deadline' || $answer->getTest() == 'Rate B') && (int)$testData['amountVariableTwo'] == 900)  {
                     continue;
                 }
                 $column = 'A';
